@@ -1,6 +1,6 @@
 .speaker-image {
-    max-width: 450px;
-    height: auto;
+    max-height: 500px;
+    width: auto;
     margin-bottom: 5em;
 }
 
@@ -10,18 +10,45 @@
 
 
 #program-table {
-  margin-left: 3em;
-  margin-right: 3em;
+  white-space: nowrap;
+  border: 2px solid #00000022;
+
 }
 
 #program-table td {
   padding: 0.5em !important;
 }
 
+#program-table th {
+    padding: 1em;
+}
+
+table tr td:nth-child(2) {
+    text-align: center;
+    background-color: #f6f6f6;
+}
+
+table tr td:nth-child(3) {
+    text-align: center;
+}
+
+table tr td:nth-child(4) {
+    text-align: center;
+    background-color: #f6f6f6;
+}
+
+.table-responsive {
+    margin: 1em;
+}
+
 .program-table {
   margin-top: 3em;
   margin-bottom: 3em;
   overflow-x: hidden !important;
+}
+
+.location-text {
+    text-align: center !important;
 }
 
 .accent {
@@ -229,7 +256,11 @@
   .program-table {
     overflow-x: auto !important;
   }
+  #program-table th {
+    padding: 0;
+  }
 }
+
 
 .direction-img {
   height: 2em;
@@ -258,3 +289,4 @@
 .session {
   text-align: center;
 }
+
