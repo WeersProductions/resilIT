@@ -1229,7 +1229,8 @@ table tr td:nth-child(4) {
 
 .location-content {
   text-align: right;
-  color: white; }
+  color: white;
+  padding: 1em; }
   .location-content p {
     text-align: right; }
 
@@ -1349,7 +1350,8 @@ table tr td:nth-child(4) {
 .directions {
   text-transform: none;
   text-decoration: none;
-  color: white; }
+  color: white;
+  padding: 2em; }
 
 #speaker-table {
   margin: 4em; }
