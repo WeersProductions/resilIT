@@ -25,7 +25,7 @@ bronze_logos.push("/images/snic_sponsor_logo/Logo_ASML.png");
 
 silver_logos.push("/images/snic_sponsor_logo/Logo_KPMG.png");
 silver_logos.push("/images/snic_sponsor_logo/Logo_DNB.png");
-silver_logos.push("/images/snic_sponsor_logo/Logo_Topicus.jpg");
+silver_logos.push("/images/snic_sponsor_logo/Logo_Topicus.png");
 silver_logos.push("/images/snic_sponsor_logo/Logo_Procam.png");
 silver_logos.push("/images/snic_sponsor_logo/Logo_DSW.png");
 

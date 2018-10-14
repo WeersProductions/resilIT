@@ -18,7 +18,7 @@ function shuffle(a) {
 var SILVER_LOGO_DURATION = 5000;
 
 var silver_logos = Array();
-silver_logos.push("/images/snic_sponsor_logo/Logo_Topicus.jpg");
+silver_logos.push("/images/snic_sponsor_logo/Logo_Topicus.png");
 silver_logos.push("/images/snic_sponsor_logo/Logo_Procam.png");
 silver_logos.push("/images/snic_sponsor_logo/Logo_DSW.png");
 
