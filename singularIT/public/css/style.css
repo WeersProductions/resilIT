@@ -896,6 +896,14 @@ header.hero.location {
 #map #content .separator {
   margin: 1em auto; }
 
+#contact {
+  margin-left: 20vw; }
+  #contact b {
+    display: block; }
+  #contact .contact-entry {
+    margin-left: 20px;
+    display: block; }
+
 /****************************
 * Login
 ****************************/

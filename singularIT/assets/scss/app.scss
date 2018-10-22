@@ -754,6 +754,18 @@ header.hero.location{
   margin: 1em auto;
 }
 
+#contact {
+  margin-left: 20vw;
+
+  b {
+    display: block;
+  }
+
+  .contact-entry {
+    margin-left: 20px;
+    display: block;
+  }
+}
 
 /****************************
 * Login
