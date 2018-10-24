@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@sentry/node": "^4.2.1",
     "async": "^2.4.0",
     "body-parser": "~1.17.0",
     "bwip-js": "^1.7.1",

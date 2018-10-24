@@ -19,6 +19,8 @@ var expressValidator = require('express-validator');
 
 var MongoStore = require('connect-mongo')(session);
 
+const Sentry = require('@sentry/node');
+
 /// load configuration
 var config = JSON.parse(fs.readFileSync('config.json'));
 
@@ -29,6 +31,21 @@ mongoose.Promise = require('q').Promise;
 var routes = require('./routes/index')(config);
 var auth = require('./routes/auth')(config);
 var scanner_api_routes = require('./routes/scanner')(config);
+
+// Sentry
+var sentry_enabled = false;
+if (config.sentry && config.sentry.dsn) {
+    sentry_enabled = true;
+}
+
+if (sentry_enabled) {
+  Sentry.init({
+    dsn: config.sentry.dsn,
+    environment: config.sentry.environment
+  });
+
+  app.use(Sentry.Handlers.requestHandler());
+}
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -95,6 +112,10 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/', auth);
+
+if (sentry_enabled) {
+  app.use(Sentry.Handlers.errorHandler());
+}
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
