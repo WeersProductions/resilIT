@@ -718,6 +718,11 @@ header.hero.speakers {
 .timetable .session:last-of-type:after {
   content: ""; }
 
+.speaker-anchor {
+  padding-top: 45px;
+  margin-top: -45px;
+  display: inline-block; }
+
 @media (min-width: 600px) {
   .timetable img {
     max-width: 400px; }

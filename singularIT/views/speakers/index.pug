@@ -2,7 +2,8 @@ extends ../layout
 
 mixin session(speaker, count)
   if speaker
-    div(id=speaker.id class="session")
+    span(class="speaker-anchor" id=speaker.id)
+    div(class="session")
       h3!= speaker.name
       if speaker.company
         h5(class=speaker.id)!= speaker.company
@@ -28,7 +29,7 @@ mixin session(speaker, count)
             p(class="speaker-page-p")!= part
       if speaker.limit - count == 0
         p(style={color:'#C8102E'}) This session is already full
-      else 
+      else
         if speaker.limit - count < 50
           p(style={color:'#C8102E'}) There are only #{speaker.limit - count} seats left
     hr
