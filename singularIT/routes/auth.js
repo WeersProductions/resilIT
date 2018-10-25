@@ -6,12 +6,27 @@ module.exports = function (config) {
   var async = require('async');
   var nodemailer = require('nodemailer');
   var mg = require('nodemailer-mailgun-transport');
+  const pug = require('pug');
+  var path = require('path');
 
   var Mailchimp = require('mailchimp-api-v3');
   var mc = new Mailchimp(config.mailchimp.key, true);
   // don't ever use MD5 seriously. The only reason it's used is because
   // mailchimp wants an md5 hash of the emailaddress when you PUT it in the list
   var md5 = require('md5');
+
+  var gmail_send = require('gmail-send')({
+    user: config.gmail.email,
+    pass: config.gmail.password,
+    from: 'SNiC SingularIT'
+  });
+
+
+  const passwordForgotEmailTemplate = pug.compileFile(
+    path.join('views', 'password_reset_email.pug')
+  );
+
+
 
   var User = require('../models/User');
   var Ticket = require('../models/Ticket');
@@ -204,19 +219,21 @@ module.exports = function (config) {
         });
       },
       function (token, user, done) {
+        var html = passwordForgotEmailTemplate({
+          user: user,
+          token: token
+        });
+        console.log(html);
+
         var mailOptions = {
           to: user.email,
-          from: config.email.auth.user,
-          subject: 'Reset password',
-          text: "You have received this email because you (or someone else) asked to reset your password for Disrupt-IT \n\n" +
-                "Click on the following link, or copy it into your browser, to complete the reset: https://www.disrupt-it.nl/reset/"+token+"\n\n"+
-                "If you did not request to reset your password, you can ignore this email and your password will remain the same"
+          subject: 'SNiC: SingularIT - Password reset',
+          html: html
         };
 
-        transport.sendMail(mailOptions, function (err) {
-          req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to change your password');
-          done(err, 'done');
-        });
+        gmail_send(mailOptions);
+        req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to change your password');
+        done();
       }
     ], function (err) {
       if (err) {
