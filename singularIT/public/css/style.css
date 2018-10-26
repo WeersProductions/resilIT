@@ -35,7 +35,8 @@
 
 body {
   font-family: 'TruenoRegular' !important;
-  background-color: #fafafa !important; }
+  background-color: #fafafa !important;
+  overflow-x: hidden; }
 
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0; }
@@ -120,7 +121,8 @@ a:focus {
   top: 0;
   width: 100%;
   padding: 0 40px;
-  background-color: #22244bEE;
+  background-color: #22244b;
+  opacity: 0.9;
   font-family: 'TruenoUltLt' !important;
   font-weight: 100;
   font-size: 1.75rem;
