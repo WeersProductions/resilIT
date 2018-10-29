@@ -1,7 +1,7 @@
 extends layout
 
 mixin dropdown(speaker, user, session, visitorCounts)
-  - var description = speaker.company === '' ? '' : ' (' + speaker.company + ') '
+  - var description = (!speaker.company || speaker.company === '') ? '' : ' (' + speaker.company + ') '
   - description = description + ' - ' + speaker.subject.replace(" \</br\>", ":")
   - var remaining = speaker.limit - visitorCounts.filter(candidate => speaker.id == candidate.id)[0].count
   if remaining > 0 || user[session] == speakerid
@@ -33,6 +33,7 @@ block content
       if user.type == 'partner'
         p.text-center Partners don't have to enroll for sessions, but you are welcome to join in if there are seats left.
       else
+        br
         if providePreferences
           .form-group
             label(for='session1') Preference talk in first parallel session

@@ -11,6 +11,9 @@ mixin session(speaker, count)
         p(class=speaker.id)
       if speaker.image
         img(src=speaker.image class="speaker-image")
+      if speaker.images
+        for image in speaker.images
+          img(src=image class="speaker-image-multiple")
       if speaker.special
         p(class="speaker-page-p")!= speaker.special
       if speaker.subject

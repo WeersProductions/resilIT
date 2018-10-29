@@ -1189,10 +1189,14 @@ article + .readmore-js-toggle {
   border-bottom: 1px solid #999;
   font-weight: bold; }
 
-.speaker-image {
+.speaker-image, .speaker-image-multiple {
   max-height: 500px;
   width: auto;
   margin-bottom: 5em; }
+
+.speaker-image-multiple {
+  margin-left: 5px;
+  margin-right: 5px; }
 
 #location {
   background-color: #22244b; }
