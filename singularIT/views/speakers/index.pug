@@ -42,13 +42,14 @@ block above-content
 block content
   section.intro.slanted
     .content
-      h3 Hosts
+      h2 Hosts
       hr
       .timetable
         each presenter in presenters
           +session(presenter)
 
-      h3 Speakers
+      h2 Speakers
+      hr
       each speaker in speakers
         +session(speaker)
       //- .separator(role='separator')
