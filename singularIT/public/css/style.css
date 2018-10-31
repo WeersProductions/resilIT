@@ -917,6 +917,17 @@ header.hero.location {
   font-size: 1.7rem;
   font-weight: lighter; }
 
+#speeddate-companies {
+  font-weight: lighter;
+  margin-top: 10px; }
+  @media (max-width: 800px) {
+    #speeddate-companies {
+      margin-left: 10vw; } }
+  @media (min-width: 800px) {
+    #speeddate-companies {
+      font-size: 1.7rem;
+      margin-left: 5vw; } }
+
 /****************************
 * Login
 ****************************/

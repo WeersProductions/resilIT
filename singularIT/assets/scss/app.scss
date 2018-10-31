@@ -781,6 +781,20 @@ header.hero.location{
   font-weight: lighter;
 }
 
+#speeddate-companies {
+  font-weight: lighter;
+  margin-top: 10px;
+
+  @media(max-width: 800px){
+    margin-left: 10vw;
+  }
+
+  @media(min-width: 800px){
+    font-size: 1.7rem;
+    margin-left: 5vw;
+  }
+}
+
 /****************************
 * Login
 ****************************/
