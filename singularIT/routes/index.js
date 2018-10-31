@@ -120,7 +120,8 @@ router.get('/profile', auth, async function (req, res) {
     visitorCounts: visitorCounts,
     spTimeSlot: spTimeSlot,
     allSpTimeSlots: allSpTimeSlots,
-    freeSpTimeSlots: freeSpTimeSlots
+    freeSpTimeSlots: freeSpTimeSlots,
+    provideTrackPreferencesEnd: config.provideTrackPreferencesEnd
   });
 });
 

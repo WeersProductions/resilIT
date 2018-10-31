@@ -12,6 +12,16 @@ mixin dropdown(speaker, user, session, visitorCounts)
     - description = description + ' (FULL)'
     option(disabled value=speaker.id, selected=user[session] == speaker.id ? 'selected' : undefine)= speaker.name.replace("</br>", "&") + description
 
+
+mixin fixedEnrollment(session, sessionids, selectedSpeakerId)
+  each speakerid in sessionids
+    if speakerid === selectedSpeakerId
+      - var speaker = speakers.filter(function(doc){return doc.id == speakerid})[0]
+      - var description = (!speaker.company || speaker.company === '') ? '' : ' (' + speaker.company + ') -'
+      - description = description + speaker.subject.replace(" \</br\>", ":")
+      li #{session}:
+        b #{'  ' + description}
+
 block above-content
 
 block header
@@ -35,32 +45,42 @@ block content
       else
         br
         if providePreferences
-          .form-group
-            label(for='session1') Preference talk in first parallel session
-            div.select-wrapper
-              select.form-control(name='session1')
-                option(value='', selected=!user.session1?'selected':undefined) No preference
-                each val in speakerids.session1
-                  - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                  +dropdown(speaker, user, 'session1', visitorCounts)
+          if Date.now() < new Date(provideTrackPreferencesEnd).getTime()
+            .form-group
+              label(for='session1') Preference talk in first parallel session
+              div.select-wrapper
+                select.form-control(name='session1')
+                  option(value='', selected=!user.session1?'selected':undefined) No preference
+                  each val in speakerids.session1
+                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
+                    +dropdown(speaker, user, 'session1', visitorCounts)
 
-          .form-group
-            label(for='session2') Preference talk in second parallel session
-            div.select-wrapper
-              select.form-control(name='session2')
-                option(value='', selected) No preference
-                each val in speakerids.session2
-                  - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                  +dropdown(speaker, user, 'session2', visitorCounts)
+            .form-group
+              label(for='session2') Preference talk in second parallel session
+              div.select-wrapper
+                select.form-control(name='session2')
+                  option(value='', selected) No preference
+                  each val in speakerids.session2
+                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
+                    +dropdown(speaker, user, 'session2', visitorCounts)
 
-          .form-group
-            label(for='session3') Preference talk in third parallel session
-            div.select-wrapper
-              select.form-control(name='session3')
-                option(value='', selected) No preference
-                each val in speakerids.session3
-                  - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                  +dropdown(speaker, user, 'session3', visitorCounts)
+            .form-group
+              label(for='session3') Preference talk in third parallel session
+              div.select-wrapper
+                select.form-control(name='session3')
+                  option(value='', selected) No preference
+                  each val in speakerids.session3
+                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
+                    +dropdown(speaker, user, 'session3', visitorCounts)
+          else
+            if (user.session1 !== undefined && user.session1 !== '') || (user.session2 !== undefined && user.session2 != '') || (user.session3 != undefined && user.session3 != '')
+              p.text-center Enrollment for sessions are closed. You signed up for the following sessions:
+              ul#enrollment-sessions
+                +fixedEnrollment("Session 1", speakerids.session1, user.session1)
+                +fixedEnrollment("Session 2", speakerids.session2, user.session2)
+                +fixedEnrollment("Session 3", speakerids.session3, user.session3)
+            else
+              p.text-center Enrollment for sessions are closed.
         else
           p.text-center You can enroll for sessions on a later date.
       br

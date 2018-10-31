@@ -911,6 +911,12 @@ header.hero.location {
     margin-left: 20px;
     display: block; }
 
+#enrollment-sessions {
+  margin-left: 10vw;
+  margin-top: 10px;
+  font-size: 1.7rem;
+  font-weight: lighter; }
+
 /****************************
 * Login
 ****************************/
