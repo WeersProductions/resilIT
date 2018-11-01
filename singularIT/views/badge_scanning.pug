@@ -8,7 +8,7 @@ block content
   section.badge-scans
 
     p Number of users which allow badge scanning:
-      b #{' ' + badgeScanningAllowed + ' / ' + totalUsers}
+      b #{' ' + badgeScanningAllowed + ' / ' + totalUsers} (#{Math.round(badgeScanningAllowed / totalUsers * 1000) / 10}%)
     hr
 
     for account in scannerAccounts
