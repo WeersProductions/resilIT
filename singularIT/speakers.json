@@ -8,10 +8,11 @@
   },
   "speakers": [
     {
-      "name" : "Quintor",
+      "name" : "Marius van Eck & Lennart ten Wolde",
       "id": "quintor",
       "image": "",
       "subject": "Keynote: Introduction to Singularity",
+      "company" : "Quintor",
       "talk": [
           "Quintor will give a keynote with an introduction to concepts and questions about singularity. The keynote will be given by Marius van Eck and Lennart ten Wolde."
       ],
@@ -146,7 +147,7 @@
       "name": "Ashley Burgoyne",
       "id": "ashley",
       "company": "",
-      "bio": [""
+      "bio": ["John Ashley Burgoyne is the Lecturer in Computational Musicology at the University of Amsterdam and part of the Music Cognition Group at the Institute for Logic, Language, and Computation. Dr. Burgoyne teaches in both musicology and artificial intelligence and is especially interested in musicometrics: developing behavioural and audio models that are conceptually sound, reliable, and musicologically interpretable as music enters the digital humanities era. He was the leader of the Hooked on Music project, an online citizen science experiment to explore long-term musical memory that attracted more than 170,000 participants across more than 200 countries."
       ],
       "image": "/images/sprekers/ashley.jpg",
       "hidden": false

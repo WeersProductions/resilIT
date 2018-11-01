@@ -1,16 +1,20 @@
 extends ../layout
 
-mixin session(speaker, count)
+mixin session(speaker, count, host)
   if speaker
     span(class="speaker-anchor" id=speaker.id)
     div(class="session")
       h3!= speaker.name
       if speaker.company
-        h5(class=speaker.id)!= speaker.company
+        h4(class=speaker.id)!= speaker.company
       else
         p(class=speaker.id)
       if speaker.image
-        img(src=speaker.image class="speaker-image")
+        if host
+          div.host-image
+            img(src=speaker.image class="speaker-image")
+        else
+          img(src=speaker.image class="speaker-image")
       if speaker.images
         for image in speaker.images
           img(src=image class="speaker-image-multiple")
@@ -31,10 +35,10 @@ mixin session(speaker, count)
           each part in speaker.bio
             p(class="speaker-page-p")!= part
       if speaker.limit - count == 0
-        p(style={color:'#C8102E'}) This session is already full
+        p(style={color:'#C8102E', 'text-align': 'center'}) This session is already full
       else
         if speaker.limit - count < 50
-          p(style={color:'#C8102E'}) There are only #{speaker.limit - count} seats left
+          p(style={color:'#C8102E', 'text-align': 'center'}) There are only #{speaker.limit - count} seats left
     hr
 
 block above-content
@@ -46,7 +50,7 @@ block content
       hr
       .timetable
         each presenter in presenters
-          +session(presenter)
+          +session(presenter, NaN, true)
 
       h2 Speakers
       hr

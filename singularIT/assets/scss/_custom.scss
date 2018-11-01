@@ -1,6 +1,7 @@
 .speaker-image {
     max-height: 500px;
     width: auto;
+    max-width: 100%;
     margin-bottom: 5em;
 }
 
@@ -8,6 +9,13 @@
     @extend .speaker-image;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.host-image {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #location {
