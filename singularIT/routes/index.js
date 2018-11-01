@@ -135,13 +135,17 @@ router.get('/profile', auth, async function (req, res) {
  * TODO: possibly combine with countEnrolls?
  */
 async function canEnrollForSession(sessionslot, sessionid, useremail){
+  if (Date.now() >= new Date(config.provideTrackPreferencesEnd).getTime()) {
+    return false;
+  }
+
   if(typeof sessionid == "undefined" || sessionid == "" || sessionid == null){
     return true;
-  };
+  }
 
-  session = speakerinfo.speakers.filter(function(speaker){
+  var session = speakerinfo.speakers.filter(function(speaker){
     return speaker.id == sessionid;
-  })
+  });
 
   // session not found
   if (session.length != 1) {
