@@ -3,10 +3,14 @@ var express = require('express');
 var bwipjs = require('bwip-js');
 var Ticket = require('../models/Ticket');
 var User   = require('../models/User');
+var ScannerUser = require('../models/ScannerUser');
+var ScannerResult = require('../models/ScannerResult');
 var SpeedDateTimeSlot   = require('../models/SpeedDateTimeSlot');
 var _      = require('underscore');
 var async  = require('async');
 var i18n   = require('i18next');
+const CSV = require('csv-string');
+
 
 // Load speaker information from speakers.json
 var fs = require('fs');
@@ -411,6 +415,65 @@ router.get('/speeddate', adminAuth, async function (req, res) {
   res.render('speeddate', {timeslots: result});
 });
 
+router.get('/badge-scanning', adminAuth, async function (req, res) {
+  var badgeScanningAllowed = await User.find(
+    {'allowBadgeScanning': true, 'type': 'student'}).count();
+  var totalUsers = await User.find({'type': 'student'}).count();
+
+  var scannerAccounts =
+    await Promise.all((await ScannerUser.find().sort({'displayName': 1})).map(
+      async function (account) {
+        var scans = await ScannerResult
+          .find({'scanner_user': account._id})
+          .populate('user')
+          .sort({'user.studyProgramme': 1});
+
+        return {
+          'id': account._id,
+          'display_name': account.display_name,
+          'username': account.username,
+          'scans': scans
+        };
+      }
+    ));
+
+  res.render('badge_scanning', {
+    badgeScanningAllowed: badgeScanningAllowed,
+    totalUsers: totalUsers,
+    scannerAccounts: scannerAccounts,
+    associations: config.verenigingen
+  });
+});
+
+router.get('/badge-scanning/export-csv/:id', adminAuth,
+  async function (req, res) {
+    var data = [
+      ['Email', 'Name', 'Study programme', 'Comments']
+    ];
+
+    var scannerUser = await ScannerUser.findById(req.params.id);
+
+    data.push(await Promise.all((await ScannerResult
+      .find({'scanner_user': req.params.id})
+      .populate('user')
+      .sort({'user.surname': 1, 'user.firstname': 1}))
+      .map(async function (r) {
+        return [
+          r.user.email,
+          r.user.firstname + ' ' + r.user.surname,
+          r.user.studyProgramme,
+          r.comment
+        ];
+      })));
+
+    var filename = scannerUser.display_name.replace(/ /g, '_')
+          + '_badge_scans.csv';
+
+    res.set('Content-Type', 'text/plain');
+    res.set('Content-Disposition', 'attachment; filename="' + filename + '"');
+    res.send(CSV.stringify(data));
+  }
+);
 
 /**
  * Output all dietary wishes provided by users

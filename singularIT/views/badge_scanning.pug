@@ -1,0 +1,36 @@
+extends layout
+
+block header
+  header.text
+    h2 Badge scanning
+
+block content
+  section.badge-scans
+
+    p Number of users which allow badge scanning:
+      b #{' ' + badgeScanningAllowed + ' / ' + totalUsers}
+    hr
+
+    for account in scannerAccounts
+      .badge-scans-table.offset-by-three.six.columns
+        h5= account.display_name
+        | Number of scans:
+        b= ' ' + account.scans.length
+        table.badge-scans.table
+          thead
+            th Name
+            th Study programme
+            th Association
+            th Comment
+          tbody
+            for scan in account.scans
+              tr
+                td
+                  a(href='/users/' + scan.user._id)= scan.user.firstname + ' ' + scan.user.surname
+                td= scan.user.studyProgramme
+                td= associations[scan.user.vereniging].name
+                td= scan.comment
+
+        a.button.button-primary(href='/badge-scanning/export-csv/' + account.id) Export CSV
+        hr
+

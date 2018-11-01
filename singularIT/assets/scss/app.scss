@@ -945,18 +945,25 @@ section.profile {
 * Diet & Speeddate
 ****************************/
 
-#diet-table, #speeddate-table {
+#diet-table, #speeddate-table, .badge-scan-table {
   float: none;
 }
 
+.badge-scans h5 {
+  text-align: left;
+}
+
 .diet.table,
-.speeddate.table {
+.speeddate.table,
+.badge-scans.table
+{
   margin: 0 0 2em 0;
   width: 100%;
 }
 
 .diet.table thead th,
-.speeddate.table thead th {
+.speeddate.table thead th,
+.badge-scans.table thead th {
   padding: 10px 0px 10px 0px;
   width:20%;
 }
@@ -966,6 +973,10 @@ section.profile {
   padding: 10px 0px 10px 0px;
   width: 10%;
   text-align: center;
+}
+
+.badge-scans.table td {
+  text-align: left;
 }
 
 .speeddate.table {
