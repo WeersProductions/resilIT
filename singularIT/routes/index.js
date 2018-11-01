@@ -320,59 +320,6 @@ router.get('/speakers', function (req, res) {
   });
 });
 
-// router.get('/panel', function(req, res) {
-//   res.render('panel', {title: 'Panel discussion | '});
-// })
-
-/*
- * TODO: Needs to be recreated
- */
-// router.get('/speakers/:talk', function (req, res) {
-//   var s = speakerinfo.speakers.filter(function(speaker){
-//     return (speaker.talk.replace(/\s/g, '-').replace('?', '').replace(':', '').replace('!', '').toLowerCase() === req.params.talk);
-//   })[0];
-
-//   if(!Boolean(s)){
-//     res.render('error', {message: 'Not found', error: {status: 404}});
-//     return;
-//   }
-
-//   res.render('speakers/talk', {path: '/speakers', speaker: s});
-// });
-
-// router.get('/organisation', function (req, res) {
-//   res.render('organisation', {title: 'Organisation |'});
-// });
-
-// router.get('/connectbetter', function(req, res) {
-//   res.render('connectbetter', {title: 'Connect better |'})
-// });
-
-// router.get('/mailing', function (req,res) {
-//   res.render('mailing');
-// });
-//
-// router.get('/participate', function (req, res) {
-//   res.render('participate');
-// });
-
-// router.get('/programme', function (req,res) {
-//   res.render('programme', {title:'Programme |'});
-// });
-
-// router.get('/program', function (req,res) {
-//   res.render('programme', {title:'Programme |'});
-// });
-// router.get('/schedule', function (req,res) {
-//   res.render('programme', {title:'Programme |'});
-// });
-// router.get('/dagprogramma', function (req,res) {
-//   res.render('programme', {title:'Programme |'});
-// });
-// router.get('/programma', function (req,res) {
-//   res.render('programme', {title:'Programme |'});
-// });
-
 router.get('/users', adminAuth, function (req,res,next) {
   var query = {};
 
@@ -397,7 +344,6 @@ router.get('/users', adminAuth, function (req,res,next) {
 
   User.find(query).sort({'vereniging':1,'firstname':1}).exec( function (err, results) {
     if (err) { return next(err); }
-    //res.json(results);
     res.render('users',{users:results, verenigingen:config.verenigingen});
   });
 });
@@ -509,35 +455,34 @@ router.post('/users/:id', adminAuth, function (req,res,next) {
   });
 });
 
-router.post('/aanmelden', adminAuth, function (req,res,next) {
+router.post('/aanmelden', adminAuth, async function (req, res) {
   var ticket = req.body.ticket;
-  User.findOne({ticket:ticket}, function (err, result) {
-    if (err) {
-      req.flash('error', "Something went wrong. Please contact the committee.");
-      return res.redirect('/users');
-    }
+  var user = await User.findOne({ticket:ticket}).populate('speedDateTimeSlot');
 
-    if (!result) {
-      req.flash('error', "Ticket not found. Try finding it manually" );
-      return res.redirect('/users');
-    }
-    if (result.aanwezig) {
-      req.flash('error', "That ticket was already used");
-      return res.redirect('/users');
-    }
-    result.aanwezig = true;
-    result.save(function (err) {
-      if (err) { req.flash('error', "Something went wrong. Please contact the committee."); return res.redirect('/users'); }
-      req.flash('success', res.locals.ucfirst(result.firstname) + ' ' + result.surname +' ('+ res.locals.verenigingen[result.vereniging].name +') has registered his ticket');
-      res.redirect('/users');
-    });
-  });
+  if (!user) {
+    req.flash('error', "Ticket not found. Try finding it manually." );
+    return res.redirect('/users');
+  }
+
+  if (user.aanwezig) {
+    req.flash('error', "This ticket is already marked as present.");
+    return res.redirect('/users');
+  }
+
+  user.aanwezig = true;
+
+  await user.save();
+
+  req.flash('success', res.locals.ucfirst(user.firstname) + ' ' + user.surname
+    +' ('+ res.locals.verenigingen[user.vereniging].name +') has registered his ticket');
+
+  if (user.speedDateTimeSlot) {
+    req.flash('warning', '!safe:The user has registered for speed dating in slot: <b>'
+      + user.speedDateTimeSlot.name + '</b>.');
+  }
+
+  res.redirect('/users');
 });
-
-//
-// var barc = new Barc({
-//   hri: false
-// });
 
 /**
  * List of people present, per association

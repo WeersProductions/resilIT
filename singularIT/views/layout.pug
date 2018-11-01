@@ -1,3 +1,9 @@
+mixin showMessage(msg)
+  if msg.startsWith('!safe:')
+    | !{msg.substring(6)}
+  else
+    = msg
+
 doctype html
 
 html(lang=locale)
@@ -126,18 +132,25 @@ html(lang=locale)
           if messages.error
             each msg in messages.error
               .alert.alert-danger.alert-dismissable
-                = msg
+                +showMessage(msg)
                 a.close(href='#', data-dismiss='alert', aria-label='close') &times;
 
           if messages.info
             each msg in messages.info
               .alert.alert-info.alert-dismissable
-                = msg
+                +showMessage(msg)
                 a.close(href='#', data-dismiss='alert', aria-label='close') &times;
+
           if messages.success
             each msg in messages.success
               .alert.alert-success.alert-dismissable
-                = msg
+                +showMessage(msg)
+                a.close(href='#', data-dismiss='alert', aria-label='close') &times;
+
+          if messages.warning
+            each msg in messages.warning
+              .alert.alert-warning.alert-dismissable
+                +showMessage(msg)
                 a.close(href='#', data-dismiss='alert', aria-label='close') &times;
 
     // content of the page
