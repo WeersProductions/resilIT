@@ -59,13 +59,6 @@ app.use(compress({
   }
 }));
 
-//CORS middleware
-var allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://disrupt-it:3000');
-
-  next();
-};
-
 app.use(morgan('combined'));
 
 // This must come BEFORE the bodyParser stuff, so the scanner API route
@@ -78,7 +71,6 @@ app.use(bodyParser.urlencoded({
 })); // Because default for lower versions
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(allowCrossDomain);
 app.use(session({
   secret: config.session.secret,
   // store: new MongoStore({
