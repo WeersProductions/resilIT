@@ -340,6 +340,12 @@ input[type="button"].button-primary:focus
   border-color: $congres-color;
 }
 
+.button.button-small {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 /****************************
 * Footer
 ****************************/
@@ -1158,6 +1164,11 @@ header.hero.topicus {
 }
 
 article + .readmore-js-toggle { padding-bottom: 1.5em; border-bottom: 1px solid #999; font-weight: bold;}
+
+.attendees-edit-button {
+  height: auto;
+  display: initial;
+}
 
 @import 'custom';
 @import 'mobile';

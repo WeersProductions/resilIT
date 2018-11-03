@@ -4,7 +4,7 @@ block above-content
 
 block header
   header.text
-    h2 Check in
+    h2 Edit user
 
 block content
   .section.users.intro.slanted
@@ -15,14 +15,15 @@ block content
 
             table.users.table
               thead
-                  th Voornaam
-                  th Achternaam
+                  th First name
+                  th Surname
                   th Email
                   th Ticket
-                  th Vereniging
-                  th Aanwezig
+                  th Association
+                  th Present
+                  th Admin
               tbody
-                tr
+                tr(style='height: 40px')
                   td=user.firstname
                   td=user.surname
                   td=user.email
@@ -30,7 +31,8 @@ block content
                   td=verenigingen[user.vereniging].name
                   td
                     input#aanwezig(type='checkbox',name='aanwezig',checked=user.aanwezig?'checked':undefined)
-                    label(for='aanwezig', style='margin-top: -5px;') &nbsp;
+                  td
+                    input#admin(type='checkbox',name='admin',checked=user.admin?'checked':undefined)
 
-            a.button(href='/users') Terug
-            button.button.special(type='submit', style='float:right') Sla op
+            a.button(href='/users') Back
+            button.button.button-primary.special(type='submit', style='float:right') Save

@@ -445,7 +445,10 @@ router.get('/users/:id', adminAuth, function (req,res,next) {
 router.post('/users/:id', adminAuth, function (req,res,next) {
   User.findOne({_id:req.params.id}, function (err, result) {
     if (err) { return next(err); }
+
     result.aanwezig = req.body.aanwezig;
+    result.admin = req.body.admin;
+
     result.save(function(err) {
       if (err) {return next(err); }
 

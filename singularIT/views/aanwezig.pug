@@ -1,7 +1,7 @@
 extends layout
 block above-content
 
-block header 
+block header
     header.text
         h2 Aanwezigen
 
@@ -18,11 +18,11 @@ block content
         if row.bus
           - countBus++
     h2= 'Aanwezigheidslijst'
-      small= '(' + count + ' ingeschreven, ' + countAanwezig + ' aanwezig)' 
+      small= '(' + count + ' ingeschreven, ' + countAanwezig + ' aanwezig)'
 
     #aanwezig-table.offset-by-three.six.columns
       for table in tables
-        - count = 0
+        - count = 1
         - countAanwezig = 0
         - countBus = 0
         for row in table.rows
@@ -33,7 +33,7 @@ block content
             - countBus++
         table.aanwezig
           h3= verenigingen[table.name].name
-            p.text-center= '(' + count + ' ingeschreven, ' + countAanwezig + ' aanwezig, ' + countBus + ' busplekken)' 
+            p.text-center= '(' + count + ' ingeschreven, ' + countAanwezig + ' aanwezig, ' + countBus + ' busplekken)'
           thead
             tr
               th Voornaam
@@ -41,12 +41,13 @@ block content
               th Email
               th Bus
               th Aanwezig
+              th
           tbody
             for row in table.rows
               tr
                 td=row.firstname
                 td=row.surname
-                td=row.email 
+                td=row.email
                 td
                   if row.bus
                     span.fa.fa-check(style='color:#79bf46;')
@@ -57,5 +58,8 @@ block content
                     span.fa.fa-check(style='color:#79bf46;')
                   else
                     span.fa.fa-close(style='color:#bf464c;')
+                td
+                  a.button.button-primary.button-small.attendees-edit-button(href='/users/' + row._id, target='_blank')
+                    i.fa.fa-pencil
 
-        
+
