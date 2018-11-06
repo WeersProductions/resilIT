@@ -9,7 +9,7 @@
 			"profile": {
 				"link" : "/partners/achmea",
 				"text" : "Lees verder op de bedrijfspagina."
-			}	
+			}
 		},
 		{
 			"image" : {
@@ -30,7 +30,7 @@
 			"promo": "Long before it became fashionable to talk about the need to be ‘digital first’, ING has recognised and invested in the power of new technologies to transform our customers’ banking experience.",
 			"profile": {
 				"link" : "/partners/ING",
-				"text" : "Lees verder op de bedrijfspagina."
+				"text" : "Read more on the company profile."
 			}
         },
 		{
@@ -38,10 +38,10 @@
 				"link": "https://lifeatnedap.com",
 				"src": "/images/snic_sponsor_logo/Logo_Nedap.png"
 			},
-			"promo": "",
+			"promo": "Nedap is all about ‘Technology for life’: developing products, propositions and solutions that make work more pleasant for people and increase their productivity. We focus on how people interact with technology, not on technology itself. At Nedap we believe in the versatility of people and organisations. We trust in the power of ideas and initiatives.",
 			"profile": {
-				"link" : "https://lifeatnedap.com",
-				"text" : "Lees verder op de bedrijfspagina."
+				"link" : "/partners/nedap",
+				"text" : "Read more on the company profile."
 			}
 		}
 	],
