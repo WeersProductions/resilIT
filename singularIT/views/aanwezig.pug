@@ -22,7 +22,7 @@ block content
 
     #aanwezig-table.offset-by-three.six.columns
       for table in tables
-        - count = 1
+        - count = 0
         - countAanwezig = 0
         - countBus = 0
         for row in table.rows
@@ -61,5 +61,7 @@ block content
                 td
                   a.button.button-primary.button-small.attendees-edit-button(href='/users/' + row._id, target='_blank')
                     i.fa.fa-pencil
+
+        a.button.button-primary(href='/users/export-csv/' + table.name) Export CSV
 
 

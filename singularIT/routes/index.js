@@ -506,6 +506,34 @@ router.get('/aanwezig', adminAuth, function (req,res,next) {
   });
 });
 
+
+router.get('/users/export-csv/:association', adminAuth, async function (req, res) {
+    var data = [
+      ['First Name', 'Surname', 'Email', 'Bus', 'Ticket code']
+    ];
+
+    var associationName = config.verenigingen[req.params.association].name;
+
+    data.push(await Promise.all(
+      (await User.find({'vereniging': req.params.association}))
+      .map(async function (u) {
+        return [
+          u.firstname,
+          u.surname,
+          u.email,
+          u.bus,
+          u.ticket
+        ];
+      })));
+
+    var filename = associationName.replace(/ /g, '_')
+          + '_registered_users.csv';
+
+    res.set('Content-Type', 'text/plain');
+    res.set('Content-Disposition', 'attachment; filename="' + filename + '"');
+    res.send(CSV.stringify(data));
+});
+
 /*******************************************************************************
  * Triggered if someone requests this page. This will be printed on the badge of
  * an attendee in the form of a QR code. Can be scanned with generic QR code
