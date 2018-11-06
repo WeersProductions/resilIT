@@ -747,6 +747,15 @@ header.hero.speakers {
   .timetable h5.david {
     margin-top: 65px; } }
 
+#panel-list {
+  text-align: left;
+  display: inline-block; }
+
+@media (max-width: 700px) {
+  #panel-list {
+    margin-left: 10px;
+    margin-right: 10px; } }
+
 /****************************
 * Panel
 ****************************/

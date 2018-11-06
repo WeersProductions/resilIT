@@ -563,6 +563,18 @@ header.hero.speakers{
   }
 }
 
+#panel-list {
+  text-align: left;
+  display: inline-block;
+}
+
+@media(max-width: 700px){
+  #panel-list {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
 /****************************
 * Panel
 ****************************/

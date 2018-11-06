@@ -83,12 +83,13 @@
       "company" : "",
       "subject": "Digital Immortality",
       "talk": [
-        "In the first 10-15 minutes, the panel members introduce themselves and explain their position on digital immortality in one or two slides. After this introduction, the discussion itself takes place (30-35 minutes). During the discussion, the statements are used as a guide, but interaction with the public is encouraged. There are catch-box microphones present and vote cards for the public (green to agree, red to disagree), so that the opinion of the public can be gauged for each proposition.",
-        "<b>Bruce Duncan</b> (also see <a href='#bruce'>his keynote</a>) is already working on making mind-files, in which he slowly works towards full mind-uploading. In addition, he is also very aware of the ethical side and certain prejudices that come into play with the subject.",
-        "<b>Nedap</b> sends André Foeken (CEO), he gave the end keynote last year. We expect him to offer a critical but business-like perspective in the panel.",
-        "<b>Richard Stallman</b> has a strong opinion about everything. With his background in Free Software he has a lot to offer in the discussion, in particular a different perspective and a critical attitude on mind uploading."
+        "The panel will be hosted by host Ashley Burgoyne. It will contain the following topics: <div id='panel-list'><ul><li>Will people actually make use of digital immortality?</li><li>Would a digital upload have real consciousness and real feelings?</li><li>Would a digital upload really copy the \"essence\" of the person?</li><li>Would a digital upload be able to change like a human person?</li><li>How will these digital personalities be protected?</li><li>Will it ever be possible to do digitally immortalize yourself in practical terms?</li><li>What will be the effects of digital immortality on society?</li></ul></div>",
+"In the first 10-15 minutes, the panel members introduce themselves and explain their position on digital immortality. After this introduction, the discussion itself takes place. During the discussion, the questions are used as a guide, divided into two categories. There are catch-box microphones present, so the opinion of the public can be gauged for each category of questions."
       ],
-      "bio" : null,
+      "bio" : [
+"<b>Bruce Duncan, M.Ed.</b>, is Managing Director of the Terasem Movement Foundation Inc. and project leader for the LifeNaut Project. As the Principle Investigator of the LifeNaut Project Bruce Duncan is responsible for the ongoing development of Bina48, the world’s first advanced humanoid robot based on the “mindfile” information of a real person. He also curates the first cyber museum dedicated to addressing racism, bigotry and prejudice at the World Against Racism Museum.",
+"<b>Dr Richard Stallman</b> launched the free software movement in 1983 and started the development of the GNU operating system in 1984. GNU is free software: everyone has the freedom to copy it and redistribute it, with or without changes. The GNU/Linux system, basically the GNU operating system with Linux added, is used on tens of millions of computers today.",
+"<b>André Foeken</b> has a background in computer science and is interested in how technology can change the way we work. He is a strong believer that more hours do not yield more benefits and that our companies are slowly moving to a new way of looking at the human labour force. He is currently the CTO of Nedap Healthcare."],
       "special": "",
       "limit": 550,
       "hidden": false
