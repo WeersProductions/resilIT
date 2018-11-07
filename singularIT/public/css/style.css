@@ -1209,10 +1209,17 @@ header.hero.kpmg {
   min-height: 50vh; }
 
 /****************************
-* Topicus Bedrijfsprofiel
+* Topicus Bedrijfsprofiel:w
 ****************************/
 header.hero.topicus {
   background-image: url("/images/Hero_Topicus.jpg");
+  min-height: 50vh; }
+
+/****************************
+* DSW Bedrijfsprofiel
+****************************/
+header.hero.dsw {
+  background-image: url("/images/Hero_DSW.jpg");
   min-height: 50vh; }
 
 /****************************
@@ -1234,6 +1241,9 @@ article + .readmore-js-toggle {
 .attendees-edit-button {
   height: auto;
   display: initial; }
+
+.silver-plus {
+  margin-bottom: 10vh; }
 
 .speaker-image, .speaker-image-multiple {
   max-height: 500px;

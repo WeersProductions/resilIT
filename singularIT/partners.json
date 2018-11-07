@@ -45,11 +45,20 @@
 			}
 		}
 	],
+    "silverPlus": [
+        {
+            "image": {
+                "link": "https://www.dsw.nl/werkenbij/vacatures",
+			    "src" : "/images/snic_sponsor_logo/Logo_DSW.png"
+            },
+            "promo": "Providing optimal service by building our own systems. What will your contribution be?",
+            "profile": {
+                "link": "/partners/dsw",
+                "text": "Read more on the company profile."
+            }
+	    }
+    ],
 	"silver" : [
-		{
-			"link" : "https:/www.dsw.nl/werkenbij/vacatures",
-			"src" : "/images/snic_sponsor_logo/Logo_DSW.png"
-		},
 		{
 			"link" : "https://procam.nl/",
 			"src" : "/images/snic_sponsor_logo/Logo_Procam.png"

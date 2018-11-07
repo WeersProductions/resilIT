@@ -60,6 +60,9 @@ block content
         .twelve.colunms
           h2 Silver partners
           .separator(role='separator')
+      .row(class="silver-plus")
+        .twelve.columns
+          +goldpartner(partners.silverPlus[0])
       .row
         .four.columns
           +partner(partners.silver[0])
@@ -72,8 +75,6 @@ block content
           +partner(partners.silver[3])
         .four.columns
           +partner(partners.silver[4])
-        .four.columns
-          +partner(partners.silver[5])
   section#other.slanted
     - partners.bronze = partners.bronze.sort(function() { return 0.5 - Math.random() });
     .content.container

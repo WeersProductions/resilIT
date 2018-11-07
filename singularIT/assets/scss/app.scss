@@ -1158,13 +1158,23 @@ header.hero.kpmg {
 }
 
 /****************************
-* Topicus Bedrijfsprofiel
+* Topicus Bedrijfsprofiel:w
 ****************************/
 
 header.hero.topicus {
   background-image: url('/images/Hero_Topicus.jpg');
   min-height: 50vh;
 }
+
+/****************************
+* DSW Bedrijfsprofiel
+****************************/
+
+header.hero.dsw {
+  background-image: url('/images/Hero_DSW.jpg');
+  min-height: 50vh;
+}
+
 
 /****************************
 * One-off elements
