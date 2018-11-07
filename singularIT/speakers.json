@@ -80,7 +80,7 @@
     {
       "name" : "Panel",
       "id": "panel",
-      "image": "",
+      "image": "/images/sprekers/panel.png",
       "company" : "",
       "subject": "Digital Immortality",
       "talk": [

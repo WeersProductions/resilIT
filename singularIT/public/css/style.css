@@ -705,6 +705,8 @@ header.hero.speakers {
   width: 80vw;
   flex-grow: 1;
   width: 33%; }
+  .timetable .session h1 {
+    text-transform: uppercase; }
 
 .timetable .session .shorten {
   padding-bottom: 10px; }
@@ -739,7 +741,7 @@ header.hero.speakers {
 
 @media (min-width: 1500px) {
   .timetable {
-    margin: 10px 10vw; }
+    margin: 10px 10px; }
   .timetable .session {
     width: 30vw;
     margin: 0px; }
@@ -1245,7 +1247,7 @@ article + .readmore-js-toggle {
   display: inline !important;
   padding-right: 10px; }
 
-.host-image {
+.speaker-image-container {
   min-height: 450px;
   display: flex;
   flex-direction: column;

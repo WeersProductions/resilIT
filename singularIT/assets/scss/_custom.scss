@@ -1,19 +1,19 @@
 .speaker-image {
-    max-height: 500px;
-    width: auto;
-    max-width: 100%;
-    margin-bottom: 5em;
+  max-height: 500px;
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 5em;
 }
 
 .speaker-image-multiple {
-    @extend .speaker-image;
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline !important;
-    padding-right: 10px;
+  @extend .speaker-image;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline !important;
+  padding-right: 10px;
 }
 
-.host-image {
+.speaker-image-container {
   min-height: 450px;
   display: flex;
   flex-direction: column;

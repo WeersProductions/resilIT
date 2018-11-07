@@ -10,10 +10,7 @@ mixin session(speaker, count, host)
       else
         p(class=speaker.id)
       if speaker.image
-        if host
-          div.host-image
-            img(src=speaker.image class="speaker-image")
-        else
+        div.speaker-image-container
           img(src=speaker.image class="speaker-image")
       if speaker.images
         for image in speaker.images
@@ -46,6 +43,13 @@ block above-content
 block content
   section.intro.slanted
     .content
+      .timetable
+        div(class="program-tracks session")
+            h1 Grand Technical Challenges
+        div(class="program-tracks session")
+            h1 Societal Impact
+        div(class="program-tracks session")
+            h1 Experience the Singularity
       h2 Hosts
       hr
       .timetable
@@ -55,11 +59,5 @@ block content
       h2 Speakers
       hr
       .timetable
-        div(class="program-tracks session")
-            h1 Grand Technical Challenges
-        div(class="program-tracks session")
-            h1 Societal Impact
-        div(class="program-tracks session")
-            h1 Experience the Singularity
         each speaker in speakers
             +session(speaker, idx)
