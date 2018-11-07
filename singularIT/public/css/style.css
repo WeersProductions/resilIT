@@ -698,12 +698,13 @@ header.hero.speakers {
 
 .timetable .session {
   text-align: center;
-  flex: 1 0 300px;
   box-sizing: border-box;
   color: #171e42;
-  padding: 10px;
+  padding: 20px;
   margin: 1em 0em;
-  width: 80vw; }
+  width: 80vw;
+  flex-grow: 1;
+  width: 33%; }
 
 .timetable .session .shorten {
   padding-bottom: 10px; }
@@ -1240,13 +1241,18 @@ article + .readmore-js-toggle {
 
 .speaker-image-multiple {
   margin-left: 5px;
-  margin-right: 5px; }
+  margin-right: 5px;
+  display: inline !important;
+  padding-right: 10px; }
 
 .host-image {
   min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center; }
+
+.keynote {
+  flex: 100%; }
 
 #location {
   background-color: #22244b; }
@@ -1394,6 +1400,12 @@ table tr td:nth-child(4) {
 
 #silver_logo_container {
   display: none !important; }
+
+@media (max-width: 1200px) {
+  .program-tracks {
+    display: none; }
+  .timetable .session {
+    flex: 100%; } }
 
 @media (max-width: 700px) {
   body {

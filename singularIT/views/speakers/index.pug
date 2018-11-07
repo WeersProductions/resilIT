@@ -3,7 +3,7 @@ extends ../layout
 mixin session(speaker, count, host)
   if speaker
     span(class="speaker-anchor" id=speaker.id)
-    div(class="session")
+    div(class="session", class={"keynote": typeof speaker.keynote !== 'undefined'})
       h3!= speaker.name
       if speaker.company
         h4(class=speaker.id)!= speaker.company
@@ -54,54 +54,12 @@ block content
 
       h2 Speakers
       hr
-      each speaker in speakers
-        +session(speaker)
-      //- .separator(role='separator')
-      //- h3 11:00 - 11:15
-      //- .timetable
-      //-   +session({name:"Opening", special:"By hosts and organising committee"})
-      //- .separator(role='separator')
-      //- h3 11:15 - 12:00
-      //- .timetable
-
-      //- .separator(role='separator')
-      //- h3 12:15 - 13:00
-      //- .timetable
-      //-   each id in speakerids.session1
-      //-     each speaker in speakers
-      //-       if speaker.id == id
-      //-         - var count = visitorCounts.filter(item => item.id == speaker.id)[0].count
-      //-         +session(speaker, count)
-      //- .separator(role='separator')
-      //- h3 13:00 - 14:15
-      //- .timetable
-      //-   +session({name:"Lunch", special:"Don't forget to provide details about any allergies and diets <a href='/profile'>here</a>"})
-      //- .separator(role='separator')
-      //- h3 14:15 - 15:00
-      //- .timetable
-      //-   each id in speakerids.session2
-      //-     each speaker in speakers
-      //-       if speaker.id == id
-      //-         - var count = visitorCounts.filter(item => item.id == speaker.id)[0].count
-      //-         +session(speaker, count)
-      //- .separator(role='separator')
-      //- h3 15:15 - 16:00
-      //- .timetable
-      //-   each id in speakerids.session3
-      //-     each speaker in speakers
-      //-       if speaker.id == id
-      //-         - var count = visitorCounts.filter(item => item.id == speaker.id)[0].count
-      //-         +session(speaker, count)
-      //- .separator(role='separator')
-      //- h3 16:15 - 17:00
-      //- .timetable
-      //-   each speaker in speakers
-      //-     if speaker.id == speakerids.closing
-      //-         +session(speaker)
-      //- .separator(role='separator')
-      //- h3 17:00 - 17:15
-      //-   +session({name: "Closing of conference by presenters"})
-      //- .separator(role='separator')
-      //- h3 17:15 - 20:00
-      //-   .timetable
-      //-     +session({name: "Borrel and dinner", special: "Don't forget to provide details about any allergies and diets <a href='/profile'>here</a>"})
+      .timetable
+        div(class="program-tracks session")
+            h1 Grand Technical Challenges
+        div(class="program-tracks session")
+            h1 Societal Impact
+        div(class="program-tracks session")
+            h1 Experience the Singularity
+        each speaker in speakers
+            +session(speaker, idx)

@@ -24,7 +24,8 @@
         "/images/sprekers/Lennart_ten_Wolde.jpg"
       ],
       "limit": null,
-      "hidden": false
+      "hidden": false,
+      "keynote": true
     },
     {
       "name" : "Melanie Rieback",
@@ -130,6 +131,15 @@
       "hidden": false
     },
     {
+        "name": "",
+        "id": "",
+        "image": "",
+        "subject": "",
+        "talk": "",
+        "bio": "",
+        "hidden": false
+    },
+    {
       "name" : "Bruce Duncan",
       "id": "bruce",
       "company" : "",
@@ -140,7 +150,8 @@
         "Bina48 is a social android based on a sampling of the thoughts, memories, values and attitudes of woman named Bina Rothblatt as part of the LifeNaut Project. This multi-decade experiment in ‘mind uploading’ offers participants the opportunity to create personal digital online “mindfiles” that one day may be reanimated using A.I. and downloaded into a robot, avatar or hologram. If the project is successful it may contribute to an understanding of applied A.I. technology that allows future generations to interact with their cyber-twin hundreds of years from now.. In this session there will be an open Q&A with Bina48 and Bruce Duncan, Project Director and  Principal Investigator of this futurist Lifenaut Project"
       ],
       "limit": null,
-      "hidden": false
+      "hidden": false,
+      "keynote": true
     }
   ],
   "presenters": [
