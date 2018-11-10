@@ -25,7 +25,8 @@ var User = new mongoose.Schema({
   session3:             { type: String,  required: false    },
   connectlist:          [String],
   matchingterms:        [String],
-  studyProgramme:       { type: String ,  required: true     },
+  studyProgramme:       { type: String ,  required: false    },
+  companyName:          { type: String ,  required: false    },
   allowBadgeScanning:   { type: Boolean, default: false      },
   speedDateTimeSlot:    { type: String, ref: 'SpeedDateTimeSlot'}
 });

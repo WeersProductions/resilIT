@@ -90,17 +90,26 @@ module.exports = function (config) {
     req.checkBody('vereniging','No association provided.').notEmpty();
     req.checkBody('vereniging','No valid association provided.').isIn(Object.keys(config.verenigingen));
 
-    req.body.bus = req.body.bus || (req.body.vereniging !== 'partner');
+    var association = config.verenigingen[req.body.vereniging];
+    if (association)
+      association = association.name;
+
     req.body.vegetarian = req.body.vegetarian || false;
     req.body.subscribe = req.body.subscribe || false;
     req.body.privacyPolicyAgree = req.body.privacyPolicyAgree || false;
 
-    if (req.body.programme === 'other') {
-        req.checkBody('programmeOther', 'No study programme provided.').notEmpty();
-        req.body.programme = req.body.programmeOther;
+    if (association === 'Partner') {
+      req.checkBody('companyName', 'No company name provided').notEmpty();
     } else {
-        req.checkBody('programme', 'No study programme provided.').notEmpty();
-        req.body.programmeOther = null;
+      if (req.body.programme === 'other') {
+          req.checkBody('programmeOther', 'No study programme provided.').notEmpty();
+          req.body.programme = req.body.programmeOther;
+      } else {
+          req.checkBody('programme', 'No study programme provided.').notEmpty();
+          req.body.programmeOther = null;
+      }
+
+      req.body.companyName = null;
     }
 
     req.sanitize('bus').toBoolean();
@@ -111,6 +120,9 @@ module.exports = function (config) {
     var errors = req.validationErrors();
 
     if (!req.body.privacyPolicyAgree) {
+      if (!errors)
+        errors = [];
+
       errors.push({
           param: "privacyPolicyAgree",
           msg: "Please agree to the Privacy Policy.",
@@ -135,7 +147,8 @@ module.exports = function (config) {
       bus: req.body.bus,
       vegetarian: req.body.vegetarian,
       specialNeeds: req.body.specialNeeds,
-      studyProgramme: req.body.programme
+      studyProgramme: req.body.programme,
+      companyName: req.body.companyName
     });
 
     async.waterfall([

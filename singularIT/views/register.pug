@@ -36,17 +36,20 @@ block content
                 label(for='bus')
                   input#bus(type='checkbox', name='bus', checked=body.bus?'checked': undefined)
                   | I would like to use the arranged bus at my study association
-          .form-group
+          .form-group(id='programme-group')
             label(for='programme') Study programme
             .select-wrapper
               select.form-control(id='programme', required, name='programme')
                 option(value='', selected) Select...
                 each programme in studyProgrammes
                   option(value=programme, selected = body.programme==programme ? 'selected' : undefined)=programme
-                option(value="other" id="study-programme-other") Other
+                option(value="other" id="study-programme-other", selected = body.programmeOther ? 'selected': undefined) Other
           .form-group(style='display:none', id='programme-other-group')
             label Please enter the name of your study programme
             input.form-control(type='text', name='programmeOther', value=body.programmeOther)
+          .form-group(style='display:none', id='company-name-group')
+            label Company name
+            input.form-control(type='text', name='companyName', id='company-name', value=body.companyName)
           .form-group
             .checkbox
               label(for='vegetarian')
@@ -87,42 +90,45 @@ block content
 block footer
   if new Date(ticketSaleStarts).getTime() < Date.now()
     script(type="text/javascript").
-      function setOtherProgrammeEnabled(enabled) {
-        $("#programme-other-group input").prop("required", enabled);
-        if (enabled)
-          $("#programme-other-group").show();
-        else
+      var verenigingen = !{JSON.stringify(verenigingen)};
+      var bus = $("#bus-form-group");
+
+      function updateVisibility() {
+        var index = $("#vereniging").val();
+        var vereniging = verenigingen[index];
+        if (vereniging && vereniging.bus)
+          bus.show();
+       else
+          bus.hide();
+
+        var isPartner = vereniging && vereniging.name === 'Partner'
+        if (isPartner) {
+          $("#company-name-group").show();
+          $("#company-name").prop("required", true);
+          $("#programme-group").hide();
           $("#programme-other-group").hide();
+          $("#programme").prop("required", false);
+        } else {
+          $("#company-name-group").hide();
+          $("#company-name").prop("required", false);
+
+          $("#programme-group").show();
+          $("#programme").prop("required", true);
+
+          if ($("#programme").val() === 'other') {
+            $("#programme-other-group").show();
+            $("#programme-other").prop("required", true);
+          } else {
+            $("#programme-other-group").hide();
+            $("#programme-other").prop("required", false);
+          }
+        }
       }
 
       $(document).ready(function () {
-        var verenigingen = !{JSON.stringify(verenigingen)};
-        var bus = $("#bus-form-group");
+        $("#vereniging").on('change', updateVisibility);
+        $("#programme").on('change', updateVisibility);
 
-        var other_programme = $("#programme-other-group");
-        var other_programme_input = $("#programme-other-group input");
-
-        function updateBusCheckbox() {
-          var index = $("#vereniging").val();
-          var vereniging = verenigingen[index];
-          if (vereniging && vereniging.bus)
-              bus.show();
-           else
-              bus.hide();
-          }
-
-        $("#vereniging").on('change', updateBusCheckbox);
-        $("#programme").on('change', function () {
-            setOtherProgrammeEnabled(this.value === 'other');
-        });
-
-        updateBusCheckbox();
+        updateVisibility();
       });
-
-    if body.programmeOther
-      script(type="text/javascript").
-        $(document).ready(function () {
-          $("#programme").val("other");
-            setOtherProgrammeEnabled(true);
-        });
 
