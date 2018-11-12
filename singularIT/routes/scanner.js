@@ -169,7 +169,7 @@ module.exports = function (config) {
     var result = {valid: valid};
 
     if (valid) {
-        result.valid_until = getTokenValidUntil(token).toISOString();
+      result.valid_until = getTokenValidUntil(token).toISOString();
     }
 
     success(res, result);
@@ -189,21 +189,21 @@ module.exports = function (config) {
 
     var scanner_user_id = getScannerUserIdFromToken(token);
 
-    var user_id = req.body.user_id;
+    var ticket_id = req.body.ticket_id;
 
-    if (!user_id) {
-      throw badRequest("No user ID provided.");
+    if (!ticket_id) {
+      throw badRequest("No ticket ID provided.");
     }
 
     async.waterfall([
       function (next) {
-          User.findById(user_id).exec(function (err, user) {
-              if (err || user === null || user === undefined) {
-                  next(notFound("Unknown user ID provided."), user);
-              } else {
-                  next(null, user);
-              }
-          });
+        User.findOne({'ticket': ticket_id}).exec(function (err, user) {
+          if (err || user === null || user === undefined) {
+            next(notFound("Unknown ticket ID provided."), user);
+          } else {
+            next(null, user);
+          }
+        });
       },
       function (user, next) {
         ScannerResult.findOne({ scanner_user: scanner_user_id, user: user._id }).exec(
@@ -251,11 +251,11 @@ module.exports = function (config) {
         });
       }
     ],
-    function (err) {
-      if (err) {
-        return next(err);
-      }
-    });
+      function (err) {
+        if (err) {
+          return next(err);
+        }
+      });
   });
 
   // 404 catcher
