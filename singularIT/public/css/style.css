@@ -1480,3 +1480,7 @@ table tr td:nth-child(4) {
   padding: 10px 10px 20px 20px; }
   .partner-logo img {
     max-width: 100%; }
+
+/* Fixes Google Charts tooltip flickering */
+svg > g > g:last-child {
+  pointer-events: none; }
