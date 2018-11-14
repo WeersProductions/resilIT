@@ -156,21 +156,21 @@
   ],
   "presenters": [
     {
-      "name": "Ashley Burgoyne",
-      "id": "ashley",
-      "company": "",
-      "bio": ["John Ashley Burgoyne is the Lecturer in Computational Musicology at the University of Amsterdam and part of the Music Cognition Group at the Institute for Logic, Language, and Computation. Dr. Burgoyne teaches in both musicology and artificial intelligence and is especially interested in musicometrics: developing behavioural and audio models that are conceptually sound, reliable, and musicologically interpretable as music enters the digital humanities era. He was the leader of the Hooked on Music project, an online citizen science experiment to explore long-term musical memory that attracted more than 170,000 participants across more than 200 countries."
-      ],
-      "image": "/images/sprekers/ashley.jpg",
-      "hidden": false
-    },
-    {
       "name": "Robert Belleman",
       "id": "robert",
       "company": "",
       "bio": ["Robert Belleman, PhD, is a lecturer/researcher at the Informatics Institute and program director for the Bachelor Informatica (undergraduate Computer Science) at the University of Amsterdam. His research interests include scientific visualization, computer graphics and virtual/augmented reality. He teaches courses on the same subjects at the graduate and undergraduate level."
       ],
       "image": "/images/sprekers/robert.png",
+      "hidden": false
+    },
+    {
+      "name": "Ashley Burgoyne",
+      "id": "ashley",
+      "company": "",
+      "bio": ["John Ashley Burgoyne is the Lecturer in Computational Musicology at the University of Amsterdam and part of the Music Cognition Group at the Institute for Logic, Language, and Computation. Dr. Burgoyne teaches in both musicology and artificial intelligence and is especially interested in musicometrics: developing behavioural and audio models that are conceptually sound, reliable, and musicologically interpretable as music enters the digital humanities era. He was the leader of the Hooked on Music project, an online citizen science experiment to explore long-term musical memory that attracted more than 170,000 participants across more than 200 countries."
+      ],
+      "image": "/images/sprekers/ashley.jpg",
       "hidden": false
     },
     {
