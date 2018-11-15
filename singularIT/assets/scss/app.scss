@@ -1,69 +1,12 @@
 @import 'variables';
+@import 'font';
+
 
 /**************************************************************************
 *
 * GLOBAL DEFINITIONS
 *
 **************************************************************************/
-
-@font-face {
-  font-family: 'TruenoRegular';
-  src: url('/fonts/TruenoRg.otf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TruenoLt';
-  src: url('/fonts/TruenoLt.otf');
-  font-weight: lighter;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TruenoUltLt';
-  src: url('/fonts/TruenoUltLt.otf');
-  font-weight: 100;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-family: 'TruenoBd';
-  src: url('/fonts/TruenoBd.otf');
-  font-weight: bold;
-  font-style: normal;
-}
-
-
-
-
-
-//
-// @font-face {
-//   font-family: 'Glacial Indifference';
-//   src: url('/fonts/GlacialIndifference-Regular.eot');
-//   src: local('Glacial Indifference Regular'), local('GlacialIndifference-Regular'),
-//     url('/fonts/GlacialIndifferenoce-Regular.eot?#iefix') format('embedded-opentype'),
-//     url('/fonts/GlacialIndifference-Regular.woff') format('woff'),
-//     url('/fonts/GlacialIndifference-Regular.ttf') format('truetype'),
-//     url('/fonts/GlacialIndifference-Regular.svg#GlacialIndifference-Regular') format('svg');
-//   font-weight: normal;
-//   font-style: normal;
-// }
-//
-// @font-face {
-//   font-family: 'Glacial Indifference';
-//   src: url('/fonts/GlacialIndifference-Bold.eot');
-//   src: local('Glacial Indifference-Bold'), local('GlacialIndifference-Bold'),
-//     url('/fonts/GlacialIndifference-Bold.eot?#iefix') format('embedded-opentype'),
-//     url('/fonts/GlacialIndifference-Bold.woff') format('woff'),
-//     url('/fonts/GlacialIndifference-Bold.ttf') format('truetype'),
-//     url('/fonts/GlacialIndifference-Bold.svg#GlacialIndifference-Bold') format('svg');
-//   font-weight: bold;
-//   font-style: normal;
-// }
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -72,7 +15,6 @@
 }
 
 body {
-  // font-family: 'TruenoRegular', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-family: 'TruenoRegular' !important;
   background-color: $congres-light-color !important;
   overflow-x: hidden;
