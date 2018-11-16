@@ -10,7 +10,7 @@ var _      = require('underscore');
 var async  = require('async');
 var i18n   = require('i18next');
 const CSV = require('csv-string');
-
+var moment = require('moment');
 
 // Load speaker information from speakers.json
 var fs = require('fs');
@@ -535,13 +535,60 @@ router.get('/aanwezig', adminAuth, function (req,res,next) {
   });
 });
 
+router.get('/users/export-csv/all', adminAuth,
+  async function (req, res) {
+    var data = [
+      ['First Name', 'Surname', 'Email', 'Bus', 'Association', 'Ticket code',
+        'Session 1', 'Session 2', 'Session 3', 'Speeddate start', 'Speeddate end']
+    ];
+
+    data.push(await Promise.all(
+      (await User.find().sort([['firstname', 1], ['lastname', 1]]).populate('speedDateTimeSlot'))
+        .map(async function (u) {
+          var session1 = u.session1 ? u.session1 : "";
+          var session2 = u.session2 ? u.session2 : "";
+          var session3 = u.session3 ? u.session3 : "";
+
+          var spStart = "";
+          var spEnd = "";
+
+          if (u.speedDateTimeSlot) {
+            spStart = moment(u.speedDateTimeSlot.startTime).format('HH:mm')
+            spEnd = moment(u.speedDateTimeSlot.endTime).format('HH:mm')
+          }
+
+          return [
+            u.firstname,
+            u.surname,
+            u.email,
+            config.verenigingen[u.vereniging].name,
+            u.bus,
+            u.ticket,
+            session1,
+            session2,
+            session3,
+            spStart,
+            spEnd
+          ];
+      }))
+    );
+
+    res.set('Content-Type', 'text/plain');
+    res.set('Content-Disposition', 'attachment; filename="all_registered_users.csv"');
+    res.send(CSV.stringify(data));
+});
 
 router.get('/users/export-csv/:association', adminAuth, async function (req, res) {
     var data = [
       ['First Name', 'Surname', 'Email', 'Bus', 'Ticket code']
     ];
 
-    var associationName = config.verenigingen[req.params.association].name;
+    var association = config.verenigingen[req.params.association];
+    if (!association) {
+        req.flash('error', 'Association does not exist');
+        return res.redirect('/users');
+    }
+    var associationName = association.name;
 
     data.push(await Promise.all(
       (await User.find({'vereniging': req.params.association}))

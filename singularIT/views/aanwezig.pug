@@ -21,6 +21,8 @@ block content
       small= '(' + count + ' ingeschreven, ' + countAanwezig + ' aanwezig)'
 
     #aanwezig-table.offset-by-three.six.columns
+      a.button.button-primary(href='/users/export-csv/all') Export all as CSV
+
       for table in tables
         - count = 0
         - countAanwezig = 0
