@@ -227,24 +227,26 @@ router.post('/profile', auth, async function (req, res) {
       var canEnrollSession3 = await canEnrollForSession("session3", req.body.session3,
         req.session.passport.user);
 
+      var tracksClosed = Date.now() >= new Date(config.provideTrackPreferencesEnd).getTime()
+
       // naar functie zetten en samenvoegen
       if( canEnrollSession1 ){
         user.session1 = req.body.session1;
-      } else {
+      } else if(!tracksClosed) {
         req.flash('error', "It is not possible to sign up for the talk you chose for the first session. It's possibly full.");
         err = true;
       }
 
       if( canEnrollSession2 ){
         user.session2 = req.body.session2;
-      } else {
+      } else if(!tracksClosed) {
         req.flash('error', "It is not possible to sign up for the talk you chose for the second session. It's possibly full.");
         err = true;
       }
 
       if (canEnrollSession3){
         user.session3 = req.body.session3;
-      } else {
+      } else if(!tracksClosed) {
         req.flash('error', "It is not possible to sign up for the talk you chose for the third session. It's possibly full.");
         err = true;
       }
