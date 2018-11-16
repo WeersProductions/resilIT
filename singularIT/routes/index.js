@@ -365,6 +365,33 @@ router.get('/speeddate', adminAuth, async function (req, res) {
   res.render('speeddate', {timeslots: result});
 });
 
+router.get('/speeddate/export-csv', adminAuth,
+  async function (req, res) {
+    var data = [
+      ['Slot', 'Name', 'Email', 'Study programme', 'Association']
+    ];
+
+    var slots = await SpeedDateTimeSlot.find().sort({'startTime':1})
+
+    for (var i = 0; i < slots.length; i++) {
+      var slot = slots[i];
+
+      var users = await User.find({'speedDateTimeSlot': slot.id});
+      var userData = users.map(user => [
+        slot.name, user.firstname + ' ' + user.surname, user.email, user.studyProgramme, config.verenigingen[user.vereniging].name
+      ])
+
+      if (userData.length > 0) {
+        data.push(userData);
+      }
+    }
+
+    res.set('Content-Type', 'text/plain');
+    res.set('Content-Disposition', 'attachment; filename="speeddating_participants.csv"');
+    res.send(CSV.stringify(data));
+  }
+);
+
 router.get('/badge-scanning', adminAuth, async function (req, res) {
   var badgeScanningAllowed = await User.find(
     {'allowBadgeScanning': true, 'type': 'student'}).count();
@@ -566,6 +593,8 @@ router.get('/connect/:id', auth, function(req, res, next){
  */
 router.get('/choices', adminAuth, function (req,res,next) {
   var opts = {reduce: function(a,b){ b.total++;}, initial: {total: 0}};
+
+
 
   User.aggregate([{ $group: { _id: '$session1', count: {$sum: 1} }}], function (err, session1) {
     User.aggregate([{ $group: { _id: '$session2', count: {$sum: 1} }}], function (err, session2) {
