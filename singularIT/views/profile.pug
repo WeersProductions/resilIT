@@ -74,13 +74,13 @@ block content
                     +dropdown(speaker, user, 'session3', visitorCounts)
           else
             if (user.session1 !== undefined && user.session1 !== '') || (user.session2 !== undefined && user.session2 != '') || (user.session3 != undefined && user.session3 != '')
-              p.text-center Enrollment for sessions are closed. You signed up for the following sessions:
+              p.text-center Enrollment for sessions is closed. You signed up for the following sessions:
               ul#enrollment-sessions
                 +fixedEnrollment("Session 1", speakerids.session1, user.session1)
                 +fixedEnrollment("Session 2", speakerids.session2, user.session2)
                 +fixedEnrollment("Session 3", speakerids.session3, user.session3)
             else
-              p.text-center Enrollment for sessions are closed.
+              p.text-center Enrollment for sessions is closed.
         else
           p.text-center You can enroll for sessions on a later date.
       br

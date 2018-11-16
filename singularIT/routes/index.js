@@ -231,21 +231,21 @@ router.post('/profile', auth, async function (req, res) {
       if( canEnrollSession1 ){
         user.session1 = req.body.session1;
       } else {
-        req.flash('error', "It is not possible to signup the talk you choice for the first session. It's possible it's full.");
+        req.flash('error', "It is not possible to sign up for the talk you chose for the first session. It's possibly full.");
         err = true;
       }
 
       if( canEnrollSession2 ){
         user.session2 = req.body.session2;
       } else {
-        req.flash('error', "It is not possible to signup the talk you choice for the second session. It's possible it's full.");
+        req.flash('error', "It is not possible to sign up for the talk you chose for the second session. It's possibly full.");
         err = true;
       }
 
       if (canEnrollSession3){
         user.session3 = req.body.session3;
       } else {
-        req.flash('error', "It is not possible to signup the talk you choice for the third session. It's possible it's full.");
+        req.flash('error', "It is not possible to sign up for the talk you chose for the third session. It's possibly full.");
         err = true;
       }
 
