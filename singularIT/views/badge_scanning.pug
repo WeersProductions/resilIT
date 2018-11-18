@@ -18,6 +18,7 @@ block content
         b= ' ' + account.scans.length
         table.badge-scans.table
           thead
+            th Time
             th Name
             th Study programme
             th Association
@@ -25,6 +26,7 @@ block content
           tbody
             for scan in account.scans
               tr
+                td= scan.scan_time_string
                 td
                   a(href='/users/' + scan.user._id)= scan.user.firstname + ' ' + scan.user.surname
                 td= scan.user.studyProgramme

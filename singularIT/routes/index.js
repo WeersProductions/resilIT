@@ -427,7 +427,7 @@ router.get('/badge-scanning', adminAuth, async function (req, res) {
 router.get('/badge-scanning/export-csv/:id', adminAuth,
   async function (req, res) {
     var data = [
-      ['Email', 'Name', 'Study programme', 'Comments']
+      ['Time', 'Email', 'Name', 'Study programme', 'Comments']
     ];
 
     var scannerUser = await ScannerUser.findById(req.params.id);
@@ -438,6 +438,7 @@ router.get('/badge-scanning/export-csv/:id', adminAuth,
       .sort({'user.surname': 1, 'user.firstname': 1}))
       .map(async function (r) {
         return [
+          r.scan_time_string,
           r.user.email,
           r.user.firstname + ' ' + r.user.surname,
           r.user.studyProgramme,
