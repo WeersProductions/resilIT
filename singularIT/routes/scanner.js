@@ -16,7 +16,7 @@ module.exports = function (config) {
 
   var tokens = {};
 
-  var token_expiry_time = 15 * 60 * 1000;
+  var token_expiry_time = 12 * 60 * 60 * 1000;
 
   function createToken(scannerUser) {
     var chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
