@@ -27,6 +27,7 @@ block content
         - count = 0
         - countAanwezig = 0
         - countBus = 0
+        - isPartner = verenigingen[table.name].name == 'Partner'
         for row in table.rows
           - count++
           if row.aanwezig
@@ -43,6 +44,8 @@ block content
               th Email
               th Bus
               th Aanwezig
+              if isPartner
+                th Company
               th
           tbody
             for row in table.rows
@@ -60,6 +63,8 @@ block content
                     span.fa.fa-check(style='color:#79bf46;')
                   else
                     span.fa.fa-close(style='color:#bf464c;')
+                if isPartner
+                  td=row.companyName
                 td
                   a.button.button-primary.button-small.attendees-edit-button(href='/users/' + row._id, target='_blank')
                     i.fa.fa-pencil
