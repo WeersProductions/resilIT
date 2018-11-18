@@ -1,6 +1,12 @@
 FROM node:alpine AS base
 
-RUN apk add --no-cache bash git
+RUN apk add --no-cache bash git tzdata
+
+# Set container timezone to Amsterdam
+RUN cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
+RUN echo "Europe/Amsterdam" >  /etc/timezone
+RUN apk del tzdata
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/
 
