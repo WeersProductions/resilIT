@@ -1,11 +1,14 @@
+// particlejs.load('particles-js', 'assets/particlejs.json', function() {
+// });
+
 particlesJS.load('particles-js', 'assets/particlejs.json', function() {
 });
 
-particlesJS.load('particles-js-light', 'assets/particlejs-light.json', function() {
-});
+// particlesJS.load('particles-js-light', 'assets/particlejs-light.json', function() {
+// });
 
-particlesJS.load('particles-js-light-2', 'assets/particlejs-light.json', function() {
-});
+// particlesJS.load('particles-js-light-2', 'assets/particlejs-light.json', function() {
+// });
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {

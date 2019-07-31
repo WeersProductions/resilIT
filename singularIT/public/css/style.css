@@ -275,11 +275,11 @@ p {
 
 a,
 a:visited {
-  color: #22244b; }
+  color: #333; }
 
 a:hover,
 a:focus {
-  color: #22244b;
+  color: #333;
   text-decoration: none; }
 
 .separator {
@@ -293,7 +293,7 @@ a:focus {
   color: white; }
 
 .background-snic {
-  background: #22244b !important;
+  background: #333 !important;
   color: white; }
 
 .background-gold {
@@ -344,7 +344,7 @@ a:focus {
   top: 0;
   width: 100%;
   padding: 0 40px;
-  background-color: #22244b;
+  background-color: #333;
   opacity: 0.9;
   font-family: 'TruenoUltLt' !important;
   font-weight: 100;
@@ -378,7 +378,7 @@ a:focus {
 .navbar .logonav img {
   position: relative;
   top: -3px;
-  height: 30px;
+  height: 45px;
   vertical-align: middle; }
 
 .navbar button.toggle {
@@ -590,35 +590,28 @@ header.hero::before {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: #22244b; }
+  background: #333; }
 
 header.hero .logo {
   max-width: 80%;
   width: 20em; }
-
-header.hero p {
-  color: white;
-  max-width: 30em;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: 100; }
 
 header.hero h2 {
   font-size: 5rem; }
 
 @media (min-width: 400px) {
   header.hero p {
-    font-size: 1rem; } }
+    font-size: 2.5rem; } }
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
   header.hero p {
-    font-size: 1rem; } }
+    font-size: 3rem; } }
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {
   header.hero p {
-    font-size: 1.5rem; } }
+    font-size: 3.5rem; } }
 
 /******************
 * sections
@@ -719,9 +712,9 @@ button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  color: #22244b;
+  color: #333;
   background-color: #FFF;
-  border-color: #22244b; }
+  border-color: #333; }
 
 .button.button-primary:hover,
 button.button-primary:hover,
@@ -734,8 +727,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
-  background-color: #22244b;
-  border-color: #22244b; }
+  background-color: #333;
+  border-color: #333; }
 
 .button.button-small {
   padding: 1px 5px;
@@ -811,7 +804,7 @@ footer a:visited {
 
 footer a:hover,
 footer a:focus {
-  color: #22244b; }
+  color: #333; }
 
 .foot {
   overflow: hidden;
@@ -844,8 +837,42 @@ footer a:focus {
 /****************************
 * Index
 ****************************/
+.main__logo {
+  width: 100%;
+  max-width: 800px;
+  min-width: 60vw;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  pointer-events: none; }
+
+.main__area--date {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  padding: 0.5rem;
+  margin-top: 5vh;
+  align-items: center; }
+  .main__area--date p {
+    color: red;
+    margin: 0.5rem;
+    max-width: 50vw;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ca33;
+    background: -webkit-linear-gradient(30deg, #d64e4e, #00ca33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default; }
+  .main__area--date img {
+    margin: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer; }
+
 section#speakers {
-  background-color: #22244b; }
+  background-color: #333; }
 
 section#speakers .subpage.image {
   background-image: url("/images/20161115-IMG_8885.jpg");
@@ -1127,7 +1154,7 @@ header.hero.location {
 
 #map {
   height: 70vh;
-  border-top: 3px solid #22244b; }
+  border-top: 3px solid #333; }
 
 #map .gm-style {
   font-family: 'Glacial Indifference', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
@@ -1490,7 +1517,7 @@ article + .readmore-js-toggle {
   flex: 100%; }
 
 #location {
-  background-color: #22244b; }
+  background-color: #333; }
 
 #program-table {
   white-space: nowrap;
@@ -1536,11 +1563,11 @@ table tr td:nth-child(4) {
   text-transform: none; }
 
 .congres-bg {
-  background-color: #22244b; }
+  background-color: #333; }
 
 .skew-content {
   transform: skewY(5deg);
-  background-color: #22244b;
+  background-color: #333;
   overflow: hidden !important;
   margin: -1px; }
   .skew-content .speakers {
@@ -1572,7 +1599,7 @@ table tr td:nth-child(4) {
   margin-bottom: 2em; }
 
 .skewed-background {
-  background-color: #22244b;
+  background-color: #333;
   height: 200px;
   -webkit-clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%);
   clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%); }
@@ -1580,7 +1607,7 @@ table tr td:nth-child(4) {
 .skewed-background-2 {
   position: absolute;
   width: 100%;
-  background-color: #22244b;
+  background-color: #333;
   clip-path: polygon(50% 0, 100% 0%, 100% 50%, 50% 0%); }
 
 .particles canvas {
