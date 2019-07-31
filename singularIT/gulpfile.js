@@ -25,8 +25,8 @@ gulp.task('js', function () {
 gulp.task('serve', () => {
     livereload.listen()
 
-    gulp.watch('./assets/scss/*.scss', ['sass']);
-    gulp.watch('./assets/js/*.js', ['js']);
+    gulp.watch('./assets/scss/*.scss', gulp.series('sass'));
+    gulp.watch('./assets/js/*.js', gulp.series('js'));
     // start express app
     nodemon({
         script: 'bin/www',

@@ -13,6 +13,7 @@ WORKDIR /usr/src/
 RUN npm install gulp -g
 RUN npm install gulp-nodemon -g
 RUN npm install nodemon -g
+RUN npm rebuild node-sass
 
 COPY entrypoint.development.sh entrypoint.production.sh /usr/src/
 
