@@ -15,9 +15,12 @@ module.exports = function (config) {
   // mailchimp wants an md5 hash of the emailaddress when you PUT it in the list
   var md5 = require('md5');
 
+  // TODO: fix
   var gmail_send = require('gmail-send')({
-    user: config.gmail.email,
-    pass: config.gmail.password,
+    // user: config.gmail.email,
+    // pass: config.gmail.password,
+    user: 'test',
+    pass: 'wrong',
     from: 'SNiC SingularIT'
   });
 
