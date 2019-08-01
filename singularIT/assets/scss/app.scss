@@ -740,9 +740,14 @@ header.hero.location{
     display: block;
   }
 
+  p {
+    text-align: left;
+  }
+
   .contact-entry {
     margin-left: 20px;
     display: block;
+    text-align: left;
   }
 }
 

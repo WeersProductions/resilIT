@@ -1144,9 +1144,12 @@ header.hero.location {
   margin-left: 20vw; }
   #contact b {
     display: block; }
+  #contact p {
+    text-align: left; }
   #contact .contact-entry {
     margin-left: 20px;
-    display: block; }
+    display: block;
+    text-align: left; }
 
 #enrollment-sessions {
   margin-left: 10vw;
