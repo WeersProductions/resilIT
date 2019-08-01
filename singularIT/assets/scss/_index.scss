@@ -128,6 +128,30 @@ section#location .subpage.image{
     transform: skewY(-5deg);
 }
 
+section#location .content {
+    transform: skewY(-5deg);
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+}
+
+section#location .announcement__box {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 0.5rem white solid;
+    border-radius: 1rem;
+    margin: 0 auto;
+
+    * {
+        margin: 1rem 0.5rem;
+        font-size: 2rem;
+    }
+}
+
 
 section#snic .subpage.image{
     background-image: url('/images/foto_kijken.jpg');

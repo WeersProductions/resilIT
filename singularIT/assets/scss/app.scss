@@ -128,21 +128,6 @@ section h6{
   text-align: center;
 }
 
-section {
-  min-height: 75vh;
-}
-
-// section.slanted {
-//   transform: skewY(3deg);
-//   margin-top: -2px;
-// }
-//
-// section.slanted .content{
-//   transform: skewY(-3deg);
-//   padding: 5rem 15px;
-//   overflow: auto;
-// }
-
 section.slanted.twocolumn{
   display: flex;
   flex-wrap: wrap;
@@ -171,6 +156,10 @@ section.slanted.twocolumn .content{
 
 section.intro p {
   padding-bottom: 10px;
+}
+
+section.intro .content{
+  padding-bottom: 10vw;
 }
 
 section.quote{
@@ -205,7 +194,7 @@ section.quote .person{
 /* Larger than tablet */
 @media (min-width: 750px) {
   section.slanted .content{
-    padding: 10rem 15px;
+    padding: 5rem 15px;
   }
 
   section.slanted.twocolumn{

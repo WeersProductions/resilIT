@@ -2,15 +2,28 @@
   position: absolute;
   left: 30vw;
   width: 70vw;
-  height: 50vw;
+  height: calc(100px + 5vw);
   transform: skewY(-4deg);
   overflow: visible;
 }
 
+.pane__undo__rotation {
+  transform: skewY(-5deg);
+}
+
 .pane__variance {
-  left: -30vw;
+  // left: 30vw;
   transform: skewY(-6deg);
-  width: 130vw;
+  // width: 130vw;
+}
+
+.pane__variance1 {
+  left: -40vw;
+  transform: skewY(-30deg);
+  width: 90vw;
+  top: -10vw;
+  height: 30vw;
+  z-index: -1;
 }
 
 .primary {
@@ -58,10 +71,6 @@
     flex: 100%;
 }
 
-#location {
-  background-color: $congres-color;
-}
-
 
 #program-table {
   white-space: nowrap;
@@ -101,10 +110,6 @@ table tr td:nth-child(4) {
   overflow-x: hidden !important;
 }
 
-.location-text {
-    text-align: center !important;
-}
-
 .accent {
   font-family: 'TruenoRegular' !important;
   font-size: 2.25rem;
@@ -124,24 +129,18 @@ table tr td:nth-child(4) {
 
 .skew-content {
   transform: skewY(5deg);
-  background-color: $congres-color;
   overflow: hidden !important;
   margin: -1px;
+  margin-bottom: 5vh;
   .speakers {
-    // font-family: 'TruenoUltLt' !important;
     font-weight: 100;
     margin: 0;
     font-size: 1.75rem;
-    margin-bottom: 3em;
+    margin-bottom: 4em;
   }
-}
 
-.location-content {
-  text-align: right;
-  color: white;
-  padding: 1em;
-  p {
-    text-align: right;
+  .location {
+    margin-bottom: 0;
   }
 }
 
@@ -159,18 +158,12 @@ table tr td:nth-child(4) {
 }
 
 .header-title {
-  font-size: 4rem;
-  margin-bottom: 2em;
-}
-
-.line-background {
-  // background-color: $congres-color;
-  // height: 1px;
-  // width: 100%;
+  font-size: 4.2rem;
+  margin-bottom: 1.5em;
+  text-align: center;
 }
 
 .skewed-background {
-  background-color: $congres-color;
   height: 200px;
   -webkit-clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%);
   clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%);
@@ -179,7 +172,6 @@ table tr td:nth-child(4) {
 .skewed-background-2 {
   position: absolute;
   width: 100%;
-  background-color: $congres-color;
   // -webkit-clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%);
   clip-path: polygon(50% 0, 100% 0%, 100% 50%, 50% 0%);
 }

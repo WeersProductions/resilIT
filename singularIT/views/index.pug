@@ -84,7 +84,6 @@ block content
   div(class="container__styler pane__variance tertiary")
 
   section(class='')
-    //div(class="skewed-background-2")
     .content
 
     div(id="speakers" class="skew-content")
@@ -103,277 +102,63 @@ block content
               | You were able to choose whichever talk you find the most appealing in each sessions.
         .subpage.image
 
-  div(id="program" class="program-table")
-    .container
-    a#program.anchor
-    .row
-      .col-lg-12.text-center
-        h2 Programme
-        hr
-        .table-responsive
-          table#program-table.table
-            thead
-              tr
-                th
-                th(style="text-align: center")
-                  h4 Grand Technical Challenges
-                th(style="text-align: center")
-                  h4 Societal Impact
-                th(style="text-align: center")
-                  h4 Experience the Singularity
-            tbody
-              tr
-                td
-                td(class="location-text")
-                  h6 Kleine Zaal
-                td(class="location-text")
-                  h6 Grote Zaal
-                td(class="location-text")
-                  h6 Van Beinum Zaal
-              tr
-                td
-                td(class="location-text")
-                  a(href="/speakers#robert")
-                    h6 Robert Belleman
-                td(class="location-text")
-                  a(href="/speakers#ashley")
-                    h6 Ashley Burgoyne
-                td(class="location-text")
-                  a(href="/speakers#arnoud")
-                    h6 Arnoud Visser
-              tr
-                td
-                  small 10:00
-                td
-                td
-                  h4 Central Opening
-                  small 10:00 - 10:15
-                td
-              tr
-                td
-                  small 10:15
-                td(rowspan='3')
-                td.grey(rowspan='3')
-                  a(href="/speakers#quintor")
-                    h4 Quintor
-                    h6 Keynote: Introduction to Singularity
-                  small 10:15 - 11:00
-                  p
-                td(rowspan='3')
-              tr
-                td
-                  small 10:30
-              tr
-                td
-                  small 10:45
-              tr
-                td
-                  small 11:00
-                td
-                td.grey
-                  h4 Short break
-                  small 11:00 - 11:15
-                td
-              tr
-                td
-                  small 11:15
-                td(rowspan='4')
-                  a(href="/speakers#melanie")
-                    h4 Melanie Rieback
-                    h6 The impact of singularity on cyber security
-                  small 11:15 - 12:15
-                  p
-                td.grey(rowspan='4')
-                  a(href="/speakers#michael")
-                    h4 Michael Lees
-                    h6 Understanding the City with Computation
-                  small 11:15 - 12:15
-                  p
-                td(rowspan='4')
-                  a(href="/speakers#cees")
-                    h4 Cees Snoek
-                    h6 Video Understanding from a Sentence
-                  small 11:15 - 12:15
-                  p
-              tr
-                td
-                  small 11:30
-              tr
-                td
-                  small 11:45
-              tr
-                td
-                  small 12:00
-              tr
-                td
-                  small 12:15
-                td(rowspan='4')
-                td.grey(rowspan='4')
-                  h4 Lunch break
-                  small 12:15 - 13:15
-                td(rowspan='4')
-              tr
-                td
-                  small 12:30
-              tr
-                td
-                  small 12:45
-              tr
-                td
-                  small 13:00
-              tr
-                td
-                  small 13:15
-                td(rowspan='5')
-                  a(href="/speakers#jop")
-                    h4 Jop Briët
-                    h6 Quantum information processing
-                  small 13:15 - 14:15
-                    p
-                td.grey(rowspan='5')
-                  a(href="/speakers#panel")
-                    h4 Panel
-                    h6 Digital Immortality
-                  small 13:15 - 14:15
-                    p
-                td(rowspan='5')
-                  a(href="/speakers#brett")
-                    h4 Brett Scott
-                    h6 Futuristic finance
-                  small 13:15 - 14:15
-                    p
-              tr
-                td
-                  small 13:30
-              tr
-                td
-                  small 13:45
-              tr
-                td
-                  small 14:00
-              tr
-                td
-                  small 14:15
-              tr
-                td
-                  small 14:30
-                td(rowspan='5')
-                  a(href="/speakers#christiaan")
-                    h4 Christiaan Henkel
-                    h6 The genomic program
-                  small 14:30 - 15:30
-                  p
-                td.grey(rowspan='5')
-                  a(href="/speakers#richard")
-                    h4 Richard Stallman
-                    h6 Should we have more surveillance than the USSR?
-                  small 14:30 - 15:30
-                  p
-                td(rowspan='5')
-              tr
-                td
-                  small 14:45
-              tr
-                td
-                  small 15:00
-              tr
-                td
-                  small 15:15
-              tr
-                td
-                  small 15:30
-              tr
-                td
-                  small 16:00
-                td(rowspan='4')
-                td.grey(rowspan='4')
-                  a(href="/speakers#bruce")
-                    h4 Bruce Duncan
-                    h6 Keynote: Back up your mind and live forever?
-                  small 16:00 - 17:00
-                  p
-                td(rowspan='4')
-              tr
-                td
-                  small 16:15
-              tr
-                td
-                  small 16:30
-              tr
-                td
-                  small 16:45
-              tr
-                td
-                  small 17:00
-                td(rowspan='2')
-                td.grey(rowspan='2')
-                  h4 Central Closing
-                  small 17:00 - 17:15
-                td(rowspan='2')
-              tr
-                td
-                  small 17:15
-              tr
-                td
-                td
-                td.grey
-                  h4(style="text-align: center;") Dinner & Drinks
-                td
-
-  div(id="location" class="skew-content")
-    section#location.slanted.twocolumn
-      .subpage.image
-      .subpage(class="congres-bg location-content")
-        .content(style="transform: skewY(-5deg);")
-          div(class="header-title") Location
-          p(class="location")
-            | To be announced
-          a(href="https://www.google.com/maps/search/Philharmonie+Haarlem/@52.3805698,4.8891666,15z")
-            span(class="accent directions") Get Directions
-            img(class="direction-img" src="/images/google_maps.png")
-
-
-  div(id="about" class="skewed-background-2")
-  header(id='particles-js-light-2' class='particles')
-  section(class='intro slanted')
-    .content
-      h2 What is SNiC
-      p
-        | #[span(class="accent") SNiC] is an acronym for
-        | Stichting Nationaal Informatica congres (Foundation National Computer Science Conference).
-        | The organisation was established in #[span(class="accent") 2004]
-        | with the purpose of stimulating the interest in IT knowledge,
-        | IT applications and the business side of it. Every year,
-        | a #[span(class="accent") conference] with an IT related subject
-        | is organised for academic Computer Science students from all over the Netherlands.
-        | For each conference one study association is chosen
-        | to take care of the organisation. This year, the organisation is
-        | in the hands of study assocation #[a(href='https://inter-actief.nl/') #[b Inter-<i>Actief</i>]].
-
-      <br>
-      h2 Contact
-
-      div#contact
+  section(id="intro" class='intro slanted')
+      .content
+        div(class="header-title") Partners
         p
-          b Email
-          span.contact-entry
-            a(href="mailto:committee@snic.nl") committee@snic.nl
+          | Maybe a nice description of what partners we have?
+
+  div(class="container__styler pane__variance tertiary")
+
+  //- div(id="location" class="skew-content primary")
+  section#location(class="skew-content primary" style="margin-bottom: 0")
+    .content(class="pane__undo__rotation")
+      div(class="header-title") Location
+      div(class="announcement__box")
+        i(class="fas fa-bullhorn")
+        p To be announced
+
+  div(style="position:relative;transform:skewY(5deg);overflow-y: hidden;")
+    div(class="container__styler pane__variance1 tertiary")
+    section(class='intro slanted pane__undo__rotation', id="about", style="margin-top: 5vh")
+      .content
+        h2 What is SNiC
         p
-          b Phone
-          span.contact-entry
-            | (+31) (053) 489 3756
-        p
-          b Address
-          span.contact-entry
-            | Faculteit EWI
-          span.contact-entry
-            | Zilverling, room E208
-          span.contact-entry
-            | Drienerlolaan 5
-          span.contact-entry
-            | 7522 NB Enschede
-          span.contact-entry
-            | The Netherlands
+          | #[span(class="accent") SNiC] is an acronym for
+          | Stichting Nationaal Informatica congres (Foundation National Computer Science Conference).
+          | The organisation was established in #[span(class="accent") 2004]
+          | with the purpose of stimulating the interest in IT knowledge,
+          | IT applications and the business side of it. Every year,
+          | a #[span(class="accent") conference] with an IT related subject
+          | is organised for academic Computer Science students from all over the Netherlands.
+          | For each conference one study association is chosen
+          | to take care of the organisation. This year, the organisation is
+          | in the hands of study assocation #[a(href='https://inter-actief.nl/') #[b Inter-<i>Actief</i>]].
+
+        <br>
+        h2 Contact
+
+        div#contact
+          p
+            b Email
+            span.contact-entry
+              a(href="mailto:committee@snic.nl") committee@snic.nl
+          p
+            b Phone
+            span.contact-entry
+              | (+31) (053) 489 3756
+          p
+            b Address
+            span.contact-entry
+              | Faculteit EWI
+            span.contact-entry
+              | Zilverling, room E208
+            span.contact-entry
+              | Drienerlolaan 5
+            span.contact-entry
+              | 7522 NB Enschede
+            span.contact-entry
+              | The Netherlands
 
 
 

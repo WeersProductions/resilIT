@@ -1,3 +1,4 @@
+@import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
 /* latin-ext */
 @font-face {
   font-family: 'Raleway';
@@ -534,9 +535,6 @@ section h5,
 section h6 {
   text-align: center; }
 
-section {
-  min-height: 75vh; }
-
 section.slanted.twocolumn {
   display: flex;
   flex-wrap: wrap;
@@ -562,6 +560,9 @@ section.slanted.twocolumn .content {
 section.intro p {
   padding-bottom: 10px; }
 
+section.intro .content {
+  padding-bottom: 10vw; }
+
 section.quote {
   background-color: #171717;
   text-align: center;
@@ -586,7 +587,7 @@ section.quote .person {
 /* Larger than tablet */
 @media (min-width: 750px) {
   section.slanted .content {
-    padding: 10rem 15px; }
+    padding: 5rem 15px; }
   section.slanted.twocolumn {
     flex-wrap: wrap; }
   section.slanted.twocolumn .subpage {
@@ -853,6 +854,26 @@ section#location .subpage.image {
   background-image: url("/images/philharmonie.png");
   background-position: center 50%;
   transform: skewY(-5deg); }
+
+section#location .content {
+  transform: skewY(-5deg);
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  padding-top: 3rem;
+  padding-bottom: 6rem; }
+
+section#location .announcement__box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 0.5rem white solid;
+  border-radius: 1rem;
+  margin: 0 auto; }
+  section#location .announcement__box * {
+    margin: 1rem 0.5rem;
+    font-size: 2rem; }
 
 section#snic .subpage.image {
   background-image: url("/images/foto_kijken.jpg");
@@ -1470,14 +1491,23 @@ article + .readmore-js-toggle {
   position: absolute;
   left: 30vw;
   width: 70vw;
-  height: 50vw;
+  height: calc(100px + 5vw);
   transform: skewY(-4deg);
   overflow: visible; }
 
+.pane__undo__rotation {
+  transform: skewY(-5deg); }
+
 .pane__variance {
-  left: -30vw;
-  transform: skewY(-6deg);
-  width: 130vw; }
+  transform: skewY(-6deg); }
+
+.pane__variance1 {
+  left: -40vw;
+  transform: skewY(-30deg);
+  width: 90vw;
+  top: -10vw;
+  height: 30vw;
+  z-index: -1; }
 
 .primary {
   background: #d64e4e;
@@ -1515,9 +1545,6 @@ article + .readmore-js-toggle {
 .keynote {
   flex: 100%; }
 
-#location {
-  background-color: #333; }
-
 #program-table {
   white-space: nowrap;
   border: 2px solid #00000022; }
@@ -1547,9 +1574,6 @@ table tr td:nth-child(4) {
   margin-bottom: 3em;
   overflow-x: hidden !important; }
 
-.location-text {
-  text-align: center !important; }
-
 .accent {
   font-family: 'TruenoRegular' !important;
   font-size: 2.25rem;
@@ -1566,21 +1590,16 @@ table tr td:nth-child(4) {
 
 .skew-content {
   transform: skewY(5deg);
-  background-color: #333;
   overflow: hidden !important;
-  margin: -1px; }
+  margin: -1px;
+  margin-bottom: 5vh; }
   .skew-content .speakers {
     font-weight: 100;
     margin: 0;
     font-size: 1.75rem;
-    margin-bottom: 3em; }
-
-.location-content {
-  text-align: right;
-  color: white;
-  padding: 1em; }
-  .location-content p {
-    text-align: right; }
+    margin-bottom: 4em; }
+  .skew-content .location {
+    margin-bottom: 0; }
 
 .text-content {
   margin-left: 20px;
@@ -1593,11 +1612,11 @@ table tr td:nth-child(4) {
   height: 100vh; }
 
 .header-title {
-  font-size: 4rem;
-  margin-bottom: 2em; }
+  font-size: 4.2rem;
+  margin-bottom: 1.5em;
+  text-align: center; }
 
 .skewed-background {
-  background-color: #333;
   height: 200px;
   -webkit-clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%);
   clip-path: polygon(49% 0, 100% 50%, 100% 100%, 0 49%); }
@@ -1605,7 +1624,6 @@ table tr td:nth-child(4) {
 .skewed-background-2 {
   position: absolute;
   width: 100%;
-  background-color: #333;
   clip-path: polygon(50% 0, 100% 0%, 100% 50%, 50% 0%); }
 
 .particles canvas {
