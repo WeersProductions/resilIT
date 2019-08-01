@@ -1,3 +1,33 @@
+.container__styler {
+  position: absolute;
+  left: 30vw;
+  width: 70vw;
+  height: 50vw;
+  transform: skewY(-4deg);
+  overflow: visible;
+}
+
+.pane__variance {
+  left: -30vw;
+  transform: skewY(-6deg);
+  width: 130vw;
+}
+
+.primary {
+  background: $primary-color;
+  color: white;
+}
+
+.secondary {
+  background: $secondary-color;
+  color: white;
+}
+
+.tertiary {
+  background: $tertiary-color;
+  color: white;
+}
+
 .silver-plus {
     margin-bottom: 10vh;
 }
@@ -98,7 +128,7 @@ table tr td:nth-child(4) {
   overflow: hidden !important;
   margin: -1px;
   .speakers {
-    font-family: 'TruenoUltLt' !important;
+    // font-family: 'TruenoUltLt' !important;
     font-weight: 100;
     margin: 0;
     font-size: 1.75rem;

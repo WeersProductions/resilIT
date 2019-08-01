@@ -168,16 +168,17 @@
   box-sizing: border-box; }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Raleway", sans-serif !important;
   background-color: #fafafa !important;
   overflow-x: hidden; }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: 0; }
+  letter-spacing: 0;
+  font-weight: 600; }
 
 p {
   margin: 0 auto;
-  line-height: 2.5rem;
+  line-height: 2.7rem;
   font-size: 2rem;
   max-width: 40em;
   text-align: center; }
@@ -1465,6 +1466,31 @@ article + .readmore-js-toggle {
   height: auto;
   display: initial; }
 
+.container__styler {
+  position: absolute;
+  left: 30vw;
+  width: 70vw;
+  height: 50vw;
+  transform: skewY(-4deg);
+  overflow: visible; }
+
+.pane__variance {
+  left: -30vw;
+  transform: skewY(-6deg);
+  width: 130vw; }
+
+.primary {
+  background: #d64e4e;
+  color: white; }
+
+.secondary {
+  background: #00ca33;
+  color: white; }
+
+.tertiary {
+  background: #E88483;
+  color: white; }
+
 .silver-plus {
   margin-bottom: 10vh; }
 
@@ -1544,7 +1570,6 @@ table tr td:nth-child(4) {
   overflow: hidden !important;
   margin: -1px; }
   .skew-content .speakers {
-    font-family: 'TruenoUltLt' !important;
     font-weight: 100;
     margin: 0;
     font-size: 1.75rem;
