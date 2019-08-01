@@ -1,3 +1,4 @@
+console.log("disrupt");
 // Google map stuff
 function init_map() {
     // Basic options for a simple Google Map

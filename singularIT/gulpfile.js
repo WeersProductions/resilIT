@@ -15,8 +15,9 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./public/css'));
 });
 
+// .pipe(rename('app.js'))
 gulp.task('js', function () {
-    return gulp.src('./assets/js/*.js')
+    return gulp.src('./assets/js/resil-it.js')
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./public/js'));
 });
