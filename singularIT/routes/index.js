@@ -729,7 +729,7 @@ router.get('/tickets/:id/barcode', function (req, res) {
     });
 });
 
-router.get('/reload', function (req, res){
+router.get('/reload', adminAuth, function (req, res){
   speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
   partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
   return res.redirect('/speakers');
