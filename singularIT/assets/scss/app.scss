@@ -15,7 +15,8 @@
 }
 
 body {
-  font-family: 'TruenoRegular' !important;
+  // font-family: 'TruenoRegular' !important;
+  font-family: "Raleway", sans-serif;
   background-color: $congres-light-color !important;
   overflow-x: hidden;
 }
@@ -24,16 +25,23 @@ h1, h2, h3, h4, h5, h6{
   letter-spacing: 0;
 }
 
-p {
-  font-family: 'TruenoLt' !important;
-  font-weight: lighter;
-  text-align: left;
-  font-size: 2rem;
-  max-width: 40em;
-  margin: 0 auto;
-  line-height: 1.75em;
-}
+// p {
+//   font-family: 'TruenoLt' !important;
+//   font-weight: lighter;
+//   text-align: left;
+//   font-size: 2rem;
+//   max-width: 40em;
+//   margin: 0 auto;
+//   line-height: 1.75em;
+// }
 
+p {
+   margin: 0 auto;
+   line-height: 2.5rem;
+   font-size: 2rem;
+   max-width: 40em;
+   text-align: center;
+}
 
 a,
 a:visited{
@@ -172,7 +180,6 @@ section.slanted.twocolumn .content{
 }
 
 section.intro p {
-  text-align: left;
   padding-bottom: 10px;
 }
 

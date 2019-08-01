@@ -1,3 +1,35 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Raleway Bold"), local("Raleway-Bold"), url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwJYtWqhPANqczVsq4A.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Raleway Bold"), local("Raleway-Bold"), url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwJYtWqZPANqczVs.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Raleway Medium"), local("Raleway-Medium"), url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwN4rWqhPANqczVsq4A.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Raleway Medium"), local("Raleway-Medium"), url(https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwN4rWqZPANqczVs.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 @font-face {
   font-family: 'TruenoBlk';
   src: url("/fonts/TruenoBlk.woff") format("woff");
@@ -124,127 +156,6 @@
   font-weight: normal;
   font-style: normal; }
 
-/* The following rules are deprecated. */
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBlk.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBlkIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBlkOl.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBlkOlIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBd.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBdIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBdOl.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoBdOlIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoExBd.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoExBdIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoExBdOl.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoExBdOlIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoLt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoLtIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoRg.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoRgIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoSBd.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoSBdIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoUltLt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Trueno';
-  src: url("/fonts/TruenoUltLtIt.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
 /**************************************************************************
 *
 * GLOBAL DEFINITIONS
@@ -257,7 +168,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'TruenoRegular' !important;
+  font-family: "Raleway", sans-serif;
   background-color: #fafafa !important;
   overflow-x: hidden; }
 
@@ -265,13 +176,11 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0; }
 
 p {
-  font-family: 'TruenoLt' !important;
-  font-weight: lighter;
-  text-align: left;
+  margin: 0 auto;
+  line-height: 2.5rem;
   font-size: 2rem;
   max-width: 40em;
-  margin: 0 auto;
-  line-height: 1.75em; }
+  text-align: center; }
 
 a,
 a:visited {
@@ -650,7 +559,6 @@ section.slanted.twocolumn .content {
   margin: 0 auto; }
 
 section.intro p {
-  text-align: left;
   padding-bottom: 10px; }
 
 section.quote {
