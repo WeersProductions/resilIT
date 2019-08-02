@@ -114,7 +114,6 @@ router.get('/profile', auth, async function (req, res) {
   // Do it in the template
   var visitorCounts = await getVisitorCounts();
 
-
   res.render('profile', {
     userHasBus: config.verenigingen[user.vereniging].bus,
     providePreferences: config.providePreferences,

@@ -10,11 +10,11 @@ mongoose.connect(config.mongodb.url);
 
 
 function addTimeSlot(timeslot, cb) {
-  console.log('Creating ' + timeslot.start + '-' + timeslot.end);
+  console.log('Creating ' + timeslot.startTime + '-' + timeslot.endTime);
 
   var ts = new SpeedDateTimeSlot({
-    startTime: '2018-01-01T' + timeslot.start,
-    endTime: '2018-01-01T' + timeslot.end,
+    startTime: '2018-01-01T' + timeslot.startTime,
+    endTime: '2018-01-01T' + timeslot.endTime,
     capacity: timeslot.capacity
   });
 
