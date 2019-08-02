@@ -1281,6 +1281,20 @@ section.profile {
     max-width: calc(50% - 10px); } }
 
 /****************************
+* Admin
+****************************/
+.admin {
+  text-align: center; }
+  .admin h2 {
+    margin: 2rem auto;
+    margin-top: 3rem; }
+  .admin .columns {
+    margin-left: 0; }
+  .admin .form-control {
+    width: 100%;
+    max-width: 50rem; }
+
+/****************************
 * Users
 ****************************/
 .buses.table {

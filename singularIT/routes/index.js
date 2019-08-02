@@ -366,6 +366,10 @@ router.get('/speeddate', adminAuth, async function (req, res) {
   res.render('speeddate', {timeslots: result});
 });
 
+router.get('/admin', adminAuth, async function(req, res) {
+  res.render('admin');
+});
+
 router.get('/speeddate/export-csv', adminAuth,
   async function (req, res) {
     var data = [
@@ -694,6 +698,50 @@ router.get('/tickets', adminAuth, function (req, res, next) {
     res.render('tickets', {tickets: tickets});
   });
 });
+
+function genTicket(cb, params) {
+  // var params;
+  // if (process.argv[3]){
+  //   params = {type: process.argv[3], rev:1};
+  // } else {
+  //   params = {rev:1};
+  // }
+  var ticket = new Ticket(params);
+  console.log('New ticket: '+ticket._id);
+
+  return ticket.save(cb);
+}
+
+router.post('/tickets', adminAuth, function (req, res, next) {
+  var tasks = [];
+
+  var n = + req.body.amount;
+
+  for (var i = 0; i < n; i++) {
+    tasks.push(function(callback) {
+      var params;
+      console.log(req.body.type);
+      if (req.body.type === 'partner'){
+        console.log('partner');
+        params = {type: process.argv[3], rev:1};
+      } else {
+        params = {rev:1};
+      }
+      var ticket = new Ticket(params);
+      console.log('New ticket: '+ticket._id);
+
+      return ticket.save(callback);
+    });
+  }
+
+  async.parallel(tasks, function(err) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(n + ' tickets generated!');
+    res.redirect('/tickets');
+  });
+})
 
 router.get('/ticket', auth, function(req, res, next){
   User.findOne({email: req.session.passport.user}, function(err, doc) {

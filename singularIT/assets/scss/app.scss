@@ -869,6 +869,27 @@ section.profile {
   }
 }
 
+/****************************
+* Admin
+****************************/
+
+.admin {
+  text-align: center;
+
+  h2 {
+    margin: 2rem auto;
+    margin-top: 3rem;
+  }
+
+  .columns {
+    margin-left: 0;
+  }
+
+  .form-control {
+    width: 100%;
+    max-width: 50rem;
+  }
+}
 
 /****************************
 * Users
