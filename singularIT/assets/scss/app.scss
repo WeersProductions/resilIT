@@ -45,10 +45,11 @@ a:focus{
 }
 
 .separator{
-  height: 2px;
-  width: 8rem;
+  height: 1px;
+  width: 80%;
+  min-width: 8rem;
   margin: 2em auto;
-  background-color: currentColor;
+  background-color: #aaa;
 }
 
 .background-snic-grey {
@@ -287,12 +288,13 @@ footer {
 
 footer .sponsor {
   color: black;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: stretch;
   margin:-10px auto;
+  flex-direction: column;
 }
 
 .sponsor a {
@@ -328,7 +330,7 @@ footer .sponsor {
 
 @media (min-width: 750px) {
   footer .sponsor {
-    width: 75%;
+    width: 100%;
   }
 
   .sponsor a {
@@ -346,7 +348,8 @@ footer .sponsor {
 
 @media (min-width: 1200px) {
   footer .sponsor {
-    width: 50%;
+    width: 100%;
+    max-width: 1000px;
   }
 }
 

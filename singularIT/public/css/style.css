@@ -194,10 +194,11 @@ a:focus {
   text-decoration: none; }
 
 .separator {
-  height: 2px;
-  width: 8rem;
+  height: 1px;
+  width: 80%;
+  min-width: 8rem;
   margin: 2em auto;
-  background-color: currentColor; }
+  background-color: #aaa; }
 
 .background-snic-grey {
   background: #171717 !important;
@@ -656,12 +657,13 @@ footer {
 
 footer .sponsor {
   color: black;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: stretch;
-  margin: -10px auto; }
+  margin: -10px auto;
+  flex-direction: column; }
 
 .sponsor a {
   height: 100px;
@@ -691,7 +693,7 @@ footer .sponsor {
 
 @media (min-width: 750px) {
   footer .sponsor {
-    width: 75%; }
+    width: 100%; }
   .sponsor a {
     height: 150px;
     flex-basis: calc(50% - 20px); }
@@ -703,7 +705,8 @@ footer .sponsor {
 
 @media (min-width: 1200px) {
   footer .sponsor {
-    width: 50%; } }
+    width: 100%;
+    max-width: 1000px; } }
 
 footer a,
 footer a:visited {

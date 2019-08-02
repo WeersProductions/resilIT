@@ -158,14 +158,17 @@ html(lang=locale)
     // Footer
     footer(id="partners")
       .sponsor
-        p Platinum partner
+          .separator(role='separator', style="width: 100%")
+      h2(style="text-align:center;") 2019 partners
+      p Interested in becoming a partner or speaker? Contact us for details.
+      .sponsor
+        p(style="margin-top: 2rem;") Platinum
         a.nedap(href="https://quintor.nl/", target="_blank")
           img.nedap(src='/images/snic_sponsor_logo/Logo_Quintor.png')
-
       .sponsor
         .separator(role='separator')
       .sponsor
-        p Gold partners
+        p Gold
         div(class="silver-sponsors")
           a.nedap(href="https://nedap.com/", target="_blank")
             img.nedap(class='footer-sponsors', src='/images/snic_sponsor_logo/Logo_Nedap.png')
@@ -178,7 +181,7 @@ html(lang=locale)
       .sponsor
         .separator(role='separator')
       .sponsor
-        p Silver partners
+        p Silver
         div(class="silver-sponsors")
           a.nedap(href="https://dsw.nl/", target="_blank")
             img.nedap(class='footer-sponsors', src='/images/snic_sponsor_logo/Logo_DSW.png')
@@ -195,7 +198,7 @@ html(lang=locale)
       .sponsor
         .separator(role='separator')
       .sponsor
-        p Bronze partners
+        p Bronze
         div(class="silver-sponsors")
           a.nedap(href="", target="_blank")
               img.nedap(class='footer-sponsors', src='')
