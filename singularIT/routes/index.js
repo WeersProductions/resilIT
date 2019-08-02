@@ -699,19 +699,6 @@ router.get('/tickets', adminAuth, function (req, res, next) {
   });
 });
 
-function genTicket(cb, params) {
-  // var params;
-  // if (process.argv[3]){
-  //   params = {type: process.argv[3], rev:1};
-  // } else {
-  //   params = {rev:1};
-  // }
-  var ticket = new Ticket(params);
-  console.log('New ticket: '+ticket._id);
-
-  return ticket.save(cb);
-}
-
 router.post('/tickets', adminAuth, function (req, res, next) {
   var tasks = [];
 
@@ -740,6 +727,23 @@ router.post('/tickets', adminAuth, function (req, res, next) {
     }
     console.log(n + ' tickets generated!');
     res.redirect('/tickets');
+  });
+})
+
+router.post('/speeddate', adminAuth, function(req, res, next) {
+  console.log('Creating ' + req.body.startTime + '-' + req.body.endTime);
+
+  var ts = new SpeedDateTimeSlot({
+    startTime: '2018-01-01T' + req.body.startTime,
+    endTime: '2018-01-01T' + req.body.endTime,
+    capacity: req.body.capacity
+  });
+  ts.save().then(function(doc) {
+    console.log('Created speeddate time slot!');
+    return res.redirect('/admin');
+  },function(err) {
+      console.log(err);
+      return next(error);
   });
 })
 

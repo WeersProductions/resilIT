@@ -18,27 +18,37 @@ block content
 
         form(method='POST', action='/tickets')
             .row
-            .ten.columns
-                .form-group
-                    label(for='type') Type
-                    select.form-control(id='type', required, name='type')
-                        option(value='student', selected) Student
-                        option(value='partner') Partner
-                .form-group
-                    label(for='amount') Amount
-                    input.form-control(type='number', name="amount", value=0)
+                .ten.columns
+                    .form-group
+                        label(for='type') Type
+                        select.form-control(id='type', required, name='type')
+                            option(value='student', selected) Student
+                            option(value='partner') Partner
+                    .form-group
+                        label(for='amount') Amount
+                        input.form-control(type='number', name="amount", value=0)
 
-            .two.columns
-                button.button.special(type='submit') Generate
+                .two.columns
+                    button.button.special(type='submit') Generate
 
         h2 Speeddates
         p
-            | Update/add speeddate time slots.
+            | Add speeddate time slots.
 
-        form(method='POST', action='/aanmelden')
+        form(method='POST', action='/speeddate')
             .row
-            .ten.columns
-                input#ticketCode.form-control(type='text',name='ticket')
+                .ten.columns
+                    .form-group
+                        label(for='startTime') startTime
+                        input#ticketCode.form-control(type='time',name='startTime', step='1', min='9:00', max='20:00')
 
-            .two.columns
-                button.button-users(type='submit') Generate
+                    .form-group
+                        label(for='endTime') endTime
+                        input#ticketCode.form-control(type='time',name='endTime', step='1', min='9:00', max='20:00')
+
+                    .form-group
+                        label(for='capacity') capacity
+                        input#ticketCode.form-control(type='number',name='capacity', value=0)
+
+                .two.columns
+                    button.button.special(type='submit') Generate

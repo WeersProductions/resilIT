@@ -1288,6 +1288,8 @@ section.profile {
   .admin h2 {
     margin: 2rem auto;
     margin-top: 3rem; }
+  .admin p {
+    margin-bottom: 2.5rem; }
   .admin .columns {
     margin-left: 0; }
   .admin .form-control {
