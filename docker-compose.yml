@@ -27,4 +27,4 @@ services:
       - NODE_ENV=production
     command: bash entrypoint.production.sh
     ports:
-     - "127.0.0.1:3000:3000"
+     - "127.0.0.1:80:3000"
