@@ -46,8 +46,23 @@ $("#navbarToggle").on('click', function() {
   $("#navbar-main-collapse").toggle();
 });
 
+
+// Adds scroll animations to all local links. First checks whether this link goes to the current page.
+$('i,a[href^="/#"]').on('click', function(event) {
+  var hrefAttr = this.getAttribute('href');
+  var compare = hrefAttr.split('/#')[0] + '/'
+  if(window.location.pathname === compare) {
+    var target = $(hrefAttr.substring(1, hrefAttr.length));
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
+  }
+});
+
 $('i,a[href^="#"]').on('click', function(event) {
-    console.log("animate");
     var target = $(this.getAttribute('href'));
     if( target.length ) {
         event.preventDefault();
@@ -56,15 +71,3 @@ $('i,a[href^="#"]').on('click', function(event) {
         }, 1000);
     }
 });
-
-$('a[href^="#"]').on('click', function(event) {
-    console.log("animate");
-    var target = $(this.getAttribute('href'));
-    if( target.length ) {
-        event.preventDefault();
-        $('html, body').stop().animate({
-            scrollTop: target.offset().top
-        }, 1000);
-    }
-});
-

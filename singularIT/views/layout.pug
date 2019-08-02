@@ -32,7 +32,7 @@ html(lang=locale)
     nav(class='navbar')
       // left-side logo
       .logonav
-        a(href='/')
+        a(href='/#particles-js')
           img(src='/images/resilit_logo.png')
 
       button(id="navbarToggle" class='toggle navicon-button' data-target='#navbar-main-collapse')
@@ -43,15 +43,15 @@ html(lang=locale)
         if user.admin
           ul(class='pages collapse' id='navbar-main-collapse')
             li()
-              a(href='/speakers') Speakers
+              a(href='/#speakers') Speakers
             //- li()
             //-   a(href='/#program') Programme
             li
-              a(href='/partners') Partners
+              a(href='/#partners') Partners
             li
-              a(href='#location') Location
+              a(href='/#location') Location
             li
-              a(href='#about') About
+              a(href='/#about') About
             li
               .dropdown
                 button.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -82,15 +82,15 @@ html(lang=locale)
         else
           ul(class='pages collapse' id='navbar-main-collapse')
             li()
-              a(href='/speakers') Speakers
+              a(href='/#speakers') Speakers
             //- li
             //-   a(href='/#program') Programme
             li
-              a(href='/partners') Partners
+              a(href='/#partners') Partners
             li
-              a(href='#location') Location
+              a(href='/#location') Location
             li
-              a(href='#about') About
+              a(href='/#about') About
             li
               .dropdown
                 button.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -105,15 +105,15 @@ html(lang=locale)
       else
         ul(class='pages collapse' id='navbar-main-collapse')
           li
-            a(href='#speakers') Speakers
+            a(href='/#speakers') Speakers
           //- li
           //-   a(href='#program') Programme
           li
-            a(href='#partners') Partners
+            a(href='/#partners') Partners
           li
-            a(href='#location') Location
+            a(href='/#location') Location
           li
-            a(href='#about') About
+            a(href='/#about') About
           //li
             a(href='/register') Activate
           li
