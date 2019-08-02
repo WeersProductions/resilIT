@@ -78,11 +78,11 @@ router.get('/', function (req, res) {
   res.render('index', { title: '', ticketSaleStarts:config.ticketSaleStarts });
 });
 
-router.get('/partners', function (req,res) {
+router.get('/partners', adminAuth, function (req,res) {
   res.render('partners/index',{title:'Partners |', partners: partnerinfo});
 });
 
-router.get('/partners/:partner', function (req, res) {
+router.get('/partners/:partner',adminAuth,  function (req, res) {
   res.render('partners/'+ req.params.partner, {title: 'Partners - ' + req.params.partner + ' |', path: '/partners'});
 });
 
@@ -297,19 +297,19 @@ router.post('/profile', auth, async function (req, res) {
   });
 });
 
-router.get('/location', function (req, res) {
+router.get('/location', adminAuth, function (req, res) {
   res.render('location', {title: 'Location |'});
 });
 /*
  * Still needs its proper replacement, will come when bus times are available
  * Maybe include in the location or timetable page aswell.
  */
-router.get('/buses', function (req, res) {
+router.get('/buses', adminAuth, function (req, res) {
   res.render('buses', {title: 'Buses | '});
 });
 
 
-router.get('/speakers', function (req, res) {
+router.get('/speakers', adminAuth, function (req, res) {
   var s = speakerinfo.speakers.filter(function(speaker){
     return !speaker.hidden;
   });
