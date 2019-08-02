@@ -293,7 +293,7 @@ footer .sponsor {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: stretch;
-  margin:-10px auto;
+  // margin:-10px auto;
   flex-direction: column;
 }
 
@@ -349,15 +349,14 @@ footer .sponsor {
 @media (min-width: 1200px) {
   footer .sponsor {
     width: 100%;
-    max-width: 1000px;
   }
 }
 
 footer a,
 footer a:visited{
-  color: white;
+  // color: white;
   text-align: center;
-  margin: 0 1vw;
+  // margin: 0 1vw;
   display: inline-block;
 }
 
