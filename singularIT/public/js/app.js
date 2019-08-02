@@ -55,7 +55,7 @@ $('i,a[href^="/#"]').on('click', function(event) {
     if( target.length ) {
         event.preventDefault();
         $('html, body').stop().animate({
-            scrollTop: target.offset().top
+            scrollTop: target.offset().top - $(window).height() * 0.05
         }, 1000);
     }
   }
@@ -66,7 +66,7 @@ $('i,a[href^="#"]').on('click', function(event) {
     if( target.length ) {
         event.preventDefault();
         $('html, body').stop().animate({
-            scrollTop: target.offset().top
+            scrollTop: target.offset().top - $(window).height() * 0.05
         }, 1000);
     }
 });

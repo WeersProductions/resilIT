@@ -184,10 +184,6 @@ p {
   max-width: 40em;
   text-align: center; }
 
-a,
-a:visited {
-  color: #333; }
-
 a:hover,
 a:focus {
   color: #333;
