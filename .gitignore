@@ -1,4 +1,5 @@
 **/config.json
+**/speeddate-timeslots.json
 *.sublime-project
 *.sublime-workspace
 *.swp
