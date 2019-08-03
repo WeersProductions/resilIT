@@ -551,6 +551,7 @@ section.slanted.twocolumn .subpage.image {
   margin-bottom: -1px; }
 
 section.slanted.twocolumn .content {
+  padding-top: 2rem;
   max-width: 45em;
   margin: 0 auto; }
 
@@ -1624,8 +1625,11 @@ table tr td:nth-child(4) {
 
 .header-title {
   font-size: 4.2rem;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
   text-align: center; }
+  @media (min-width: 750px) {
+    .header-title {
+      margin-bottom: 1em; } }
 
 .skewed-background {
   height: 200px;
