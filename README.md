@@ -166,6 +166,64 @@ The speaker.json is used to generate the speaker page and for the enrollment too
 
 ```
 
+The timetable.json is used to create the timetable and is used in both the website and the app. 
+```javascript
+[
+    [
+        {
+            "startTime": "12:00:00.001Z",
+            "endTime": "14:00:00.001Z",
+            "capacity": 5,
+            "enabled": true,
+            "location": "Room 1"
+        },
+        {
+            "startTime": "15:00:00.001Z",
+            "endTime": "16:00:00.001Z",
+            "capacity": 20,
+            "enabled": true,
+            "location": "Room 1"
+        }
+    ],
+    [
+        {
+            "startTime": "11:00:00.001Z",
+            "endTime": "14:00:00.001Z",
+            "capacity": 35,
+            "enabled": true,
+            "location": "Room 2"
+        },
+        {
+            "startTime": "14:00:00.001Z",
+            "endTime": "16:00:00.001Z",
+            "capacity": 25,
+            "enabled": true,
+            "location": "Room 2"
+        }
+    ],
+    [
+        {
+            "startTime": "9:00:00.001Z",
+            "endTime": "12:00:00.001Z",
+            "capacity": 9,
+            "enabled": true,
+            "location": "Room 3"
+        },
+        {
+            "startTime": "12:00:00.001Z",
+            "endTime": "13:00:00.001Z",
+            "capacity": 45,
+            "enabled": true,
+            "location": "Room 3"
+        }
+    ]
+]
+
+```
+
+# Reload
+After editing or replacing the .json files, run `/reload` to reload all of them. If you only changed 1 of the files, use `/reload/filename`, E.G `/reload/timetable` or `/reload/speakers`.
+
 # Creating an admin user
 The easiest way is to log in to mongo-express and change the boolean of a user to true
 
