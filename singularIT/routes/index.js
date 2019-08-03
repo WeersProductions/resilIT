@@ -16,6 +16,7 @@ var moment = require('moment');
 var fs = require('fs');
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
+var timetable = JSON.parse(fs.readFileSync('timetable.json'));
 
 module.exports = function (config) {
 var router = express.Router();
@@ -747,6 +748,10 @@ router.post('/speeddate', adminAuth, function(req, res, next) {
   });
 })
 
+router.get('/timetable', adminAuth, function(req, res, next) {
+  res.json(timetable);
+})
+
 router.get('/ticket', auth, function(req, res, next){
   User.findOne({email: req.session.passport.user}, function(err, doc) {
     res.redirect('/tickets/' + doc.ticket);
@@ -783,8 +788,23 @@ router.get('/tickets/:id/barcode', function (req, res) {
 router.get('/reload', adminAuth, function (req, res){
   speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
   partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
+  timetable = JSON.parse(fs.readFileSync('timetable.json'));
   return res.redirect('/speakers');
 });
+
+router.get('/reload/:file', adminAuth, function (req, res) {
+  if (req.params.file==='speakers') {
+    speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
+    return res.redirect('/speakers');
+  } else if(req.params.file==='partners') {
+    partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
+    return res.redirect('/partners');
+  } else if(req.params.file ==='timetable') {
+    timetable = JSON.parse(fs.readFileSync('timetable.json'));
+    return res.redirect('/timetable');
+  }
+  return res.redirect('/');
+})
 
  return router;
 };
