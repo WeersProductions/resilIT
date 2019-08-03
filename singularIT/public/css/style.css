@@ -770,7 +770,14 @@ footer a:focus {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    cursor: default; }
+    cursor: default;
+    line-height: 4rem; }
+    @media (max-width: 700px) {
+      .main__area--date p {
+        font-size: 2rem !important; } }
+    @media (max-width: 400px) {
+      .main__area--date p {
+        font-size: 1.5rem !important; } }
   .main__area--date img {
     margin: 0.5rem;
     width: 3rem;
