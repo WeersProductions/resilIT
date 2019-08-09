@@ -1,0 +1,26 @@
+extends layout
+
+block above-content
+
+block header
+  header.text
+    h2 Time table
+
+block content
+    p
+        | The schedule of ResilIT 2019. Click on a talk to get more information and to add it to your favorites!
+
+    #speeddate-table.offset-by-three.six.columns
+        table.speeddate.table
+            thead
+                for track in timetable
+                    th Track
+            tbody
+                for track in timetable
+                    for talk in track
+                        h5!=talk.title
+                        h6!=talk.subTitle
+                        h6!=talk.location
+                        h7!=talk.startTime
+                        h7 -
+                        h7!=talk.endTime

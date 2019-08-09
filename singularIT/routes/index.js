@@ -714,9 +714,7 @@ router.post('/tickets', adminAuth, function (req, res, next) {
   for (var i = 0; i < n; i++) {
     tasks.push(function(callback) {
       var params;
-      console.log(req.body.type);
       if (req.body.type === 'partner'){
-        console.log('partner');
         params = {type: process.argv[3], rev:1};
       } else {
         params = {rev:1};
@@ -754,8 +752,12 @@ router.post('/speeddate', adminAuth, function(req, res, next) {
   });
 })
 
-router.get('/timetable', adminAuth, function(req, res, next) {
+router.get('/api/timetable', adminAuth, function(req, res, next) {
   res.json(timetable);
+})
+
+router.get('/timetable', adminAuth, function(req, res) {
+  res.render('timetable', {timetable: timetable});
 })
 
 router.get('/ticket', auth, function(req, res, next){
