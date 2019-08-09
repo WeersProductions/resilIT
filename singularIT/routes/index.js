@@ -735,8 +735,8 @@ router.post('/speeddate', adminAuth, function(req, res, next) {
   console.log('Creating ' + req.body.startTime + '-' + req.body.endTime);
 
   var ts = new SpeedDateTimeSlot({
-    startTime: '2018-01-01T' + req.body.startTime,
-    endTime: '2018-01-01T' + req.body.endTime,
+    startTime: '2019-11-26T' + req.body.startTime,
+    endTime: '2019-11-26T' + req.body.endTime,
     capacity: req.body.capacity
   });
   ts.save().then(function(doc) {
