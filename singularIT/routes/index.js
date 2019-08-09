@@ -358,7 +358,8 @@ router.get('/speeddate', adminAuth, async function (req, res) {
     return {
       'name': slot.name,
       'capacity': slot.capacity,
-      'usersRegistered': users
+      'usersRegistered': users,
+      'id': slot.id
     };
   };
 
@@ -397,6 +398,11 @@ router.get('/speeddate/export-csv', adminAuth,
     res.send(CSV.stringify(data));
   }
 );
+
+router.get('/speeddate/remove/:id', adminAuth, async function(req, res) {
+  console.log('Removing speeddate: ' + req.params.id);
+  res.redirect('/speeddate');
+});
 
 router.get('/badge-scanning', adminAuth, async function (req, res) {
   var badgeScanningAllowed = await User.find(
@@ -741,7 +747,7 @@ router.post('/speeddate', adminAuth, function(req, res, next) {
   });
   ts.save().then(function(doc) {
     console.log('Created speeddate time slot!');
-    return res.redirect('/admin');
+    return res.redirect('/speeddate');
   },function(err) {
       console.log(err);
       return next(error);

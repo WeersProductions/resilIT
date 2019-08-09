@@ -30,25 +30,3 @@ block content
 
                 .two.columns
                     button.button.special(type='submit') Generate
-
-        h2 Speeddates
-        p
-            | Add speeddate time slots.
-
-        form(method='POST', action='/speeddate')
-            .row
-                .ten.columns
-                    .form-group
-                        label(for='startTime') startTime
-                        input#ticketCode.form-control(type='time',name='startTime', step='1', min='9:00', max='20:00')
-
-                    .form-group
-                        label(for='endTime') endTime
-                        input#ticketCode.form-control(type='time',name='endTime', step='1', min='9:00', max='20:00')
-
-                    .form-group
-                        label(for='capacity') capacity
-                        input#ticketCode.form-control(type='number',name='capacity', value=0)
-
-                .two.columns
-                    button.button.special(type='submit') Generate
