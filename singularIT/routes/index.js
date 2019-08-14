@@ -12,11 +12,41 @@ var i18n   = require('i18next');
 const CSV = require('csv-string');
 var moment = require('moment');
 
+function loadTimetableJSON() {
+  var dateTimeSettings = {hour:'2-digit', minute:'2-digit', hour12:false};
+
+  var tmtble = JSON.parse(fs.readFileSync('timetable.json'));
+  var intervalInMs = tmtble.timeInterval * 60 * 1000;
+
+  // Add time intervals to be used in the webpage.
+  var startTime = new Date(tmtble.date + tmtble.startTime);
+  var endTime = new Date(tmtble.date + tmtble.endTime);
+  var intervalAmount = Math.abs(endTime - startTime) / intervalInMs;
+  var intervals = []
+  for(var i = 0; i <= intervalAmount; i++) {
+    var date = new Date(startTime.getTime() + i * intervalInMs);
+    date = date.toLocaleTimeString("en-GB", dateTimeSettings)
+    intervals.push(date);
+  }
+  tmtble.intervals = intervals;
+
+  for(var track in tmtble.tracks) {
+    for(var talk in tmtble.tracks[track].talks) {
+      talk = tmtble.tracks[track].talks[talk];
+      // Add the length in multiple of 15 minutes. (30 min talk = 2)
+      talk.startTime = new Date(tmtble.date + talk.startTime);
+      talk.startTimeDisplay = talk.startTime.toLocaleTimeString("en-GB", dateTimeSettings);
+      talk.length = Math.abs(new Date(tmtble.date + talk.endTime) - talk.startTime) / intervalInMs;
+    }
+  }
+  return tmtble;
+}
+
 // Load speaker information from speakers.json
 var fs = require('fs');
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
-var timetable = JSON.parse(fs.readFileSync('timetable.json'));
+var timetable = loadTimetableJSON();
 
 module.exports = function (config) {
 var router = express.Router();
@@ -796,7 +826,7 @@ router.get('/tickets/:id/barcode', function (req, res) {
 router.get('/reload', adminAuth, function (req, res){
   speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
   partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
-  timetable = JSON.parse(fs.readFileSync('timetable.json'));
+  timetable = loadTimetableJSON();
   return res.redirect('/speakers');
 });
 
@@ -808,7 +838,7 @@ router.get('/reload/:file', adminAuth, function (req, res) {
     partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
     return res.redirect('/partners');
   } else if(req.params.file ==='timetable') {
-    timetable = JSON.parse(fs.readFileSync('timetable.json'));
+    timetable = loadTimetableJSON();
     return res.redirect('/timetable');
   }
   return res.redirect('/');

@@ -10,17 +10,58 @@ block content
     p
         | The schedule of ResilIT 2019. Click on a talk to get more information and to add it to your favorites!
 
-    #speeddate-table.offset-by-three.six.columns
-        table.speeddate.table
-            thead
-                for track in timetable
-                    th Track
-            tbody
-                for track in timetable
-                    for talk in track
-                        h5!=talk.title
-                        h6!=talk.subTitle
-                        h6!=talk.location
-                        h7!=talk.startTime
-                        h7 -
-                        h7!=talk.endTime
+    div(class="program-table")
+        .container
+        a#program.anchor
+        .row
+            .col-lg-12.text-center
+                h2 Programme
+                hr
+                .table-responsive
+                    table#program-table.table
+                        thead
+                            tr
+                                th
+                                for track in timetable.tracks
+                                    th(style="text-align:center")
+                                        h4=track.name
+                        tbody
+                            tr
+                                td
+                                for track in timetable.tracks
+                                    td(class="location-text")
+                                        h6=track.location
+                            for time in timetable.intervals
+                                tr
+                                    td
+                                        small=time
+                                    for track in timetable.tracks
+                                        - var used = false
+                                        for talk in track.talks
+                                            if talk.startTimeDisplay === time
+                                                - used = true
+                                                td(rowspan=talk.length)
+                                                    // TODO: add dynamic speaker links.
+                                                    a(href="/speakers")
+                                                        h4=talk.title
+                                                        h6=talk.subTitle
+                                                    small TODO time!
+                                                    p
+                                            if talk.endTimeDisplay
+                                        unless used
+                                            td
+
+
+        //- table.speeddate.table
+        //-     thead
+        //-         for track in timetable
+        //-             th Track
+        //-     tbody
+        //-         for track in timetable
+        //-             for talk in track
+        //-                 h5!=talk.title
+        //-                 h6!=talk.subTitle
+        //-                 h6!=talk.location
+        //-                 h7!=talk.startTime
+        //-                 h7 -
+        //-                 h7!=talk.endTime
