@@ -168,56 +168,84 @@ The speaker.json is used to generate the speaker page and for the enrollment too
 
 The timetable.json is used to create the timetable and is used in both the website and the app. 
 ```javascript
-[
-    [
+{
+  "date":"2019-11-26T",
+  "startTime": "10:00:00.000Z",
+  "endTime": "17:15:00.000Z",
+  "timeInterval": 15,
+  "tracks": [
+    {
+      "name": "track 1",
+      "location": "first location",
+      "talks": [
         {
-            "startTime": "12:00:00.001Z",
-            "endTime": "14:00:00.001Z",
-            "capacity": 5,
-            "enabled": true,
-            "location": "Room 1"
+          "startTime": "12:00:00.001Z",
+          "endTime": "14:00:00.001Z",
+          "capacity": 5,
+          "enabled": true,
+          "title": "Talk 1",
+          "subTitle": "First talk"
         },
         {
-            "startTime": "15:00:00.001Z",
-            "endTime": "16:00:00.001Z",
-            "capacity": 20,
-            "enabled": true,
-            "location": "Room 1"
+          "startTime": "15:00:00.001Z",
+          "endTime": "16:00:00.001Z",
+          "capacity": 20,
+          "enabled": true,
+          "location": "Override location 1",
+          "title": "Talk 2",
+          "subTitle": "Second talk"
         }
-    ],
-    [
+      ]
+    },
+    {
+      "name": "track 2",
+      "location": "second location",
+      "talks": [
         {
-            "startTime": "11:00:00.001Z",
-            "endTime": "14:00:00.001Z",
-            "capacity": 35,
-            "enabled": true,
-            "location": "Room 2"
+          "startTime": "11:00:00.001Z",
+          "endTime": "14:00:00.001Z",
+          "capacity": 35,
+          "enabled": true,
+          "title": "Talk 1.1",
+          "subTitle": "First talk of second track"
         },
         {
-            "startTime": "14:00:00.001Z",
-            "endTime": "16:00:00.001Z",
-            "capacity": 25,
-            "enabled": true,
-            "location": "Room 2"
+          "startTime": "14:00:00.001Z",
+          "endTime": "16:00:00.001Z",
+          "capacity": 25,
+          "enabled": true,
+          "title": "Talk 2.1",
+          "subTitle": "Second talk of second track"
         }
-    ],
-    [
+      ]
+    },
+    {
+      "name": "track 3",
+      "location": "third location",
+      "talks": [
         {
-            "startTime": "9:00:00.001Z",
-            "endTime": "12:00:00.001Z",
-            "capacity": 9,
-            "enabled": true,
-            "location": "Room 3"
+          "startTime": "11:00:00.001Z",
+          "endTime": "12:00:00.001Z",
+          "capacity": 9,
+          "enabled": true,
+          "location": "Room 3",
+          "title": "Talk 1.2",
+          "subTitle": "First talk of third track"
         },
         {
-            "startTime": "12:00:00.001Z",
-            "endTime": "13:00:00.001Z",
-            "capacity": 45,
-            "enabled": true,
-            "location": "Room 3"
+          "startTime": "12:00:00.001Z",
+          "endTime": "13:00:00.001Z",
+          "capacity": 45,
+          "enabled": true,
+          "location": "Override location 3",
+          "title": "Talk 2.2",
+          "subTitle": "Second talk of third track"
         }
-    ]
-]
+      ]
+    }
+  ]
+}
+
 
 ```
 
