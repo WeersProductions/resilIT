@@ -35,8 +35,10 @@ function loadTimetableJSON() {
       talk = tmtble.tracks[track].talks[talk];
       // Add the length in multiple of 15 minutes. (30 min talk = 2)
       talk.startTime = new Date(tmtble.date + talk.startTime);
+      talk.endTime = new Date(tmtble.date + talk.endTime);
       talk.startTimeDisplay = talk.startTime.toLocaleTimeString("en-GB", dateTimeSettings);
-      talk.length = Math.abs(new Date(tmtble.date + talk.endTime) - talk.startTime) / intervalInMs;
+      talk.endTimeDisplay = talk.endTime.toLocaleTimeString("en-GB", dateTimeSettings);
+      talk.length = Math.abs(talk.endTime - talk.startTime) / intervalInMs;
     }
   }
   return tmtble;

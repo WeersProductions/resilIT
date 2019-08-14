@@ -42,15 +42,16 @@ block content
                                             if talk.startTimeDisplay === time
                                                 - used = true
                                                 td(rowspan=talk.length)
-                                                    - currentTalks[track.name] = talk.length
+                                                    - currentTalks[track.trackId] = talk.length
                                                     // TODO: add dynamic speaker links.
                                                     a(href="/speakers")
                                                         h4=talk.title
                                                         h6=talk.subTitle
-                                                    small TODO time!
+                                                    - var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
+                                                    small=timeText
                                                     p
                                                 - break
-                                        unless currentTalks[track.name]
+                                        unless currentTalks[track.trackId]
                                             td
                                 -
                                     for(var track in currentTalks) {
