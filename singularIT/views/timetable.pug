@@ -31,6 +31,7 @@ block content
                                 for track in timetable.tracks
                                     td(class="location-text")
                                         h6=track.location
+                            - var currentTalks = {};
                             for time in timetable.intervals
                                 tr
                                     td
@@ -41,27 +42,21 @@ block content
                                             if talk.startTimeDisplay === time
                                                 - used = true
                                                 td(rowspan=talk.length)
+                                                    - currentTalks[track.name] = talk.length
                                                     // TODO: add dynamic speaker links.
                                                     a(href="/speakers")
                                                         h4=talk.title
                                                         h6=talk.subTitle
                                                     small TODO time!
                                                     p
-                                            if talk.endTimeDisplay
-                                        unless used
+                                                - break
+                                        unless currentTalks[track.name]
                                             td
-
-
-        //- table.speeddate.table
-        //-     thead
-        //-         for track in timetable
-        //-             th Track
-        //-     tbody
-        //-         for track in timetable
-        //-             for talk in track
-        //-                 h5!=talk.title
-        //-                 h6!=talk.subTitle
-        //-                 h6!=talk.location
-        //-                 h7!=talk.startTime
-        //-                 h7 -
-        //-                 h7!=talk.endTime
+                                -
+                                    for(var track in currentTalks) {
+                                        if(currentTalks[track] <= 1) {
+                                            delete currentTalks[track];
+                                        } else {
+                                            currentTalks[track] = currentTalks[track] - 1;
+                                        }
+                                    }
