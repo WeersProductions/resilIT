@@ -16,6 +16,7 @@ var SILVER_LOGO_DURATION = 5000;
 var silver_logos = Array();
 silver_logos.push("/images/partners/logo_ORTEC_oyw.png");
 silver_logos.push("/images/partners/logo_Quintor.jpg");
+silver_logos.push("/images/partners/logo_ING.jpg");
 
 silver_logos = shuffle(silver_logos);
 var silver_logos_iter = 0;
