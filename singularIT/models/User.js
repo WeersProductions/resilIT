@@ -28,7 +28,8 @@ var User = new mongoose.Schema({
   studyProgramme:       { type: String ,  required: false    },
   companyName:          { type: String ,  required: false    },
   allowBadgeScanning:   { type: Boolean, default: false      },
-  speedDateTimeSlot:    { type: String, ref: 'SpeedDateTimeSlot'}
+  speedDateTimeSlot:    { type: String, ref: 'SpeedDateTimeSlot'},
+  favorites:            { type: [Number], required: false    },
 });
 
 User.plugin(plm, {

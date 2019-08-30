@@ -161,6 +161,66 @@ router.get('/profile', auth, async function (req, res) {
   });
 });
 
+router.get('/api/user', auth, async function (req, res) {
+  var user = await User.findOne({email:req.session.passport.user});
+  res.json(user);
+});
+
+router.post('/api/favorite/add/:id', auth, async function (req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      if(!user.favorites) {
+        user.favorites =[];
+      }
+      user.favorites.push(req.params.id);
+      user.save();
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
+router.post('/api/favorite/remove/:id', auth, async function (req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      if(user.favorites) {
+        for( var i = user.favorites.length; i--;){
+            if ( user.favorites[i] == req.params.id) user.favorites.splice(i, 1);
+        }
+        user.save();
+      }
+
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
+router.post('/api/favorite/remove', auth, async function (req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      user.favorites = [];
+
+      user.save();
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
+router.get('/api/favorite', auth, async function (req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      res.json({"success": true, "favorite": user.favorites});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
 /**
  * This function is used to determine if there is still room for someone to
  * enroll and takes in to account if someone is already enrolled.
