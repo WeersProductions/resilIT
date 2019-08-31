@@ -10,13 +10,13 @@ block content
     p
         | The schedule of ResilIT 2019. Click on a talk to get more information and to add it to your favorites!
 
+    h2(style="text-align: center; margin-top: 1.5em;") Programme
+    hr(style="width: 80vw;")
     div(class="program-table")
         .container
         a#program.anchor
         .row
             .col-lg-12.text-center
-                h2 Programme
-                hr
                 .table-responsive
                     table#program-table.table
                         thead
@@ -41,7 +41,7 @@ block content
                                         for talk in track.talks
                                             if talk.startTimeDisplay === time
                                                 - used = true
-                                                td(rowspan=talk.length)
+                                                td#program-table.talk-column(rowspan=talk.length)
                                                     - currentTalks[track.trackId] = talk.length
                                                     // TODO: add dynamic speaker links.
                                                     a(href="/speakers")
