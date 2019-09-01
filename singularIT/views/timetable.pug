@@ -18,8 +18,8 @@ block content
             .modal-footer
                 h3#ModalFooter Modal Footer
                 div#favorite-button
-                    input#checkbox(type='checkbox')
-                    label(for='checkbox')
+                    input#favorite-checkbox(type='checkbox')
+                    label(for='favorite-checkbox')
                         svg#heart-svg(viewbox='467 392 58 57' xmlns='http://www.w3.org/2000/svg')
                             g#Group(fill='none' fill-rule='evenodd' transform='translate(467 392)')
                                 path#heart(d='M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z' fill='#AAB8C2')
@@ -84,12 +84,7 @@ block content
                                                 -
                                                     used = true
                                                     var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
-                                                    talkColumnClick =
-                                                        "document.getElementById('ModalTitle').innerHTML = '" + talk.title + "'; "
-                                                        + "document.getElementById('ModalContent').innerHTML = '" + talk.subTitle + "'; "
-                                                        + "document.getElementById('ModalFooter').innerHTML = '" + timeText + "'; "
-                                                        + "document.getElementById('talkModal').style.display='block';"
-                                                td#program-table.talk-column(rowspan=talk.length, data-id=talk.id, onclick=talkColumnClick)
+                                                td#program-table.talk-column(rowspan=talk.length, data-id=talk.id, onclick="talkColumnClick(" + JSON.stringify(talk) + ")")
                                                     - currentTalks[track.trackId] = talk.length
                                                     h4=talk.title
                                                     h6=talk.subTitle

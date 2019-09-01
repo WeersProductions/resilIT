@@ -236,11 +236,11 @@ table tr td:nth-child(4) {
       }
     }
 
-    #checkbox {
+    #favorite-checkbox {
       display: none;
     }
 
-    #checkbox:checked + label svg {
+    #favorite-checkbox:checked + label svg {
       #heart {
         transform: scale(0.2);
         fill: #e2264d;

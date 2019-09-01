@@ -166,6 +166,9 @@ router.get('/api/user', auth, async function (req, res) {
   res.json(user);
 });
 
+/**
+ * Add a favorite talk to the user.
+ */
 router.post('/api/favorite/add/:id', auth, async function (req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if (!err){
@@ -181,6 +184,9 @@ router.post('/api/favorite/add/:id', auth, async function (req, res) {
   });
 });
 
+/**
+ * Remove a favorite from the current user.
+ */
 router.post('/api/favorite/remove/:id', auth, async function (req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if (!err){
@@ -198,6 +204,9 @@ router.post('/api/favorite/remove/:id', auth, async function (req, res) {
   });
 });
 
+/**
+ * Remove all favorites from the user.
+ */
 router.post('/api/favorite/remove', auth, async function (req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if (!err){
@@ -211,6 +220,9 @@ router.post('/api/favorite/remove', auth, async function (req, res) {
   });
 });
 
+/**
+ * Get all favorites of this user.
+ */
 router.get('/api/favorite', auth, async function (req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if (!err){
@@ -220,6 +232,21 @@ router.get('/api/favorite', auth, async function (req, res) {
     }
   });
 });
+
+/**
+ * Check if a talk is a favorite.
+ */
+router.get('/api/favorite/:id', auth, async function (req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      console.log(typeof(user.favorites[0]));
+      console.log(typeof(req.params.id));
+      res.json({"success": true, "favorite": user.favorites.includes(parseInt(req.params.id))});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+})
 
 /**
  * This function is used to determine if there is still room for someone to

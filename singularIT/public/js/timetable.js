@@ -18,3 +18,41 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+$('#favorite-checkbox').change(function() {
+    var id = $(this).attr("data-id");
+    if($(this).prop("checked") == true) {
+        // Register this as favorite.
+        $.post("/api/favorite/add/" + id, {}, function(result) {
+            if(!result.success) {
+                // TODO: show user error.
+                console.log("Could not add favorite!");
+            }
+        });
+    } else {
+        // Unregister this as favorite.
+        $.post("/api/favorite/remove/" + id, {}, function(result) {
+            if(!result.success) {
+                // TODO: show user error.
+                console.log("Could not remove favorite!");
+            }
+        });
+    }
+});
+
+function talkColumnClick(talk) {
+    document.getElementById('ModalTitle').innerHTML = talk.title;
+    document.getElementById('favorite-checkbox').dataset.id = talk.id;
+    document.getElementById('favorite-checkbox').dataset.id = talk.id;
+    document.getElementById('ModalContent').innerHTML = talk.subTitle;
+    var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
+    document.getElementById('ModalFooter').innerHTML = timeText;
+    document.getElementById('talkModal').style.display = 'block';
+    $.get("/api/favorite/" + talk.id, function(data) {
+        if(data.success) {
+            $('#favorite-checkbox').prop('checked', data.favorite);
+        } else {
+            // TODO: show user error.
+        }
+    });
+}
