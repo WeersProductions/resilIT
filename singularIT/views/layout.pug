@@ -7,6 +7,12 @@ mixin showMessage(msg)
 doctype html
 
 html(lang=locale)
+  script(src='//code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous' defer)
+  // Scripts
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous' defer)
+  //script(src='/js/jQuery.curtail.min.js' defer)
+  script(src='/js/particles.js' defer)
+  script(src='/js/app.js' defer)
   head
     title #{title} ResilIT 2019
     meta(name='charset' content='utf-8')
@@ -194,12 +200,7 @@ html(lang=locale)
             img.nedap(class='footer-sponsors', src='/images/partners/logo_ASML.jpg')
 
 
-    // Scripts
-    script(src='//code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
-    //script(src='/js/jQuery.curtail.min.js')
-    script(src='/js/particles.js')
-    script(src='/js/app.js')
+    
 
     // For extra footer stuff
     block footer

@@ -1631,13 +1631,268 @@ table tr td:nth-child(4) {
   margin-bottom: 3em;
   overflow-x: hidden !important; }
 
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+  .modal .close {
+    color: white; }
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white; }
+  .modal-header h2 {
+    margin: 5px auto; }
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+  margin: 16px auto; }
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Take care of the favorite button */ }
+  .modal-footer h3 {
+    margin-bottom: initial; }
+  .modal-footer #favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; }
+    .modal-footer #favorite-button label {
+      margin-bottom: initial; }
+    .modal-footer #favorite-button svg {
+      cursor: pointer;
+      overflow: visible;
+      width: 60px; }
+      .modal-footer #favorite-button svg #heart {
+        transform-origin: center;
+        animation: animateHeartOut 0.3s linear forwards; }
+      .modal-footer #favorite-button svg #main-circ {
+        transform-origin: 29.5px 29.5px; }
+    .modal-footer #favorite-button #checkbox {
+      display: none; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #heart {
+      transform: scale(0.2);
+      fill: #e2264d;
+      animation: animateHeart 0.3s linear forwards 0.25s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #main-circ {
+      transition: all 2s;
+      animation: animateCircle 0.3s linear forwards;
+      opacity: 1; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp1 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp1 #oval1 {
+        transform: scale(0) translate(0, -30px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp1 #oval2 {
+        transform: scale(0) translate(10px, -50px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp2 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp2 #oval1 {
+        transform: scale(0) translate(30px, -15px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp2 #oval2 {
+        transform: scale(0) translate(60px, -15px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp3 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp3 #oval1 {
+        transform: scale(0) translate(30px, 0px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp3 #oval2 {
+        transform: scale(0) translate(60px, 10px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp4 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp4 #oval1 {
+        transform: scale(0) translate(30px, 15px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp4 #oval2 {
+        transform: scale(0) translate(40px, 50px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp5 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp5 #oval1 {
+        transform: scale(0) translate(-10px, 20px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp5 #oval2 {
+        transform: scale(0) translate(-60px, 30px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp6 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp6 #oval1 {
+        transform: scale(0) translate(-30px, 0px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp6 #oval2 {
+        transform: scale(0) translate(-60px, -5px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp7 {
+      opacity: 1;
+      transition: 0.1s all 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp7 #oval1 {
+        transform: scale(0) translate(-30px, -15px);
+        transform-origin: 0 0 0;
+        transition: 0.5s transform 0.3s; }
+      .modal-footer #favorite-button #checkbox:checked + label svg #grp7 #oval2 {
+        transform: scale(0) translate(-55px, -30px);
+        transform-origin: 0 0 0;
+        transition: 1.5s transform 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp2 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp3 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp4 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp5 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp6 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+    .modal-footer #favorite-button #checkbox:checked + label svg #grp7 {
+      opacity: 1;
+      transition: 0.1s opacity 0.3s; }
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  top: 50px;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  /* The Close Button */ }
+  .modal-content .close {
+    color: white;
+    float: right;
+    font-size: 3em;
+    font-weight: bold; }
+  .modal-content .close:hover,
+  .modal-content .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 50px;
+    opacity: 1; } }
+
+@keyframes animateCircle {
+  40% {
+    transform: scale(10);
+    opacity: 1;
+    fill: #dd4688; }
+  55% {
+    transform: scale(11);
+    opacity: 1;
+    fill: #d46abf; }
+  65% {
+    transform: scale(12);
+    opacity: 1;
+    fill: #cc8ef5; }
+  75% {
+    transform: scale(13);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.5; }
+  85% {
+    transform: scale(17);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.2; }
+  95% {
+    transform: scale(18);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.1; }
+  100% {
+    transform: scale(19);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0; } }
+
+@keyframes animateHeart {
+  0% {
+    transform: scale(0.2); }
+  40% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes animateHeartOut {
+  0% {
+    transform: scale(1.4); }
+  100% {
+    transform: scale(1); } }
+
 .accent {
-  font-family: 'TruenoRegular' !important;
+  font-family: "TruenoRegular" !important;
   font-size: 2.25rem;
   font-weight: normal; }
 
 .accent-logo {
-  font-family: 'TruenoRegular' !important;
+  font-family: "TruenoRegular" !important;
   font-size: 2.25rem;
   font-weight: normal;
   text-transform: none; }

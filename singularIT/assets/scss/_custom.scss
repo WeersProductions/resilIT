@@ -42,7 +42,7 @@
 }
 
 .silver-plus {
-    margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
 .speaker-image {
@@ -68,27 +68,27 @@
 }
 
 .keynote {
-    flex: 100%;
+  flex: 100%;
 }
 
 @-webkit-keyframes shadow-inset-center {
   0% {
     -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
-            box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
   }
   100% {
     -webkit-box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
-            box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
   }
 }
 @keyframes shadow-inset-center {
   0% {
     -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
-            box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
   }
   100% {
     -webkit-box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
-            box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px 0px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -119,8 +119,10 @@
   .talk-column:hover {
     background: white;
     animation-direction: normal;
-    -webkit-animation: shadow-inset-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            animation: shadow-inset-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    -webkit-animation: shadow-inset-center 0.2s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: shadow-inset-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
   }
 
   .talk-column {
@@ -129,8 +131,10 @@
     min-width: 150px;
     cursor: pointer;
     animation-direction: reverse;
-    -webkit-animation: shadow-inset-center-out 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            animation: shadow-inset-center-out 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    -webkit-animation: shadow-inset-center-out 0.4s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: shadow-inset-center-out 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
   }
 }
 
@@ -139,19 +143,21 @@
 }
 
 #program-table th {
-    padding: 1em;
+  padding: 1em;
 }
 
+// todo: remove
 table tr td:nth-child(2) {
-    background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 
+// todo: remove
 table tr td:nth-child(4) {
-    background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 
 .table-responsive {
-    margin: 1em;
+  margin: 1em;
 }
 
 .program-table {
@@ -160,14 +166,333 @@ table tr td:nth-child(4) {
   overflow-x: hidden !important;
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+  .close {
+    color: white;
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  h2 {
+    margin: 5px auto;
+  }
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+  margin: 16px auto;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    margin-bottom: initial;
+  }
+
+  /* Take care of the favorite button */
+  #favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    label {
+      margin-bottom: initial;
+    }
+
+    svg {
+      cursor: pointer;
+      overflow: visible;
+      width: 60px;
+      #heart {
+        transform-origin: center;
+        animation: animateHeartOut 0.3s linear forwards;
+      }
+      #main-circ {
+        transform-origin: 29.5px 29.5px;
+      }
+    }
+
+    #checkbox {
+      display: none;
+    }
+
+    #checkbox:checked + label svg {
+      #heart {
+        transform: scale(0.2);
+        fill: #e2264d;
+        animation: animateHeart 0.3s linear forwards 0.25s;
+      }
+      #main-circ {
+        transition: all 2s;
+        animation: animateCircle 0.3s linear forwards;
+        opacity: 1;
+      }
+      #grp1 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(0, -30px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(10px, -50px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp2 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(30px, -15px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(60px, -15px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp3 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(30px, 0px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(60px, 10px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp4 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(30px, 15px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(40px, 50px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp5 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(-10px, 20px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(-60px, 30px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp6 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(-30px, 0px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(-60px, -5px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp7 {
+        opacity: 1;
+        transition: 0.1s all 0.3s;
+        #oval1 {
+          transform: scale(0) translate(-30px, -15px);
+          transform-origin: 0 0 0;
+          transition: 0.5s transform 0.3s;
+        }
+        #oval2 {
+          transform: scale(0) translate(-55px, -30px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform 0.3s;
+        }
+      }
+      #grp2 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+      #grp3 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+      #grp4 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+      #grp5 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+      #grp6 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+      #grp7 {
+        opacity: 1;
+        transition: 0.1s opacity 0.3s;
+      }
+    }
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  top: 50px;
+  margin: 15% auto; /* 15% from the top and centered */
+
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 3em;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 50px;
+    opacity: 1;
+  }
+}
+
+@keyframes animateCircle {
+  40% {
+    transform: scale(10);
+    opacity: 1;
+    fill: #dd4688;
+  }
+  55% {
+    transform: scale(11);
+    opacity: 1;
+    fill: #d46abf;
+  }
+  65% {
+    transform: scale(12);
+    opacity: 1;
+    fill: #cc8ef5;
+  }
+  75% {
+    transform: scale(13);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.5;
+  }
+  85% {
+    transform: scale(17);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.2;
+  }
+  95% {
+    transform: scale(18);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0.1;
+  }
+  100% {
+    transform: scale(19);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0;
+  }
+}
+
+@keyframes animateHeart {
+  0% {
+    transform: scale(0.2);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animateHeartOut {
+  0% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .accent {
-  font-family: 'TruenoRegular' !important;
+  font-family: "TruenoRegular" !important;
   font-size: 2.25rem;
   font-weight: normal;
 }
 
 .accent-logo {
-  font-family: 'TruenoRegular' !important;
+  font-family: "TruenoRegular" !important;
   font-size: 2.25rem;
   font-weight: normal;
   text-transform: none;
@@ -194,7 +519,6 @@ table tr td:nth-child(4) {
   }
 }
 
-
 .text-content {
   margin-left: 20px;
   color: white;
@@ -212,7 +536,7 @@ table tr td:nth-child(4) {
   margin-bottom: 0.5em;
   text-align: center;
 
-  @media(min-width: 750px) {
+  @media (min-width: 750px) {
     margin-bottom: 1em;
   }
 }
@@ -230,14 +554,12 @@ table tr td:nth-child(4) {
   clip-path: polygon(50% 0, 100% 0%, 100% 50%, 50% 0%);
 }
 
-
 .particles canvas {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: -1;
 }
-
 
 .singularit-logo {
 }
@@ -270,8 +592,6 @@ table tr td:nth-child(4) {
   justify-content: center;
 }
 
-
-
 // .skewed-background-2 {
 //   width: 0;
 // height: 0;
@@ -289,13 +609,12 @@ table tr td:nth-child(4) {
   width: 100%;
 }
 
-
 .homepage-sponsor-logo {
   flex: 1;
   max-height: 100px;
   max-width: 100px;
   margin: 10px;
-  background-color: rgba(255, 255, 255, 1.0);
+  background-color: rgba(255, 255, 255, 1);
 }
 .main-sponsor {
   background-color: transparent;
@@ -306,17 +625,16 @@ table tr td:nth-child(4) {
 }
 
 @media (max-width: 1200px) {
-    .program-tracks {
-        display: none
-    }
+  .program-tracks {
+    display: none;
+  }
 
-    .timetable .session {
-        flex: 100%;
-    }
+  .timetable .session {
+    flex: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-
   body {
     overflow: none;
   }
@@ -366,7 +684,6 @@ table tr td:nth-child(4) {
   }
 }
 
-
 .direction-img {
   height: 2em;
 }
@@ -408,8 +725,7 @@ table tr td:nth-child(4) {
   }
 }
 
-
 /* Fixes Google Charts tooltip flickering */
 svg > g > g:last-child {
-  pointer-events: none
+  pointer-events: none;
 }

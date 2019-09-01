@@ -7,6 +7,45 @@ block header
     h2 Time table
 
 block content
+    script(src='/js/timetable.js' defer)
+    #talkModal.modal
+        #talkModalContent.modal-content
+            .modal-header
+                span.close &times;
+                h2#ModalTitle Modal Header
+            .modal-body
+                p#ModalContent Body!
+            .modal-footer
+                h3#ModalFooter Modal Footer
+                div#favorite-button
+                    input#checkbox(type='checkbox')
+                    label(for='checkbox')
+                        svg#heart-svg(viewbox='467 392 58 57' xmlns='http://www.w3.org/2000/svg')
+                            g#Group(fill='none' fill-rule='evenodd' transform='translate(467 392)')
+                                path#heart(d='M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z' fill='#AAB8C2')
+                                circle#main-circ(fill='#E2264D' opacity='0' cx='29.5' cy='29.5' r='1.5')
+                                g#grp7(opacity='0' transform='translate(7 6)')
+                                    circle#oval1(fill='#9CD8C3' cx='2' cy='6' r='2')
+                                    circle#oval2(fill='#8CE8C3' cx='5' cy='2' r='2')
+                                g#grp6(opacity='0' transform='translate(0 28)')
+                                    circle#oval1(fill='#CC8EF5' cx='2' cy='7' r='2')
+                                    circle#oval2(fill='#91D2FA' cx='3' cy='2' r='2')
+                                g#grp3(opacity='0' transform='translate(52 28)')
+                                    circle#oval2(fill='#9CD8C3' cx='2' cy='7' r='2')
+                                    circle#oval1(fill='#8CE8C3' cx='4' cy='2' r='2')
+                                g#grp2(opacity='0' transform='translate(44 6)')
+                                    circle#oval2(fill='#CC8EF5' cx='5' cy='6' r='2')
+                                    circle#oval1(fill='#CC8EF5' cx='2' cy='2' r='2')
+                                g#grp5(opacity='0' transform='translate(14 50)')
+                                    circle#oval1(fill='#91D2FA' cx='6' cy='5' r='2')
+                                    circle#oval2(fill='#91D2FA' cx='2' cy='2' r='2')
+                                g#grp4(opacity='0' transform='translate(35 50)')
+                                    circle#oval1(fill='#F48EA7' cx='6' cy='5' r='2')
+                                    circle#oval2(fill='#F48EA7' cx='2' cy='2' r='2')
+                                g#grp1(opacity='0' transform='translate(24)')
+                                    circle#oval1(fill='#9FC7FA' cx='2.5' cy='3' r='2')
+                                    circle#oval2(fill='#9FC7FA' cx='7.5' cy='2' r='2')
+
     p
         | The schedule of ResilIT 2019. Click on a talk to get more information and to add it to your favorites!
 
@@ -42,12 +81,18 @@ block content
                                         - var used = false
                                         for talk in track.talks
                                             if talk.startTimeDisplay === time
-                                                - used = true
-                                                td#program-table.talk-column(rowspan=talk.length)
+                                                -
+                                                    used = true
+                                                    var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
+                                                    talkColumnClick =
+                                                        "document.getElementById('ModalTitle').innerHTML = '" + talk.title + "'; "
+                                                        + "document.getElementById('ModalContent').innerHTML = '" + talk.subTitle + "'; "
+                                                        + "document.getElementById('ModalFooter').innerHTML = '" + timeText + "'; "
+                                                        + "document.getElementById('talkModal').style.display='block';"
+                                                td#program-table.talk-column(rowspan=talk.length, data-id=talk.id, onclick=talkColumnClick)
                                                     - currentTalks[track.trackId] = talk.length
                                                     h4=talk.title
                                                     h6=talk.subTitle
-                                                    - var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
                                                     small=timeText
                                                     p
                                                 - break
