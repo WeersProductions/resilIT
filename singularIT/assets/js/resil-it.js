@@ -17,6 +17,8 @@ var silver_logos = Array();
 silver_logos.push("/images/partners/logo_ORTEC_oyw.png");
 silver_logos.push("/images/partners/logo_Quintor.jpg");
 silver_logos.push("/images/partners/logo_ING.jpg");
+silver_logos.push("/images/partners/logo_DNB.jpg");
+silver_logos.push("/images/partners/logo_DSW.png");
 
 silver_logos = shuffle(silver_logos);
 var silver_logos_iter = 0;
