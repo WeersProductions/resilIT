@@ -64,6 +64,11 @@ Configuration files are not included in this repository. You will need to add a 
     // Session secret. Should be better when running in production.
     "secret": "abc123"
   },
+  // Used to create the very first ticket.
+  "starthelper": {
+      "active": false,
+      "url": "url"
+  },
   // List of associations that take part.
   // List used to create the dropdown options when registering, therefore partner
   // bus indicates whether or not that association gets a bus
