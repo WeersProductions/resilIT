@@ -111,6 +111,8 @@ router.get('/', function (req, res) {
   res.render('index', { title: '', ticketSaleStarts:config.ticketSaleStarts });
 });
 
+
+
 router.get('/partners', adminAuth, function (req,res) {
   res.render('partners/index',{title:'Partners |', partners: partnerinfo});
 });
@@ -165,6 +167,30 @@ router.get('/api/user', auth, async function (req, res) {
   var user = await User.findOne({email:req.session.passport.user});
   res.json(user);
 });
+
+
+if(config.starthelper && config.starthelper.url) {
+  console.log('/api/' + config.starthelper.url);
+  router.post('/api/' + config.starthelper.url, async function(req, res) {
+    console.log("asdf");
+    var tmpconfig = JSON.parse(fs.readFileSync('config.json'));
+    if(tmpconfig.starthelper.active) {
+      console.log("active");
+      params = {rev: 1};
+      var ticket = new Ticket(params);
+      var ticket_id = ticket._id;
+      ticket.save(function(err) {
+        if(err) {
+          return res.json({"success": false, "error": err});
+        } else {
+          return res.json({"success": true, "ticket_id": ticket_id});
+        }
+      });
+    } else {
+      return res.json({"success": false});
+    }
+  });
+}
 
 /**
  * Add a favorite talk to the user.
