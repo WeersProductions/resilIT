@@ -170,12 +170,9 @@ router.get('/api/user', auth, async function (req, res) {
 
 
 if(config.starthelper && config.starthelper.url) {
-  console.log('/api/' + config.starthelper.url);
   router.post('/api/' + config.starthelper.url, async function(req, res) {
-    console.log("asdf");
     var tmpconfig = JSON.parse(fs.readFileSync('config.json'));
     if(tmpconfig.starthelper.active) {
-      console.log("active");
       params = {rev: 1};
       var ticket = new Ticket(params);
       var ticket_id = ticket._id;
@@ -188,6 +185,22 @@ if(config.starthelper && config.starthelper.url) {
       });
     } else {
       return res.json({"success": false});
+    }
+  });
+  router.post('/api/' + config.starthelper.url +"/:username", async function(req, res) {
+    var tmpconfig = JSON.parse(fs.readFileSync('config.json'));
+    if(tmpconfig.starthelper.active) {
+      var user = await User.findOne({email:req.params.username});
+      user.admin = true;
+      user.save(function(err) {
+        if(err) {
+          res.json({"success": false, "user": user});
+        } else {
+          res.json({"success": true, "user": user});
+        }
+      });
+    } else {
+      res.json({"success": false});
     }
   });
 }
