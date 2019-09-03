@@ -1665,7 +1665,19 @@ table tr td:nth-child(4) {
 /* Modal Body */
 .modal-body {
   padding: 2px 16px;
-  margin: 16px auto; }
+  margin: 16px auto;
+  overflow: auto; }
+  .modal-body .speaker-info {
+    float: left;
+    margin-right: 5px; }
+    .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
+      width: 20vw;
+      min-width: 50px;
+      max-width: 150px;
+      height: auto;
+      margin: initial; }
+    .modal-body .speaker-info .speaker-button {
+      width: -webkit-fill-available; }
 
 /* Modal Footer */
 .modal-footer {
