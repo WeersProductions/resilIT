@@ -59,7 +59,6 @@ function talkColumnClick(talk) {
 
         var showSpeaker = function() {
             $('#ModalContent').fadeOut(500, function() {
-                console.log("bio");
                 $(this).text(talk.speaker.bio).fadeIn(500);
                 $('#SpeakerButton').off("click");
                 $('#SpeakerButton').click(showTalk);
