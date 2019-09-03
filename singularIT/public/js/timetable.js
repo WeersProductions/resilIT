@@ -43,7 +43,6 @@ $('#favorite-checkbox').change(function() {
 function talkColumnClick(talk) {
     document.getElementById('ModalTitle').innerHTML = talk.title;
     document.getElementById('favorite-checkbox').dataset.id = talk.id;
-    document.getElementById('favorite-checkbox').dataset.id = talk.id;
     document.getElementById('ModalContent').innerHTML = talk.subTitle;
     var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
     document.getElementById('ModalFooter').innerHTML = timeText;
@@ -55,4 +54,26 @@ function talkColumnClick(talk) {
             // TODO: show user error.
         }
     });
+    if(talk.speaker) {
+        $('#SpeakerButton').html(talk.speaker.name);
+
+        var showSpeaker = function() {
+            $('#ModalContent').fadeOut(500, function() {
+                console.log("bio");
+                $(this).text(talk.speaker.bio).fadeIn(500);
+                $('#SpeakerButton').off("click");
+                $('#SpeakerButton').click(showTalk);
+            });
+        };
+
+        var showTalk = function() {
+            $('#ModalContent').fadeOut(500, function() {
+                $(this).text(talk.subTitle).fadeIn(500);
+                $('#SpeakerButton').off("click");
+                $('#SpeakerButton').click(showSpeaker);
+            });
+        }
+
+        $('#SpeakerButton').click(showSpeaker)
+    }
 }

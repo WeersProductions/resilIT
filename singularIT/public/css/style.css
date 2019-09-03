@@ -1666,9 +1666,12 @@ table tr td:nth-child(4) {
 .modal-body {
   padding: 2px 16px;
   margin: 16px auto;
-  overflow: auto; }
+  overflow: auto;
+  display: flex; }
+  .modal-body #ModalContent {
+    margin-left: 5vw;
+    overflow: hidden; }
   .modal-body .speaker-info {
-    float: left;
     margin-right: 5px; }
     .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
       width: 20vw;

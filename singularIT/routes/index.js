@@ -12,7 +12,7 @@ var i18n   = require('i18next');
 const CSV = require('csv-string');
 var moment = require('moment');
 
-function loadTimetableJSON() {
+function loadTimetableJSON(speakers) {
   var dateTimeSettings = {hour:'2-digit', minute:'2-digit', hour12:false};
 
   var tmtble = JSON.parse(fs.readFileSync('timetable.json'));
@@ -39,6 +39,9 @@ function loadTimetableJSON() {
       talk.startTimeDisplay = talk.startTime.toLocaleTimeString("en-GB", dateTimeSettings);
       talk.endTimeDisplay = talk.endTime.toLocaleTimeString("en-GB", dateTimeSettings);
       talk.length = Math.abs(talk.endTime - talk.startTime) / intervalInMs;
+      if(talk.speakerId) {
+        talk.speaker = speakers.speakers.find(item=>item.id==talk.speakerId);
+      }
     }
   }
   return tmtble;
@@ -48,7 +51,7 @@ function loadTimetableJSON() {
 var fs = require('fs');
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
-var timetable = loadTimetableJSON();
+var timetable = loadTimetableJSON(speakerinfo);
 
 module.exports = function (config) {
 var router = express.Router();
@@ -954,7 +957,7 @@ router.get('/tickets/:id/barcode', function (req, res) {
 router.get('/reload', adminAuth, function (req, res){
   speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
   partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
-  timetable = loadTimetableJSON();
+  timetable = loadTimetableJSON(speakerinfo);
   return res.redirect('/speakers');
 });
 
@@ -966,7 +969,7 @@ router.get('/reload/:file', adminAuth, function (req, res) {
     partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
     return res.redirect('/partners');
   } else if(req.params.file ==='timetable') {
-    timetable = loadTimetableJSON();
+    timetable = loadTimetableJSON(speakerinfo);
     return res.redirect('/timetable');
   }
   return res.redirect('/');
