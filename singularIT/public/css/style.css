@@ -1666,11 +1666,13 @@ table tr td:nth-child(4) {
 .modal-body {
   padding: 2px 16px;
   margin: 16px auto;
-  overflow: auto;
-  display: flex; }
+  overflow: hidden;
+  display: flex;
+  height: auto; }
   .modal-body #ModalContent {
     margin-left: 5vw;
-    overflow: hidden; }
+    overflow: hidden;
+    transition: height 0.3s ease-out; }
   .modal-body .speaker-info {
     margin-right: 5px; }
     .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
@@ -1691,7 +1693,7 @@ table tr td:nth-child(4) {
   align-items: center;
   justify-content: space-between;
   /* Take care of the favorite button */ }
-  .modal-footer h3 {
+  .modal-footer h5 {
     margin-bottom: initial; }
   .modal-footer #favorite-button {
     display: flex;
@@ -1825,9 +1827,9 @@ table tr td:nth-child(4) {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
   animation-duration: 0.4s;
-  top: 50px;
   margin: 15% auto;
   /* 15% from the top and centered */
+  margin-top: 60px;
   /* The Close Button */ }
   .modal-content .close {
     color: white;
@@ -1846,7 +1848,7 @@ table tr td:nth-child(4) {
     top: -300px;
     opacity: 0; }
   to {
-    top: 50px;
+    top: 0px;
     opacity: 1; } }
 
 @keyframes animateCircle {

@@ -40,6 +40,25 @@ $('#favorite-checkbox').change(function() {
     }
 });
 
+function animateHeight(previousHeight) {
+    var element = document.getElementById('ModalContent');
+    var sectionHeight = element.scrollHeight;
+    var elementTransition = element.style.transition;
+
+    requestAnimationFrame(function() {
+        element.style.height = previousHeight + 'px';
+        element.style.transition = elementTransition;
+
+        requestAnimationFrame(function() {
+            element.style.height = sectionHeight + 'px';
+            element.addEventListener('transitionend', function(e) {
+                element.removeEventListener('transitionend', arguments.callee);
+                element.style.height = null;
+            })
+        })
+    });
+}
+
 function talkColumnClick(talk) {
     document.getElementById('ModalTitle').innerHTML = talk.title;
     document.getElementById('favorite-checkbox').dataset.id = talk.id;
@@ -58,19 +77,19 @@ function talkColumnClick(talk) {
         $('#SpeakerButton').html(talk.speaker.name);
 
         var showSpeaker = function() {
-            $('#ModalContent').fadeOut(500, function() {
-                $(this).text(talk.speaker.bio).fadeIn(500);
-                $('#SpeakerButton').off("click");
-                $('#SpeakerButton').click(showTalk);
-            });
+            var previousHeight = $('#ModalContent')[0].scrollHeight;
+            $('#ModalContent').text(talk.speaker.bio);
+            animateHeight(previousHeight);
+            $('#SpeakerButton').off("click");
+            $('#SpeakerButton').click(showTalk);
         };
 
         var showTalk = function() {
-            $('#ModalContent').fadeOut(500, function() {
-                $(this).text(talk.subTitle).fadeIn(500);
-                $('#SpeakerButton').off("click");
-                $('#SpeakerButton').click(showSpeaker);
-            });
+            var previousHeight = $('#ModalContent')[0].scrollHeight;
+            $('#ModalContent').text(talk.subTitle);
+            animateHeight(previousHeight);
+            $('#SpeakerButton').off("click");
+            $('#SpeakerButton').click(showSpeaker);
         }
 
         $('#SpeakerButton').click(showSpeaker)
