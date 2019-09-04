@@ -76,20 +76,22 @@ function talkColumnClick(talk) {
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
 
-        var showSpeaker = function() {
+        var showFunction = function(title, body, buttonText, buttonClick) {
+            $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});//, function() {$(this).html(title)});});
+            $('#SpeakerButton').html(buttonText);
             var previousHeight = $('#ModalContent')[0].scrollHeight;
-            $('#ModalContent').text(talk.speaker.bio);
+            $('#ModalContent').text(body);
             animateHeight(previousHeight);
             $('#SpeakerButton').off("click");
-            $('#SpeakerButton').click(showTalk);
+            $('#SpeakerButton').click(buttonClick);
+        }
+
+        var showSpeaker = function() {
+            showFunction(talk.speaker.name, talk.speaker.bio, talk.title, showTalk);
         };
 
         var showTalk = function() {
-            var previousHeight = $('#ModalContent')[0].scrollHeight;
-            $('#ModalContent').text(talk.subTitle);
-            animateHeight(previousHeight);
-            $('#SpeakerButton').off("click");
-            $('#SpeakerButton').click(showSpeaker);
+            showFunction(talk.title, talk.subTitle, talk.speaker.name, showSpeaker);
         }
 
         $('#SpeakerButton').click(showSpeaker)
