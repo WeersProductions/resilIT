@@ -1710,7 +1710,7 @@ table tr td:nth-child(4) {
     background: white;
     color: black;
     font-size: x-large; }
-    @media (max-width: 500px) {
+    @media (max-width: 580px) {
       .modal-footer button {
         font-size: medium;
         margin-left: 30vw; } }
