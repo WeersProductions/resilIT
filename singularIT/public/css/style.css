@@ -1672,7 +1672,6 @@ table tr td:nth-child(4) {
   display: flex;
   height: auto; }
   .modal-body #ModalContent {
-    margin-left: 5vw;
     overflow: hidden;
     transition: height 0.3s ease-out; }
   .modal-body .speaker-info {
