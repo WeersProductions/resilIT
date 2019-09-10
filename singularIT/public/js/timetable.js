@@ -76,6 +76,15 @@ function talkColumnClick(talk) {
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
         $('#ModalImage').attr('src', talk.speaker.image);
+        $('#EnrollButton').click(function() {
+            console.log("asdf");
+            $.post("/api/talks/enroll/" + talk.id, {}, function(result) {
+                if(!result.success) {
+                    // TODO: show user error.
+                    console.log("Could not add favorite!");
+                }
+            });
+        });
 
         var showFunction = function(title, body, buttonText, buttonClick) {
             $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
