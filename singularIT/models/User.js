@@ -19,10 +19,6 @@ var User = new mongoose.Schema({
   admin:                { type: Boolean, default: false     },
   type:                 { type: String,  default: 'student' },
   company:              { type: String                      },
-  sprekers:             { type: [String],required: false    },
-  session1:             { type: String,  required: false    },
-  session2:             { type: String,  required: false    },
-  session3:             { type: String,  required: false    },
   connectlist:          [String],
   matchingterms:        [String],
   studyProgramme:       { type: String ,  required: false    },
@@ -30,6 +26,7 @@ var User = new mongoose.Schema({
   allowBadgeScanning:   { type: Boolean, default: false      },
   speedDateTimeSlot:    { type: String, ref: 'SpeedDateTimeSlot'},
   favorites:            { type: [Number], required: false    },
+  talks:                { type: [Number], required: false    },
 });
 
 User.plugin(plm, {

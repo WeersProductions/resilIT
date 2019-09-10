@@ -209,6 +209,67 @@ if(config.starthelper && config.starthelper.url) {
 }
 
 /**
+ * Enroll for a talk for this user.
+ */
+router.post('/api/talks/enroll/:id', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      if(!user.talks) {
+        user.talks =[];
+      }
+      user.talks.push(req.params.id);
+      user.save();
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
+router.post('/api/talks/unenroll/:id', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      if(user.talks) {
+        for( var i = user.talks.length; i--;){
+            if ( user.talks[i] == req.params.id) user.talks.splice(i, 1);
+        }
+        user.save();
+      }
+
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+});
+
+router.post('/api/talks/enroll/favorites', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if (!err){
+      if(!user.talks) {
+        user.talks =[];
+      }
+
+      user.talks.push.apply(user.talks, user.favorites);
+      user.save();
+      res.json({"success": true});
+    } else {
+      res.json({"success": false, "message": "Could not find user!"});
+    }
+  });
+})
+
+router.get('/api/talks/', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if(!err) {
+      res.json({"success": true, "talks": user.talks});
+    } else {
+      res.json({"success": false});
+    }
+  });
+});
+
+/**
  * Add a favorite talk to the user.
  */
 router.post('/api/favorite/add/:id', auth, async function (req, res) {
