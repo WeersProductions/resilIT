@@ -114,7 +114,9 @@ router.get('/', function (req, res) {
   res.render('index', { title: '', ticketSaleStarts:config.ticketSaleStarts });
 });
 
-
+router.get('//', function (req, res) {
+  res.render('index', { title: '', ticketSaleStarts:config.ticketSaleStarts });
+});
 
 router.get('/partners', adminAuth, function (req,res) {
   res.render('partners/index',{title:'Partners |', partners: partnerinfo});
