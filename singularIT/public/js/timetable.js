@@ -75,6 +75,7 @@ function talkColumnClick(talk) {
     });
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
+        $('#ModalImage').attr('src', talk.speaker.image);
 
         var showFunction = function(title, body, buttonText, buttonClick) {
             $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
