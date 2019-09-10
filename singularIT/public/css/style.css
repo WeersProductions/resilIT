@@ -1685,6 +1685,13 @@ table tr td:nth-child(4) {
       margin: initial; }
     .modal-body .speaker-info .speaker-button {
       width: -webkit-fill-available; }
+  @media (max-width: 500px) {
+    .modal-body {
+      flex-direction: column; }
+      .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
+        width: 50vw;
+        margin: auto;
+        display: block; } }
 
 /* Modal Footer */
 .modal-footer {
@@ -1696,8 +1703,20 @@ table tr td:nth-child(4) {
   justify-content: space-between;
   /* Take care of the favorite button */ }
   .modal-footer h5 {
+    position: absolute;
     margin-bottom: initial; }
+  .modal-footer button {
+    margin: 2px auto;
+    background: white;
+    color: black;
+    font-size: x-large; }
+    @media (max-width: 500px) {
+      .modal-footer button {
+        font-size: medium;
+        margin-left: 30vw; } }
   .modal-footer #favorite-button {
+    position: absolute;
+    right: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1818,6 +1837,13 @@ table tr td:nth-child(4) {
     .modal-footer #favorite-button #favorite-checkbox:checked + label svg #grp7 {
       opacity: 1;
       transition: 0.1s opacity 0.3s; }
+  @media (max-width: 450px) {
+    .modal-footer {
+      flex-direction: column; }
+      .modal-footer h5 {
+        position: relative; }
+      .modal-footer button {
+        margin-left: auto; } }
 
 /* Modal Content */
 .modal-content {

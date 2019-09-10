@@ -77,7 +77,7 @@ function talkColumnClick(talk) {
         $('#SpeakerButton').html(talk.speaker.name);
 
         var showFunction = function(title, body, buttonText, buttonClick) {
-            $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});//, function() {$(this).html(title)});});
+            $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
             $('#SpeakerButton').html(buttonText);
             var previousHeight = $('#ModalContent')[0].scrollHeight;
             $('#ModalContent').text(body);
