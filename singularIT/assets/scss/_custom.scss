@@ -244,6 +244,7 @@ table tr td:nth-child(4) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 40px;
 
   h5 {
     position: absolute;

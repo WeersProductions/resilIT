@@ -344,8 +344,6 @@ router.get('/api/favorite', auth, async function (req, res) {
 router.get('/api/favorite/:id', auth, async function (req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if (!err){
-      console.log(typeof(user.favorites[0]));
-      console.log(typeof(req.params.id));
       res.json({"success": true, "favorite": user.favorites.includes(parseInt(req.params.id))});
     } else {
       res.json({"success": false, "message": "Could not find user!"});
@@ -981,7 +979,12 @@ router.get('/api/timetable', adminAuth, function(req, res, next) {
 })
 
 router.get('/timetable', adminAuth, function(req, res) {
-  res.render('timetable', {timetable: timetable});
+  var enrollment_start_time = new Date(config.enroll_start_time);
+  var enrollment_end_time = new Date(config.enroll_end_time);
+  var today = new Date();
+  var enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
+  console.log(enrollment_possible);
+  res.render('timetable', {timetable: timetable, enrollment_possible: enrollment_possible});
 })
 
 router.get('/ticket', auth, function(req, res, next){

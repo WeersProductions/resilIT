@@ -22,8 +22,8 @@ block content
                 p#ModalContent Body!
             .modal-footer
                 h5#ModalFooter Modal Footer
-                - // TODO: check if we should show it.
-                button#EnrollButton Enroll
+                if enrollment_possible
+                    button#EnrollButton Enroll
                 div#favorite-button
                     input#favorite-checkbox(type='checkbox')
                     label(for='favorite-checkbox')
