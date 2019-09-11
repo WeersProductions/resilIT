@@ -2147,3 +2147,7 @@ table tr td:nth-child(4) {
 /* Fixes Google Charts tooltip flickering */
 svg > g > g:last-child {
   pointer-events: none; }
+
+/* Since bootstrap is incompatible with sweetalert2 */
+.swal2-popup {
+  font-size: 1.6rem !important; }

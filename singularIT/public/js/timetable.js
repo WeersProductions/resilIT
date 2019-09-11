@@ -1,3 +1,10 @@
+const Toast = swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000
+})
+
 var modal = document.getElementById("talkModal");
 var span = document.getElementsByClassName("close")[0];
 
@@ -65,13 +72,13 @@ function animateHeight(previousHeight) {
 function unenrollClick(talkid) {
     $.post("/api/talks/unenroll/" + talkid, {}, function(result) {
         if(result.success) {
-            swal.fire({
+            Toast.fire({
                 title: 'Success!',
                 text: 'Unenrolled for this talk.',
-                type: 'success'
+                type: 'success',
             });
         } else {
-            swal.fire({
+            Toast.fire({
                 title: 'Error!',
                 text: 'Could not unenroll for this talk.',
                 type: 'error'
@@ -83,13 +90,13 @@ function unenrollClick(talkid) {
 function enrollClick(talkid) {
     $.post("/api/talks/enroll/" + talkid, {}, function(result) {
         if(result.success) {
-            swal.fire({
+            Toast.fire({
                 title: 'Success!',
                 text: 'Enrolled for this talk.',
-                type: 'success'
+                type: 'success',
             });
         } else {
-            swal.fire({
+            Toast.fire({
                 title: 'Error!',
                 text: 'Could not enroll for this talk.',
                 type: 'error'
