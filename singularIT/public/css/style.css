@@ -1659,7 +1659,7 @@ table tr td:nth-child(4) {
 /* Modal Header */
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #00ca33;
   color: white; }
   .modal-header h2 {
     margin: 5px auto; }
@@ -1695,7 +1695,7 @@ table tr td:nth-child(4) {
 /* Modal Footer */
 .modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #00ca33;
   color: white;
   display: flex;
   align-items: center;
@@ -1717,20 +1717,16 @@ table tr td:nth-child(4) {
     left: 0;
     display: inline-block;
     transition: transform .5s, opacity .5s, box-shadow .5s; }
-    @media (max-width: 580px) and (min-width: 450px) {
-      .modal-footer #EnrollButton {
-        font-size: medium;
-        margin-left: 30vw; } }
-    .modal-footer #EnrollButton:hover {
+    .modal-footer #EnrollButton.enroll:hover {
       box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
       transform: translateY(-3px); }
-      .modal-footer #EnrollButton:hover::after {
+      .modal-footer #EnrollButton.enroll:hover::after {
         transform: scaleX(1.4) scaleY(1.6);
         opacity: 0; }
-    .modal-footer #EnrollButton:active {
+    .modal-footer #EnrollButton.enroll:active {
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
       transform: translateY(-1px); }
-    .modal-footer #EnrollButton::after {
+    .modal-footer #EnrollButton.enroll::after {
       content: "";
       text-decoration: none;
       text-transform: uppercase;
@@ -1745,6 +1741,15 @@ table tr td:nth-child(4) {
       display: inline-block;
       background: #fff;
       border-radius: inherit; }
+    .modal-footer #EnrollButton.unenroll {
+      background: #4fde7b;
+      border: 1px solid #90ffb1;
+      text-transform: none;
+      font-size: medium; }
+    @media (max-width: 580px) and (min-width: 450px) {
+      .modal-footer #EnrollButton {
+        font-size: medium;
+        margin-left: 30vw; } }
   .modal-footer #favorite-button {
     position: absolute;
     right: 0px;

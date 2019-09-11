@@ -26,7 +26,6 @@ var User = new mongoose.Schema({
   allowBadgeScanning:   { type: Boolean, default: false      },
   speedDateTimeSlot:    { type: String, ref: 'SpeedDateTimeSlot'},
   favorites:            { type: [Number], required: false    },
-  talks:                { type: [Number], required: false    },
 });
 
 User.plugin(plm, {

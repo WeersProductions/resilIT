@@ -3,6 +3,7 @@ var express = require('express');
 var bwipjs = require('bwip-js');
 var Ticket = require('../models/Ticket');
 var User   = require('../models/User');
+var TalkEnrollment = require('../models/TalkEnrollment');
 var ScannerUser = require('../models/ScannerUser');
 var ScannerResult = require('../models/ScannerResult');
 var SpeedDateTimeSlot   = require('../models/SpeedDateTimeSlot');
@@ -214,62 +215,102 @@ if(config.starthelper && config.starthelper.url) {
  * Enroll for a talk for this user.
  */
 router.post('/api/talks/enroll/:id', auth, async function(req, res) {
-  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
-    if (!err){
-      if(!user.talks) {
-        user.talks =[];
-      }
-      user.talks.push(req.params.id);
-      user.save();
-      res.json({"success": true});
+  User.findOne({email:req.session.passport.user}).exec(async function (err, user) {
+    if(err) {
+      res.json({"success": false});
     } else {
-      res.json({"success": false, "message": "Could not find user!"});
+      var newTalkEnrollment = new TalkEnrollment({
+        user: user,
+        talk: req.params.id
+      });
+      newTalkEnrollment.save(function(err) {
+        if(err) {
+          res.json({"success": false});
+        } else {
+          res.json({"success": true});
+        }
+      });
     }
   });
 });
 
 router.post('/api/talks/unenroll/:id', auth, async function(req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
-    if (!err){
-      if(user.talks) {
-        for( var i = user.talks.length; i--;){
-            if ( user.talks[i] == req.params.id) user.talks.splice(i, 1);
-        }
-        user.save();
-      }
-
-      res.json({"success": true});
+    if(err) {
+      res.json({"success": false});
     } else {
-      res.json({"success": false, "message": "Could not find user!"});
+      TalkEnrollment.deleteOne({user: user, talk: req.params.id}, function(err) {
+        if(err) {
+          res.json({"success": false});
+        } else {
+          res.json({"success": true});
+        }
+      });
     }
   });
 });
 
+/**
+ * Enroll for all favorites of the user.
+ */
 router.post('/api/talks/enroll/favorites', auth, async function(req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
-    if (!err){
-      if(!user.talks) {
-        user.talks =[];
-      }
-
-      user.talks.push.apply(user.talks, user.favorites);
-      user.save();
-      res.json({"success": true});
+    if(err) {
+      res.json({"success": false});
     } else {
-      res.json({"success": false, "message": "Could not find user!"});
+      var amountOfFavorites = user.favorites.length;
+      for (var i = 0; i < amountOfFavorites; i++) {
+        var newTalkEnrollment = new TalkEnrollment({
+          user: user,
+          talk: user.favorites[i]
+        });
+        newTalkEnrollment.save(function(err) {
+          if(err) {
+            res.json({success: false});
+          } else {
+            res.json({success: true});
+          }
+        });
+      }
+      res.json({success: true});
+    }
+  });
+});
+
+/**
+ * Get all talks this user is enrolled for.
+ */
+router.get('/api/talks/', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    TalkEnrollment.find({user: user}).exec(async function (err, talks) {
+      if(err) {
+        res.json({success: false});
+      } else {
+        res.json({success: true, talks: talks});
+      }
+    });
+  });
+});
+
+router.get('/api/talks/enrolled/:id', auth, async function(req, res) {
+  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
+    if(err) {
+      res.json({success: false});
+    } else {
+      TalkEnrollment.findOne({user: user, talk: req.params.id}, function(err, result) {
+        if(err) {
+          res.json({success: false});
+        } else {
+          var enrolled = true;
+          if(!result) {
+            enrolled = false;
+          }
+          res.json({success: true, enrolled: enrolled})
+        }
+      });
     }
   });
 })
-
-router.get('/api/talks/', auth, async function(req, res) {
-  User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
-    if(!err) {
-      res.json({"success": true, "talks": user.talks});
-    } else {
-      res.json({"success": false});
-    }
-  });
-});
 
 /**
  * Add a favorite talk to the user.
@@ -983,7 +1024,7 @@ router.get('/timetable', adminAuth, function(req, res) {
   var enrollment_end_time = new Date(config.enroll_end_time);
   var today = new Date();
   var enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
-  console.log(enrollment_possible);
+
   res.render('timetable', {timetable: timetable, enrollment_possible: enrollment_possible});
 })
 

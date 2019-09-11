@@ -62,6 +62,42 @@ function animateHeight(previousHeight) {
     });
 }
 
+function unenrollClick(talkid) {
+    $.post("/api/talks/unenroll/" + talkid, {}, function(result) {
+        if(result.success) {
+            swal.fire({
+                title: 'Success!',
+                text: 'Unenrolled for this talk.',
+                type: 'success'
+            });
+        } else {
+            swal.fire({
+                title: 'Error!',
+                text: 'Could not unenroll for this talk.',
+                type: 'error'
+            });
+        }
+    });
+}
+
+function enrollClick(talkid) {
+    $.post("/api/talks/enroll/" + talkid, {}, function(result) {
+        if(result.success) {
+            swal.fire({
+                title: 'Success!',
+                text: 'Enrolled for this talk.',
+                type: 'success'
+            });
+        } else {
+            swal.fire({
+                title: 'Error!',
+                text: 'Could not enroll for this talk.',
+                type: 'error'
+            });
+        }
+    });
+}
+
 function talkColumnClick(talk) {
     document.getElementById('ModalTitle').innerHTML = talk.title;
     document.getElementById('favorite-checkbox').dataset.id = talk.id;
@@ -74,26 +110,45 @@ function talkColumnClick(talk) {
             $('#favorite-checkbox').prop('checked', data.favorite);
         }
     });
+    $.get("/api/talks/enrolled/" + talk.id, function(data) {
+        if(data.success) {
+            var enrollButton = $('#EnrollButton');
+            enrollButton.show();
+
+            var showUnenroll = function() {
+                enrollButton.html("Unenroll");
+                enrollButton.off();
+                enrollButton.click(function() {
+                    unenrollClick(talk.id);
+                    showEnroll();
+                });
+                enrollButton.removeClass("enroll");
+                enrollButton.addClass("unenroll");
+            };
+
+            var showEnroll = function () {
+                enrollButton.html("Enroll");
+                enrollButton.off();
+                enrollButton.click(function() {
+                    enrollClick(talk.id);
+                    showUnenroll();
+                } );
+                enrollButton.removeClass("unenroll");
+                enrollButton.addClass("enroll");
+            }
+
+            if(data.enrolled) {
+                showUnenroll();
+            } else {
+                showEnroll();
+            }
+        } else {
+            enrollButton.hide();
+        }
+    });
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
         $('#ModalImage').attr('src', talk.speaker.image);
-        $('#EnrollButton').click(function() {
-            $.post("/api/talks/enroll/" + talk.id, {}, function(result) {
-                if(result.success) {
-                    swal.fire({
-                        title: 'Success!',
-                        text: 'Enrolled for this talk.',
-                        type: 'success'
-                    });
-                } else {
-                    swal.fire({
-                        title: 'Error!',
-                        text: 'Could not enroll for this talk.',
-                        type: 'error'
-                    });
-                }
-            });
-        });
 
         var showFunction = function(title, body, buttonText, buttonClick) {
             $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
