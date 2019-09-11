@@ -59,6 +59,7 @@ function animateHeight(previousHeight) {
     var element = document.getElementById('ModalContent');
     var sectionHeight = element.scrollHeight;
     var elementTransition = element.style.transition;
+    element.style.height = null;
 
     requestAnimationFrame(function() {
         element.style.height = previousHeight + 'px';
@@ -180,6 +181,7 @@ function talkColumnClick(talk) {
             showFunction(talk.title, talk.subTitle, talk.speaker.name, showSpeaker);
         }
 
+        $('#SpeakerButton').off("click");
         $('#SpeakerButton').click(showSpeaker)
     }
 }
