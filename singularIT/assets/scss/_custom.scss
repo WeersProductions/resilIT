@@ -253,7 +253,8 @@ table tr td:nth-child(4) {
 
   #EnrollButton {
     margin: 2px auto;
-    background: white;
+    background: #4fde7b;
+    border: 1px solid #90ffb1;
     color: black;
     font-size: x-large;
     text-decoration: none;
@@ -293,16 +294,15 @@ table tr td:nth-child(4) {
         left: 0;
         height: 0;
         display: inline-block;
-        background: #fff;
+        background: #4fde7b;
         border-radius: inherit;
       }
     }
 
     &.unenroll {
-      background: #4fde7b;
-      border: 1px solid #90ffb1;
+      background: #d64e4e;
+      border: 1px solid #e88483;
 
-      text-transform: none;
       font-size: medium;
     }
 

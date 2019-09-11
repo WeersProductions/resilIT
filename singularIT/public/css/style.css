@@ -1707,7 +1707,8 @@ table tr td:nth-child(4) {
     margin-bottom: initial; }
   .modal-footer #EnrollButton {
     margin: 2px auto;
-    background: white;
+    background: #4fde7b;
+    border: 1px solid #90ffb1;
     color: black;
     font-size: x-large;
     text-decoration: none;
@@ -1739,12 +1740,11 @@ table tr td:nth-child(4) {
       left: 0;
       height: 0;
       display: inline-block;
-      background: #fff;
+      background: #4fde7b;
       border-radius: inherit; }
     .modal-footer #EnrollButton.unenroll {
-      background: #4fde7b;
-      border: 1px solid #90ffb1;
-      text-transform: none;
+      background: #d64e4e;
+      border: 1px solid #e88483;
       font-size: medium; }
     @media (max-width: 580px) and (min-width: 450px) {
       .modal-footer #EnrollButton {
