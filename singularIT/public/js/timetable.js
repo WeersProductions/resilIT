@@ -4,9 +4,6 @@ var span = document.getElementsByClassName("close")[0];
 var i, $mvar = $('.talk-column');
 for(i = 0; i < $mvar.length; i++) {
     var id = $mvar.eq(i)[0].dataset["id"];
-    // $mvar.eq(i)[0].onclick = function() {
-    //     modal.style.display = "block";
-    // }
 }
 
 span.onclick = function() {
@@ -25,16 +22,22 @@ $('#favorite-checkbox').change(function() {
         // Register this as favorite.
         $.post("/api/favorite/add/" + id, {}, function(result) {
             if(!result.success) {
-                // TODO: show user error.
-                console.log("Could not add favorite!");
+                swal.fire({
+                    title: 'Error!',
+                    text: 'Could not add this talk to your favorites.',
+                    type: 'error'
+                });
             }
         });
     } else {
         // Unregister this as favorite.
         $.post("/api/favorite/remove/" + id, {}, function(result) {
             if(!result.success) {
-                // TODO: show user error.
-                console.log("Could not remove favorite!");
+                swal.fire({
+                    title: 'Error!',
+                    text: 'Could not remove this talk from your favorites.',
+                    type: 'error'
+                });
             }
         });
     }
@@ -69,19 +72,25 @@ function talkColumnClick(talk) {
     $.get("/api/favorite/" + talk.id, function(data) {
         if(data.success) {
             $('#favorite-checkbox').prop('checked', data.favorite);
-        } else {
-            // TODO: show user error.
         }
     });
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
         $('#ModalImage').attr('src', talk.speaker.image);
         $('#EnrollButton').click(function() {
-            console.log("asdf");
             $.post("/api/talks/enroll/" + talk.id, {}, function(result) {
-                if(!result.success) {
-                    // TODO: show user error.
-                    console.log("Could not add favorite!");
+                if(result.success) {
+                    swal.fire({
+                        title: 'Success!',
+                        text: 'Enrolled for this talk.',
+                        type: 'success'
+                    });
+                } else {
+                    swal.fire({
+                        title: 'Error!',
+                        text: 'Could not enroll for this talk.',
+                        type: 'error'
+                    });
                 }
             });
         });
