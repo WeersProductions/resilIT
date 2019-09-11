@@ -13,13 +13,18 @@ for(i = 0; i < $mvar.length; i++) {
     var id = $mvar.eq(i)[0].dataset["id"];
 }
 
-span.onclick = function() {
+function hideModal() {
+    document.getElementById('ModalContent').style.height = null;
     modal.style.display = "none";
+}
+
+span.onclick = function() {
+    hideModal();
 }
 
 window.onclick = function(event) {
     if(event.target == modal) {
-        modal.style.display = "none";
+        hideModal();
     }
 }
 
