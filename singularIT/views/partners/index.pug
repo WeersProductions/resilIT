@@ -6,13 +6,22 @@ mixin goldpartner(partner)
       img(src=partner.image.src)
   p= partner.promo
     if partner.profile
-      a.white(href=partner.profile.link) 
+      a.white(href=partner.profile.link)
         strong= partner.profile.text
 
-mixin partner(partner)
+mixin do_partner(partner)
   .box
-    a(href=partner.link, target='_blank')
-      img(src=partner.src)
+    -
+      var clickLink = partner.website;
+      if (partner.title) {
+        clickLink = "/partners/" + partner.title;
+      }
+    a(href= clickLink, target='_blank')
+      img(src=partner.image)
+    if partner.description
+      p=partner.description
+        a.white(href=clickLink)
+          strong="Read more"
 
 
 block content
@@ -21,19 +30,22 @@ block content
       h2 "Making it possible"
       .separator(role='separator')
       p
-        | We were proud to present to you our partners for this years' SingularIT conference. Without their generous efforts, it would have been impossible to organize.
-  section#platinum.slanted.background-snic
-    .content.container
-      .row
-        .twelve.colunms
-          h2 Platinum partner
-          .separator(role='separator')
-          .box.nedap
-            a(href='https://quintor.nl', target='_blank')
-              img(src='/images/bedrijven/Logo_Quintor.png')
-          p This year, Quintor is SNiC's principal sponsor. With four offices spread around the whole country, their secret to success is to work in teams, employing the best people. 
-            a.white(href='/partners/quintor') 
-              strong Check out the company profile.
+        | We are proud to present you our partners for this years' ResilIT conference. Without their generous efforts, it would be impossible to organize this event.
+  if partners.platinum
+    section#platinum.slanted.background-snic
+      .content.container
+        .row
+          .twelve.colunms
+            h2 Platinum partner
+            .separator(role='separator')
+            .box.nedap
+              a(href=partners.platinum.website, target='_blank')
+                img(src=partners.platinum.image)
+            p=partners.platinum.description
+              -
+                var link = "/partners" + partners.platinum.title;
+              a.white(href=link)
+                strong Check out the company profile.
   section#gold.slanted.background-gold
     .content.container
       - partners.gold = partners.gold.sort(function() { return 0.5 - Math.random() });
@@ -41,40 +53,31 @@ block content
         .twelve.colunms
           h2 Gold partners
           .separator(role='separator')
-      .row
-        .offset-by-two.four.columns
-          +goldpartner(partners.gold[0])
-        .four.columns
-          +goldpartner(partners.gold[1])
-      .row
-        .offset-by-two.four.columns
-          +goldpartner(partners.gold[2])
-        .four.columns
-          +goldpartner(partners.gold[3])
-
-
-  section#silver.slanted.background-silver
-    - partners.silver = partners.silver.sort(function() { return 0.5 - Math.random() });
-    .content.container
-      .row
-        .twelve.colunms
-          h2 Silver partners
-          .separator(role='separator')
-      .row(class="silver-plus")
-        .twelve.columns
-          +goldpartner(partners.silverPlus[0])
-      .row
-        .four.columns
-          +partner(partners.silver[0])
-        .four.columns
-          +partner(partners.silver[1])
-        .four.columns
-          +partner(partners.silver[2])
-      .row
-        .four.columns
-          +partner(partners.silver[3])
-        .four.columns
-          +partner(partners.silver[4])
+      for partner, index in partners.gold
+        if index % 2 == 0
+          <div class="row">
+            .offset-by-two.four.columns
+              +do_partner(partner)
+        else
+            .four.columns
+              +do_partner(partner)
+            </div>
+  if partners.silver
+    section#silver.slanted.background-silver
+      - partners.silver = partners.silver.sort(function() { return 0.5 - Math.random() });
+      .content.container
+        .row
+          .twelve.colunms
+            h2 Silver partners
+            .separator(role='separator')
+        for partner, index in partners.silver
+          if index % 3 == 0
+            <div class="row">
+          .four.columns
+            +do_partner(partner)
+          if (index % 3 === 2 || index === partners.silver - 1)
+            </div>
+  if partners.bronze
   section#other.slanted
     - partners.bronze = partners.bronze.sort(function() { return 0.5 - Math.random() });
     .content.container
@@ -82,8 +85,12 @@ block content
         .twelve.colunms
           h2 Bronze partners
           .separator(role='separator')
-      .row
-        .six.columns
-          +partner(partners.bronze[0])
-        .six.columns
-          +partner(partners.bronze[1])
+      for partner, index in partners.bronze
+        if index % 2 == 0
+          <div class="row">
+            .six.columns
+              +do_partner(partner)
+        else
+          .six.columns
+            +do_partner(partner)
+          </div>
