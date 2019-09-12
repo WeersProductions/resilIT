@@ -253,26 +253,29 @@ router.post('/api/talks/unenroll/:id', auth, async function(req, res) {
 /**
  * Enroll for all favorites of the user.
  */
-router.post('/api/talks/enroll/favorites', auth, async function(req, res) {
+router.post('/api/talks/enroll_favorites', auth, async function(req, res) {
   User.findOne({email:req.session.passport.user}).exec( async function (err, user) {
     if(err) {
-      res.json({"success": false});
+      res.json({success: false});
     } else {
       var amountOfFavorites = user.favorites.length;
+      var errors = 0;
       for (var i = 0; i < amountOfFavorites; i++) {
         var newTalkEnrollment = new TalkEnrollment({
           user: user,
           talk: user.favorites[i]
         });
-        newTalkEnrollment.save(function(err) {
+        await newTalkEnrollment.save(function(err) {
           if(err) {
-            res.json({success: false});
-          } else {
-            res.json({success: true});
+            errors += 1;
           }
         });
       }
-      res.json({success: true});
+      if(errors > 0) {
+        res.json({success: false, errors, amountOfFavorites});
+      } else {
+        res.json({success: true});
+      }
     }
   });
 });

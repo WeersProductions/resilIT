@@ -28,6 +28,32 @@ window.onclick = function(event) {
     }
 }
 
+$('#enrollFavorites').click(function() {
+    $.post("/api/talks/enroll_favorites", {}, function(result) {
+        if(result.success) {
+            Toast.fire({
+                title: 'Success!',
+                text: 'Enrolled for all your favorited talks.',
+                type: 'success'
+            });
+        } else {
+            if(result.errors > 0) {
+                swal.fire({
+                    title: 'Error!',
+                    text: "Could not enroll for all of your favorites. Enrolled for " + String(result.amountOfFavorites - result.errors) + " talks and failed for " + String(result.errors) + " talks. Did you already enroll for some talks?",
+                    type: 'error'
+                });
+            } else {
+                swal.fire({
+                    title: 'Error!',
+                    text: 'Could not enroll for your favorites. Try again..',
+                    type: 'error'
+                });
+            }
+        }
+    });
+})
+
 $('#favorite-checkbox').change(function() {
     var id = $(this).attr("data-id");
     if($(this).prop("checked") == true) {

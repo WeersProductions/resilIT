@@ -167,6 +167,20 @@ table tr td:nth-child(4) {
   max-width: 1000px;
 }
 
+#timetableTitle {
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+}
+
+#enrollFavorites {
+  position: absolute;
+  right: 5vw;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

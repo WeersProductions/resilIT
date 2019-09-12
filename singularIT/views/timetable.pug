@@ -57,7 +57,10 @@ block content
         | The schedule of ResilIT 2019. Click on a talk to get more information and to add it to your favorites! <br>
         | Once enrollment for talks is possible, you can enroll for all your favorite talks with only one click!
 
-    h2(style="text-align: center; margin-top: 1.5em;") Programme
+    div#timetableTitle
+        h2(style="text-align: center; margin: auto; margin-top: 1.5em;") Programme
+        if enrollment_possible
+            button#enrollFavorites Enroll to favorites
     hr(style="width: 80vw;")
     div(class="program-table")
         .container
