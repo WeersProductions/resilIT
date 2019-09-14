@@ -161,7 +161,7 @@ section.intro p {
 }
 
 section.intro .content{
-  padding-bottom: 10vw;
+  padding: 6rem 15px;
 }
 
 section.quote{
@@ -195,10 +195,6 @@ section.quote .person{
 
 /* Larger than tablet */
 @media (min-width: 750px) {
-  section.slanted .content{
-    padding: 6rem 15px;
-  }
-
   section.slanted.twocolumn{
     flex-wrap: wrap;
   }
@@ -586,9 +582,21 @@ header.hero.partners{
   width: 100%;
 }
 
+.readmore {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.content.container {
+  padding: 20px;
+}
+
 #platinum .box{
-  max-width: 40em;
   margin: 0 auto 50px;
+  max-width: 400px;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 #gold .box{

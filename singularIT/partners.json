@@ -1,47 +1,90 @@
 {
-	"platinum":
-		{
+	"partners": {
+		"nedap": {
 			"image" : "/images/partners/logo_NEDAP_hero_rgb.png",
-			"description": "Verzekeren gaat in deze tijd wel wat verder dan je vakantie of ‘later’. Want hoe regelen we de aansprakelijkheid rond het gebruik van drones, de risico’s van zelfrijdende auto’s, of het uitlenen en verhuren van spullen in de deeleconomie? ",
-			"title" : "Achmea",
-			"website" : "https://procam.nl/"
+			"darkimage": "/images/partners/nedap/NedapLogo(hero)-onBlue.png",
+			"text": [
+				{
+					"title": "We develop technology for life",
+					"text": "We improve everyday life for people all over the world. With RFID technology we help retail employees reduce their time spent on searching for products and managing stock. Our access control systems protect people, places and possessions at any physical location that needs to stay secure – from businesses to government offices, hospitals, airports, schools, industrial sites and public venues. We help farmers take better care of their animals, through individual animal identification in our livestock technology. We improve traffic flow at the entrances and exits of parking garages, airports and business parks, using technology for the remote recognition of vehicles and drivers. Check www.nedap.com to discover even more of our solutions."
+				},
+				{
+					"title": "First people, then technology",
+					"text": "For a tech-firm at heart we’re extremely people-oriented. We see technology as the ultimate tool to improve people’s lives, not complicate them. That’s why our focus is always on creating elegant solutions that are easy to use and beautiful to look at"
+				},
+				{
+					"title": "We are taking the lead. Are you?",
+					"text": "There’s a world of opportunities for both tech and business students at Nedap. If you want to make the most of your education, it’s time to take the lead and get in touch. You could be first in line for the best internships, student jobs and graduation assignments available."
+				},
+				{
+					"title": "Choose ambition. Choose growth. Choose excellence."
+				}
+			],
+			"title" : "Nedap",
+			"website" : "https://https://nedap.com/",
+			"description": "Nedap is all about ‘Technology for life’: developing products, propositions and solutions that make work more pleasant for people and increase their productivity. We focus on how people interact with technology, not on technology itself. At Nedap we believe in the versatility of people and organisations. We trust in the power of ideas and initiatives."
 		},
-	"gold" : [
-		{
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png",
-			"description": "Verzekeren gaat in deze tijd wel wat verder dan je vakantie of ‘later’. Want hoe regelen we de aansprakelijkheid rond het gebruik van drones, de risico’s van zelfrijdende auto’s, of het uitlenen en verhuren van spullen in de deeleconomie? ",
-			"title" : "Achmea",
-			"website" : "https://procam.nl/"
+		"quintor": {
+			"image" : "/images/partners/logo_Quintor.jpg",
+			"text": [
+				{
+					"title": "Wij zijn software ontwikkelaars",
+					"text": "Wij maken software die cruciaal is voor het succes van onze klanten. Zij vertrouwen ons hun meest complexe IT-systemen toe, in de zekerheid dat wij de verantwoordelijkheid nemen. Software die werkt en die ertoe doet. Zo krijgt iedere student zijn studiefinanciering, en komt er cash uit de pinautomaat als je staat te pinnen. Het lijkt vanzelfsprekend, en wat ons betreft zou het ook vanzelfsprekend moeten zijn. Als Quintor je vaste partner in complexe problemen is, mag je niet alleen op korte termijn rekenen op tastbaar resultaat, de algehele performance en de werkwijze krijgen ook een blijvend zetje. Het geheim: werken in teams, met de allerbeste mensen. En dat is nog maar één van de vier voornaamste pijlers onder ons succes."
+				}
+			],
+			"title" : "Quintor",
+			"website" : "https://quintor.nl/",
+			"description": "TODO"
 		},
-		{
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png",
-			"description": "Verzekeren gaat in deze tijd wel wat verder dan je vakantie of ‘later’. Want hoe regelen we de aansprakelijkheid rond het gebruik van drones, de risico’s van zelfrijdende auto’s, of het uitlenen en verhuren van spullen in de deeleconomie? ",
-			"title" : "Achmea",
-			"website" : "https://procam.nl/"
+		"ing": {
+			"image" : "/images/partners/logo_ING.jpg",
+			"text": [
+				{
+					"title": "The best start to your IT career",
+					"text": "Long before it became fashionable to talk about the need to be ‘digital first’, ING has recognised and invested in the power of new technologies to transform our customers’ banking experience."
+				},
+				{
+					"title": "Make a difference",
+					"text": "With 40 million customers depending on our technologies, ING is Europe’s biggest online bank and the largest employer of IT professionals in The Netherlands. ING puts IT at the centre of everything we do. In your four-year traineeship you’ll learn from the industry’s most talented and experienced specialists, working on important and large scale projects with the best technologies and latest methodologies. You will make a difference. You’ll also be provided intensive training and ongoing support to expand and evolve your skills. Add the complexity of working across international environments and the challenges and rewards of an IT career at ING quickly stack up."
+				},
+				{
+					"title": "Invent the future",
+					"text": "To work in IT at ING is to be surrounded by inspiring colleagues who insist constantly on being more tomorrow than we are today: not just by embracing a digital future — but by inventing it. Who work continually to optimise pioneering, reliable and feasible technologies to improve our customers’ banking experience and the working lives of our people."
+				},
+				{
+					"text": "At ING we offer you many opportunities: internships, start positions or traineeships. The traineeship is part of ING’s International Talent Programme (ITP). For a sense of what an ING traineeship has in store, read the blogs of other trainees. "
+				},
+				{
+					"title": "Interested to know more?",
+					"text": "Do you want to see your future office and experience what life at ING is like? Sign up for Meet a Trainee and we’ll connect you to one of our trainees for a one-on-one meeting. Or check out ing.nl/traineeship for the upcoming events. "
+				},
+				{
+					"text": "More information to start your career at ING."
+				}
+			],
+			"title" : "Ing",
+			"website" : "https://ing.nl/",
+			"description": "Long before it became fashionable to talk about the need to be ‘digital first’, ING has recognised and invested in the power of new technologies to transform our customers’ banking experience."
+		},
+		"ortec": {
+			"website" : "https://ortec.com/",
+			"image" : "/images/partners/logo_ORTEC_oyw.png"
+		},
+		"dsw": {
+			"website" : "https://dsw.nl/",
+			"image" : "/images/partners/logo_DSW.png"
+		},
+		"dnb": {
+			"website" : "https://dnb.nl/",
+			"image" : "/images/partners/logo_DNB.jpg"
+		},
+		"asml": {
+			"website" : "https://asml.com/en",
+			"image" : "/images/partners/logo_ASML.jpg"
 		}
-	],
-	"silver" : [
-		{
-			"website" : "https://procam.nl/",
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png"
-		},
-		{
-			"website" : "https://www.werkenbijtopicus.nl",
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png"
-		},
-		{
-			"website" : "https://home.kpmg.com/nl/nl/home/werken-bij-kpmg.html",
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png"
-		}
-	],
-	"bronze" : [
-		{
-			"website" : "https://www.asml.com",
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png"
-		},
-		{
-			"website" : "http://werkenbijbelsimpel.nl",
-			"image" : "/images/partners/logo_NEDAP_hero_rgb.png"
-		}
-	]
+	},
+	"platinum": ["nedap"],
+	"gold" : ["quintor", "ing"],
+	"silver" : ["ortec", "dsw", "dnb"],
+	"bronze" : ["asml"]
 }

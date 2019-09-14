@@ -559,7 +559,7 @@ section.intro p {
   padding-bottom: 10px; }
 
 section.intro .content {
-  padding-bottom: 10vw; }
+  padding: 6rem 15px; }
 
 section.quote {
   background-color: #171717;
@@ -584,8 +584,6 @@ section.quote .person {
 
 /* Larger than tablet */
 @media (min-width: 750px) {
-  section.slanted .content {
-    padding: 6rem 15px; }
   section.slanted.twocolumn {
     flex-wrap: wrap; }
   section.slanted.twocolumn .subpage {
@@ -1062,9 +1060,19 @@ header.hero.partners {
 .box img {
   width: 100%; }
 
+.readmore {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px; }
+
+.content.container {
+  padding: 20px; }
+
 #platinum .box {
-  max-width: 40em;
-  margin: 0 auto 50px; }
+  margin: 0 auto 50px;
+  max-width: 400px;
+  padding-left: 5vw;
+  padding-right: 5vw; }
 
 #gold .box {
   max-width: 25em; }

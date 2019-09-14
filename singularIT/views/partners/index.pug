@@ -1,14 +1,5 @@
 extends ../layout
 
-mixin goldpartner(partner)
-  .box
-    a(href=partner.image.link, target='_blank')
-      img(src=partner.image.src)
-  p= partner.promo
-    if partner.profile
-      a.white(href=partner.profile.link)
-        strong= partner.profile.text
-
 mixin do_partner(partner)
   .box
     -
@@ -20,12 +11,13 @@ mixin do_partner(partner)
       img(src=partner.image)
     if partner.description
       p=partner.description
+      div.readmore
         a.white(href=clickLink)
           strong="Read more"
 
 
 block content
-  section.intro.slanted
+  section.intro.slanted(style="margin-top: 20px;")
     .content
       h2 "Making it possible"
       .separator(role='separator')
@@ -38,12 +30,15 @@ block content
           .twelve.colunms
             h2 Platinum partner
             .separator(role='separator')
-            .box.nedap
-              a(href=partners.platinum.website, target='_blank')
-                img(src=partners.platinum.image)
-            p=partners.platinum.description
+            -
+              partner = partners.partners[partners.platinum[0]]
+            .box
+              a(href=partner.website, target='_blank')
+                img(src=partner.darkimage)
+            p=partner.description
               -
-                var link = "/partners" + partners.platinum.title;
+                var link = "/partners/" + partner.title;
+            div.readmore
               a.white(href=link)
                 strong Check out the company profile.
   section#gold.slanted.background-gold
@@ -54,6 +49,7 @@ block content
           h2 Gold partners
           .separator(role='separator')
       for partner, index in partners.gold
+        - partner = partners.partners[partner]
         if index % 2 == 0
           <div class="row">
             .offset-by-two.four.columns
@@ -71,10 +67,11 @@ block content
             h2 Silver partners
             .separator(role='separator')
         for partner, index in partners.silver
+          - partner_data = partners.partners[partner]
           if index % 3 == 0
             <div class="row">
           .four.columns
-            +do_partner(partner)
+            +do_partner(partner_data)
           if (index % 3 === 2 || index === partners.silver - 1)
             </div>
   if partners.bronze
@@ -86,6 +83,7 @@ block content
           h2 Bronze partners
           .separator(role='separator')
       for partner, index in partners.bronze
+        - partner = partners.partners[partner]
         if index % 2 == 0
           <div class="row">
             .six.columns
