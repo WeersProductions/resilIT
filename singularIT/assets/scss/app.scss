@@ -1029,10 +1029,8 @@ section.intro p.participate {
 */
 @media(max-width: 800px){
 
-  header.hero.nedap{
+  header.hero.partner{
     min-height: 0;
-    background-image: url('/images/bedrijven/nedap/andre.jpg');
-    background-color: #373636;
     display:block;
     background-size: contain;
     background-position: 50% 100%;
@@ -1056,10 +1054,10 @@ section.intro p.participate {
 *Hero image on larger devices. Quote inside the image
 */
 @media (min-width: 800px) {
-  header.hero.nedap{
-    background-image: url('/images/bedrijven/nedap/andre.jpg');
-    background-position: 100% 100%;
-    min-height: 80vh;
+  header.hero.partner{
+    background-position: 100% 50%;
+    min-height: 60vh;
+    max-height: 70vh;
     opacity: 1;
   }
 
@@ -1088,60 +1086,6 @@ section#paris .subpage.image{
 .background-nedap-grey{
   background: #69696E !important;
   color: white;
-}
-
-/****************************
-* Achmea Bedrijfsprofiel
-****************************/
-
-header.hero.achmea{
-  background-image: url('/images/Hero_Achmea.jpg');
-  min-height: 50vh;
-}
-
-/****************************
-* ING Bedrijfsprofiel
-****************************/
-
-header.hero.ing{
-  background-image: url('/images/bedrijven/ing_banner.jpeg');
-  min-height: 50vh;
-}
-
-/****************************
-* Chipsoft Bedrijfsprofiel
-****************************/
-
-header.hero.chipsoft{
-  background-image: url('/images/bedrijven/chipsoft_banner.jpg');
-  min-height: 50vh;
-}
-
-/****************************
-* KPMG Bedrijfsprofiel
-****************************/
-
-header.hero.kpmg {
-  background-image: url('/images/Hero_KPMG.jpg');
-  min-height: 50vh;
-}
-
-/****************************
-* Topicus Bedrijfsprofiel:w
-****************************/
-
-header.hero.topicus {
-  background-image: url('/images/Hero_Topicus.jpg');
-  min-height: 50vh;
-}
-
-/****************************
-* DSW Bedrijfsprofiel
-****************************/
-
-header.hero.dsw {
-  background-image: url('/images/Hero_DSW.jpg');
-  min-height: 50vh;
 }
 
 

@@ -124,7 +124,7 @@ router.get('/partners', adminAuth, function (req,res) {
 });
 
 router.get('/partners/:partner',adminAuth,  function (req, res) {
-  res.render('partners/'+ req.params.partner, {title: 'Partners - ' + req.params.partner + ' |', path: '/partners'});
+  res.render('partners/partner', {partner: partnerinfo.partners[req.params.partner]});
 });
 
 router.get('/profile', auth, async function (req, res) {

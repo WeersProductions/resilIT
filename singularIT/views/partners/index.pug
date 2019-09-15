@@ -5,7 +5,7 @@ mixin do_partner(partner)
     -
       var clickLink = partner.website;
       if (partner.title) {
-        clickLink = "/partners/" + partner.title;
+        clickLink = "/partners/" + partner.title.toLowerCase();
       }
     a(href= clickLink, target='_blank')
       img(src=partner.image)
@@ -17,6 +17,19 @@ mixin do_partner(partner)
 
 
 block content
+  #talkModal.modal
+    #talkModalContent.modal-content
+        .modal-header
+            span.close &times;
+            h2#ModalTitle Modal Header
+        .modal-body
+            .speaker-info
+                div
+                    image#ModalImage.speaker-image
+                div(style="margin-top: 10px;")
+                    button#SpeakerButton.speaker-button
+            p#ModalContent Body!
+
   section.intro.slanted(style="margin-top: 20px;")
     .content
       h2 "Making it possible"
@@ -37,7 +50,7 @@ block content
                 img(src=partner.darkimage)
             p=partner.description
               -
-                var link = "/partners/" + partner.title;
+                var link = "/partners/" + partner.title.toLowerCase();
             div.readmore
               a.white(href=link)
                 strong Check out the company profile.

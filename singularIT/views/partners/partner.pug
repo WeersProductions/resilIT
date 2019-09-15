@@ -1,0 +1,22 @@
+extends ../layout
+
+block above-content
+
+block header
+  header.hero.partner(style="background-image:url('" + partner.banner + "');")
+    h2=partner.title
+block content
+  section.intro.slanted
+    .content
+      .partner-logo
+        img(src=partner.image)
+
+      for block, index in partner.text
+        if index==0
+          if block.title
+            h2=block.title
+        else
+          if block.title
+            h3=block.title
+        if block.text
+          p(style="margin-bottom: 10px;")=block.text
