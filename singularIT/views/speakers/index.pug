@@ -1,6 +1,6 @@
 extends ../layout
 
-mixin session(speaker, count, host)
+mixin session(speaker, host)
   if speaker
     span(class="speaker-anchor" id=speaker.id)
     div(class="session", class={"keynote": typeof speaker.keynote !== 'undefined'})
@@ -31,11 +31,6 @@ mixin session(speaker, count, host)
         .shorten
           each part in speaker.bio
             p(class="speaker-page-p")!= part
-      if speaker.limit - count == 0
-        p(style={color:'#C8102E', 'text-align': 'center'}) This session is already full
-      else
-        if speaker.limit - count < 50
-          p(style={color:'#C8102E', 'text-align': 'center'}) There are only #{speaker.limit - count} seats left
     hr
 
 block above-content
@@ -43,21 +38,20 @@ block above-content
 block content
   section.intro.slanted
     .content
-      .timetable
-        div(class="program-tracks session")
-            h1 Grand Technical Challenges
-        div(class="program-tracks session")
-            h1 Societal Impact
-        div(class="program-tracks session")
-            h1 Experience the Singularity
-      h2 Hosts
-      hr
-      .timetable
-        each presenter in presenters
-          +session(presenter, NaN, true)
+      if settings.showTrackNames
+        .timetable
+          for track in settings.tracks
+            div(class="program-tracks session")
+                h1=track
+      if settings.showHosts
+        h2 Hosts
+        hr
+        .timetable
+          each presenter in presenters
+            +session(presenter, true)
 
       h2 Speakers
       hr
       .timetable
         each speaker in speakers
-            +session(speaker, idx)
+            +session(speaker)
