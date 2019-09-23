@@ -847,6 +847,23 @@ footer a:focus {
 section#speakers {
   background-color: #333; }
 
+section#speakers .announcement__box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 0.5rem white solid;
+  border-radius: 1rem;
+  margin: 0 auto;
+  max-width: 40vw;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: transparent;
+  color: white; }
+  section#speakers .announcement__box:hover {
+    background-color: white;
+    color: #d64e4e; }
+
 section#speakers .subpage.image {
   background-image: url("/images/20161115-IMG_8885.jpg");
   background-position: center 80%; }
