@@ -21,7 +21,7 @@
 				}
 			],
 			"title" : "Nedap",
-			"website" : "https://https://nedap.com/",
+			"website" : "https://nedap.com/",
 			"description": "Nedap is all about ‘Technology for life’: developing products, propositions and solutions that make work more pleasant for people and increase their productivity. We focus on how people interact with technology, not on technology itself. At Nedap we believe in the versatility of people and organisations. We trust in the power of ideas and initiatives.",
 			"banner": "/images/bedrijven/nedap/andre.jpg"
 		},
@@ -35,8 +35,8 @@
 			],
 			"title" : "Quintor",
 			"website" : "https://quintor.nl/",
-			"description": "TODO",
-			"banner": "/images/bedrijven/nedap/andre.jpg"
+			"description": "Wij maken software die cruciaal is voor het succes van onze klanten. Zij vertrouwen ons hun meest complexe IT-systemen toe, in de zekerheid dat wij de verantwoordelijkheid nemen.",
+			"banner": "/images/partners/logo_Quintor.jpg"
 		},
 		"ing": {
 			"image" : "/images/partners/logo_ING.jpg",
@@ -67,7 +67,7 @@
 			"title" : "Ing",
 			"website" : "https://ing.nl/",
 			"description": "Long before it became fashionable to talk about the need to be ‘digital first’, ING has recognised and invested in the power of new technologies to transform our customers’ banking experience.",
-			"banner": "/images/bedrijven/nedap/andre.jpg"
+			"banner": "/images/partners/ING/ing_banner.jpeg"
 		},
 		"ortec": {
 			"website" : "https://ortec.com/",

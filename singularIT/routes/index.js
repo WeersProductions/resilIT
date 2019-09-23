@@ -119,11 +119,11 @@ router.get('//', function (req, res) {
   res.render('index', { title: '', ticketSaleStarts:config.ticketSaleStarts });
 });
 
-router.get('/partners', adminAuth, function (req,res) {
+router.get('/partners', function (req,res) {
   res.render('partners/index',{title:'Partners |', partners: partnerinfo});
 });
 
-router.get('/partners/:partner',adminAuth,  function (req, res) {
+router.get('/partners/:partner',  function (req, res) {
   res.render('partners/partner', {partner: partnerinfo.partners[req.params.partner]});
 });
 
