@@ -15,8 +15,11 @@ var SILVER_LOGO_DURATION = 5000;
 
 var silver_logos = Array();
 silver_logos.push("/images/partners/logo_ORTEC_oyw.png");
+silver_logos.push("/images/partners/logo_Topicus.png");
 silver_logos.push("/images/partners/logo_Quintor.jpg");
 silver_logos.push("/images/partners/logo_ING.jpg");
+silver_logos.push("/images/partners/logo_Chipsoft.jpg");
+silver_logos.push("/images/partners/logo_Thales.jpg");
 silver_logos.push("/images/partners/logo_DNB.jpg");
 silver_logos.push("/images/partners/logo_DSW.png");
 
