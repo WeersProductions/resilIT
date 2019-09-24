@@ -111,12 +111,16 @@ block content
 
   div(class="container__styler pane__variance tertiary")
 
-  section#location(class="skew-content primary" style="margin-bottom: 0")
-    .content(class="pane__undo__rotation")
-      div(class="header-title") Location
-      div(class="announcement__box")
-        i(class="fas fa-bullhorn")
-        p To be announced
+  section#location(class="skew-content slanted twocolumn" style="margin-bottom: -1px")
+    .subpage(class="primary")
+      .content(class="pane__undo__rotation")
+        div(class="header-title") Location
+        div(style="float: left; text-align: left;")
+          a(href="/speakers", style="text-decoration:none")
+            div(class="announcement__box")
+              i(class="fas fa-map-marker-alt")
+              p Flint Amersfoort
+    .subpage.image
 
   div(style="position:relative;transform:skewY(5deg);overflow-y: hidden;")
     div(class="container__styler pane__variance1 tertiary")

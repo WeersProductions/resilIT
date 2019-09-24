@@ -178,15 +178,18 @@ section#partner .announcement__box {
     }
 }
 
+section#location .flint {
+    width: 90vw;
+    height: auto;
+    margin: auto;
+    max-width: 700px;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
 section#speakers .subpage.image {
     background-image: url('/images/20161115-IMG_8885.jpg');
     background-position: center 80%;
-}
-
-section#location .subpage.image{
-    background-image: url('/images/philharmonie.png');
-    background-position: center 50%;
-    transform: skewY(-5deg);
 }
 
 section#location .content {
@@ -199,6 +202,11 @@ section#location .content {
     padding-bottom: 6rem;
 }
 
+section#location .subpage.image {
+    background-image: url('/images/location/flint.jpg');
+    background-position: center 80%;
+}
+
 section#location .announcement__box {
     display: flex;
     align-items: center;
@@ -206,11 +214,26 @@ section#location .announcement__box {
     border: 0.5rem white solid;
     border-radius: 1rem;
     margin: 0 auto;
+    width: 40vw;
+    max-width: 280px;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: transparent;
 
     * {
         margin: 1rem 0.5rem;
         font-size: 2rem;
     }
+
+    &:hover {
+        background-color: white;
+        color: #d64e4e;
+    }
+}
+
+section#location .subpage.image {
+    min-height: 200px;
 }
 
 
