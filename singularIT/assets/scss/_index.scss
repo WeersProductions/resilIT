@@ -144,6 +144,38 @@ section#speakers .announcement__box {
         background-color: white;
         color: #d64e4e;
     }
+
+    @media screen and (min-width: 630px){
+        max-width: 300px;
+    }
+}
+
+section#partner .announcement__box {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 0.5rem #d64e4e solid;
+    border-radius: 1rem;
+    margin: 0 auto;
+    max-width: 40vw;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: transparent;
+    color: #d64e4e;
+
+    &:hover {
+        background-color: #d64e4e;
+        color: white;
+    }
+
+    p {
+        padding-bottom: 0;
+    }
+
+    @media screen and (min-width: 630px){
+        max-width: 252px;
+    }
 }
 
 section#speakers .subpage.image {

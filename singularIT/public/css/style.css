@@ -863,6 +863,31 @@ section#speakers .announcement__box {
   section#speakers .announcement__box:hover {
     background-color: white;
     color: #d64e4e; }
+  @media screen and (min-width: 630px) {
+    section#speakers .announcement__box {
+      max-width: 300px; } }
+
+section#partner .announcement__box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 0.5rem #d64e4e solid;
+  border-radius: 1rem;
+  margin: 0 auto;
+  max-width: 40vw;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: transparent;
+  color: #d64e4e; }
+  section#partner .announcement__box:hover {
+    background-color: #d64e4e;
+    color: white; }
+  section#partner .announcement__box p {
+    padding-bottom: 0; }
+  @media screen and (min-width: 630px) {
+    section#partner .announcement__box {
+      max-width: 252px; } }
 
 section#speakers .subpage.image {
   background-image: url("/images/20161115-IMG_8885.jpg");
