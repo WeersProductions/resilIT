@@ -1745,6 +1745,12 @@ table tr td:nth-child(4) {
     margin: auto;
     margin-left: 1rem;
     position: relative; }
+    @media (max-width: 650px) and (min-width: 550px) {
+      .modal-footer #Capacity {
+        margin-right: 4rem; } }
+    @media (max-width: 550px) {
+      .modal-footer #Capacity {
+        margin: auto; } }
   .modal-footer #EnrollButton {
     margin: 2px auto;
     margin-right: 1rem;
@@ -1787,10 +1793,13 @@ table tr td:nth-child(4) {
       background: #d64e4e;
       border: 1px solid #e88483;
       font-size: medium; }
-    @media (max-width: 580px) and (min-width: 450px) {
+    @media (max-width: 785px) and (min-width: 550px) {
       .modal-footer #EnrollButton {
         font-size: medium;
         margin-left: 30vw; } }
+    @media (max-width: 550px) {
+      .modal-footer #EnrollButton {
+        margin-right: auto; } }
   .modal-footer #favorite-button {
     position: absolute;
     right: 0px;
@@ -1917,7 +1926,7 @@ table tr td:nth-child(4) {
       .modal-footer #favorite-button #favorite-checkbox:checked + label svg #grp7 {
         opacity: 1;
         transition: 0.1s opacity 0.3s; }
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     .modal-footer {
       flex-direction: column; }
       .modal-footer h5 {
