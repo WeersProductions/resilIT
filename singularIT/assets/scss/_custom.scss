@@ -265,8 +265,15 @@ table tr td:nth-child(4) {
     margin-bottom: initial;
   }
 
+  #Capacity {
+    margin: auto;
+    margin-left: 1rem;
+    position: relative;
+  }
+
   #EnrollButton {
     margin: 2px auto;
+    margin-right: 1rem;
     background: #4fde7b;
     border: 1px solid #90ffb1;
     color: black;

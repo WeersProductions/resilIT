@@ -149,8 +149,18 @@ function talkColumnClick(talk) {
             $('#favorite-checkbox').prop('checked', data.favorite);
         }
     });
+    var capacityLabel = $('#Capacity');
+    if(capacityLabel) {
+        $.get("/api/talks/capacity/" + talk.id, function(data) {
+            if(data && data.success) {
+                capacityLabel.html("Enrolled " + data.capacity + "/" + talk.capacity);
+            } else {
+                capacityLabel.hide();
+            }
+        });
+    }
     $.get("/api/talks/enrolled/" + talk.id, function(data) {
-        if(data.success) {
+        if(data && data.success) {
             var enrollButton = $('#EnrollButton');
             enrollButton.show();
 
@@ -193,7 +203,17 @@ function talkColumnClick(talk) {
             $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
             $('#SpeakerButton').html(buttonText);
             var previousHeight = $('#ModalContent')[0].scrollHeight;
-            $('#ModalContent').text(body);
+            var content = "";
+            if(body.forEach) {
+                body.forEach(element => {
+                    content += element;
+                    content += "<br>";
+                    content += "<br>";
+                });
+            } else {
+                content = body;
+            }
+            $('#ModalContent').html(content);
             animateHeight(previousHeight);
             $('#SpeakerButton').off("click");
             $('#SpeakerButton').click(buttonClick);

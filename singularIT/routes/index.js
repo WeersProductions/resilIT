@@ -315,6 +315,16 @@ router.get('/api/talks/enrolled/:id', auth, async function(req, res) {
   });
 })
 
+router.get('/api/talks/capacity/:id', auth, async function(req, res) {
+  TalkEnrollment.count({talk: req.params.id}, function (err, count) {
+    if (err) {
+      res.json({success: false});
+    } else {
+      res.json({success: true, capacity: count});
+    }
+  })
+})
+
 /**
  * Add a favorite talk to the user.
  */
@@ -1025,8 +1035,9 @@ router.get('/timetable', adminAuth, function(req, res) {
   var enrollment_end_time = new Date(config.enroll_end_time);
   var today = new Date();
   var enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
+  var show_capacity = today > enrollment_start_time;
 
-  res.render('timetable', {timetable: timetable, enrollment_possible: enrollment_possible});
+  res.render('timetable', {timetable: timetable, enrollment_possible: enrollment_possible, show_capacity});
 })
 
 router.get('/ticket', auth, function(req, res, next){

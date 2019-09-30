@@ -24,6 +24,8 @@ block content
                 h5#ModalFooter Modal Footer
                 if enrollment_possible
                     button#EnrollButton Enroll
+                if show_capacity
+                    h6#Capacity -1/-1
                 div#favorite-button
                     input#favorite-checkbox(type='checkbox')
                     label(for='favorite-checkbox')
