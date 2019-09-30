@@ -69,6 +69,40 @@
 			"description": "Long before it became fashionable to talk about the need to be ‘digital first’, ING has recognised and invested in the power of new technologies to transform our customers’ banking experience.",
 			"banner": "/images/partners/ING/ing_banner.jpeg"
 		},
+		"topicus": {
+			"image" : "/images/partners/logo_Topicus.png",
+			"text": [
+				{
+					"text": "We are Topicus, the innovative ICT-serviceprovider based in the Netherlands with over 1000 employees located in Deventer, Dodewaard, Gouda, Groningen, Utrecht and Zwolle."
+				},
+				{
+					"title": "What we do",
+					"text": "At Topicus we build webbased ICT-systems in four industries: Finance, Healthcare, Education and Government. We work with Java and .NET. While our systems may present themselves in different ways, they all share the same purpose: to make the world easier and more efficient."
+				},
+				{
+					"text": "At Topicus creative and technical teams build innovative ICT-products that play a big role in the everyday life of healthcare institutions, schools, local governments and banks, so eventually anyone ends up interacting with one of our products."
+				},
+				{
+					"text": "We work in Scrum teams, in an informal setting. We experiment with mobile development and the newest technologies, contribute to Open Source projects, try out big data processing engines and security frameworks. New business concepts, craftsmanship, entrepreneurship and creative, challenging projects form the DNA of our organisation. Therefore it is only logical that we brew our own beer and bake our own pizza's."
+				},
+				{
+					"title": "Looking for an internship?",
+					"text": "As a STEM bachelor or master's student you are invited to perform your work or research internship at Topicus. Each year we help over 100 bachelor and master's students graduate. Together we'll define your research project. We offer excellent guidance and advice, and training of your presentation skills. You'll meet other students and experts in your line of work and improve your skills in a short amount of time."
+				},
+				{
+					"title": "Looking for a job?",
+					"text": "Letting our employees grow is the key to Topicus' success. It works: there's little turnover while new talent joins. Please contact us if you've recently graduated or are about to. We are always looking for new talent, even if you're not sure what you want to do! Drop by and together we'll have a look at where you can unleash your talents."
+				},
+				{
+					"title": "Curious?",
+					"text": "Contact Leon Kooijker by calling +31 570 – 662 662 or emailing leon.kooijker@topicus.nl . For more information please check http://www.werkenbijtopicus.nl."
+				}
+			],
+			"title" : "Topicus",
+			"website" : "https://topicus.com/",
+			"description": "We are Topicus, the innovative ICT-serviceprovider based in the Netherlands with over 1000 employees located in Deventer, Dodewaard, Gouda, Groningen, Utrecht and Zwolle.",
+			"banner": "/images/partners/Topicus/Studenten-Banner-Verschillende-Personen.gif"
+		},
 		"ortec": {
 			"website" : "https://ortec.com/",
 			"image" : "/images/partners/logo_ORTEC_oyw.png"
@@ -84,10 +118,18 @@
 		"asml": {
 			"website" : "https://asml.com/en",
 			"image" : "/images/partners/logo_ASML.jpg"
+		},
+		"chipsoft": {
+			"website": "https://www.chipsoft.com/",
+			"image": "/images/partners/logo_Chipsoft.jpg"
+		},
+		"thales": {
+			"website": "http://thalescareers.nl/",
+			"image": "/images/partners/logo_Thales.jpg"
 		}
 	},
 	"platinum": ["nedap"],
-	"gold" : ["quintor", "ing"],
-	"silver" : ["ortec", "dsw", "dnb"],
+	"gold" : ["quintor", "ing", "topicus"],
+	"silver" : ["ortec", "dsw", "dnb", "chipsoft", "thales"],
 	"bronze" : ["asml"]
 }
