@@ -39,50 +39,7 @@ block content
       p.text-center
         | Download your ticket #[a(href='/ticket', target='_blank') here].
         | Please bring it along to the conference on your phone or in print.
-
-      if user.type == 'partner'
-        p.text-center Partners don't have to enroll for sessions, but you are welcome to join in if there are seats left.
-      else
-        br
-        if providePreferences
-          if Date.now() < new Date(provideTrackPreferencesEnd).getTime()
-            .form-group
-              label(for='session1') Preference talk in first parallel session
-              div.select-wrapper
-                select.form-control(name='session1')
-                  option(value='', selected=!user.session1?'selected':undefined) No preference
-                  each val in speakerids.session1
-                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                    +dropdown(speaker, user, 'session1', visitorCounts)
-
-            .form-group
-              label(for='session2') Preference talk in second parallel session
-              div.select-wrapper
-                select.form-control(name='session2')
-                  option(value='', selected) No preference
-                  each val in speakerids.session2
-                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                    +dropdown(speaker, user, 'session2', visitorCounts)
-
-            .form-group
-              label(for='session3') Preference talk in third parallel session
-              div.select-wrapper
-                select.form-control(name='session3')
-                  option(value='', selected) No preference
-                  each val in speakerids.session3
-                    - var speaker = speakers.filter(function(doc){return doc.id == val})[0]
-                    +dropdown(speaker, user, 'session3', visitorCounts)
-          else
-            if (user.session1 !== undefined && user.session1 !== '') || (user.session2 !== undefined && user.session2 != '') || (user.session3 != undefined && user.session3 != '')
-              p.text-center Enrollment for sessions is closed. You signed up for the following sessions:
-              ul#enrollment-sessions
-                +fixedEnrollment("Session 1", speakerids.session1, user.session1)
-                +fixedEnrollment("Session 2", speakerids.session2, user.session2)
-                +fixedEnrollment("Session 3", speakerids.session3, user.session3)
-            else
-              p.text-center Enrollment for sessions is closed.
-        else
-          p.text-center You can enroll for sessions on a later date.
+      p.text-center You can enroll for sessions in the schedule page.
       br
       if user.type == 'student'
         h4 Companies
