@@ -31,6 +31,8 @@ function loadTimetableJSON(speakers) {
   }
   tmtble.intervals = intervals;
 
+  all_talks = []
+
   for(var track in tmtble.tracks) {
     for(var talk in tmtble.tracks[track].talks) {
       talk = tmtble.tracks[track].talks[talk];
@@ -43,6 +45,26 @@ function loadTimetableJSON(speakers) {
       if(talk.speakerId) {
         talk.speaker = speakers.speakers.find(item=>item.id==talk.speakerId);
       }
+      all_talks.push(talk);
+    }
+  }
+  for(var track in tmtble.tracks) {
+    for(var talk in tmtble.tracks[track].talks) {
+      talk = tmtble.tracks[track].talks[talk];
+      simultaneous = [];
+      for(var other_talk in all_talks) {
+        if (other_talk == talk) {
+          continue;
+        }
+        other_talk = all_talks[other_talk]
+        if (talk.startTime >= other_talk.startTime && talk.startTime < other_talk.endTime) {
+          simultaneous.push(other_talk.id);
+        } else if(talk.endTime > other_talk.startTime && talk.endTime <= other_talk.endTime) {
+          simultaneous.push(other_talk.id);
+        }
+      }
+      talk.simultaneous = simultaneous;
+      console.log(talk.simultaneous);
     }
   }
   return tmtble;
