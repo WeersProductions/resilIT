@@ -128,9 +128,10 @@ function enrollClick(talkid) {
                 type: 'success',
             });
         } else {
+            let message = result.message ? result.message : 'Could not enroll for this talk.';
             Toast.fire({
                 title: 'Error!',
-                text: 'Could not enroll for this talk.',
+                text: message,
                 type: 'error'
             });
         }

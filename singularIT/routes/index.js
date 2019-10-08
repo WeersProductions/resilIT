@@ -46,6 +46,7 @@ function loadTimetableJSON(speakers) {
         talk.speaker = speakers.speakers.find(item=>item.id==talk.speakerId);
       }
       all_talks.push(talk);
+      talkCapacity[talk.id] = talk.capacity;
     }
   }
   for(var track in tmtble.tracks) {
@@ -64,7 +65,6 @@ function loadTimetableJSON(speakers) {
         }
       }
       talk.simultaneous = simultaneous;
-      console.log(talk.simultaneous);
     }
   }
   return tmtble;
@@ -72,6 +72,7 @@ function loadTimetableJSON(speakers) {
 
 // Load speaker information from speakers.json
 var fs = require('fs');
+var talkCapacity = {};
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
 var timetable = loadTimetableJSON(speakerinfo);
@@ -98,19 +99,42 @@ function adminAuth(req, res, next) {
   next();
 }
 
+async function countEnrolls(sessionId){
+  let result;
+  await TalkEnrollment.count({talk: sessionId}, function (err, count) {
+    if (err) {
+      result = {success: false};
+    } else {
+      result = {success: true, capacity: count};
+    }
+  });
+  return result;
+}
+
+async function canEnrollForSession(sessionId) {
+  var enrollInfo = await countEnrolls(sessionId);
+  if(!enrollInfo.success) {
+    return {success: false, message:"Could not find talk."};
+  }
+  if(enrollInfo.capacity >= talkCapacity[sessionId]) {
+    return {success: false, message:"Talk is full."};
+  }
+  return {success: true};
+}
+
 /**
  * Count the amount of people enrolled for a session and returns object with sessionid
  */
-async function countEnrolls(sessionslot, sessionID) {
-  var result;
-  var query = {};
-  query[sessionslot] = sessionID;
-  var result = await User.find(query).count()
-  return {
-    'id' : sessionID,
-    'count': result
-  }
-}
+// async function countEnrolls(sessionslot, sessionID) {
+//   var result;
+//   var query = {};
+//   query[sessionslot] = sessionID;
+//   var result = await User.find(query).count()
+//   return {
+//     'id' : sessionID,
+//     'count': result
+//   }
+// }
 
 /**
  * Queries the database to get all the visitor counts for non plenary sessions.
@@ -239,17 +263,22 @@ if(config.starthelper && config.starthelper.url) {
 router.post('/api/talks/enroll/:id', auth, async function(req, res) {
   User.findOne({email:req.session.passport.user}).exec(async function (err, user) {
     if(err) {
-      res.json({"success": false});
+      res.json({success: false, message:"Could not find user"});
     } else {
+      canEnrollInfo = await canEnrollForSession(req.params.id);
+      if(!canEnrollInfo.success) {
+        res.json({success: false, message: canEnrollInfo.message});
+        return;
+      }
       var newTalkEnrollment = new TalkEnrollment({
         user: user,
         talk: req.params.id
       });
       newTalkEnrollment.save(function(err) {
         if(err) {
-          res.json({"success": false});
+          res.json({success: false});
         } else {
-          res.json({"success": true});
+          res.json({success: true});
         }
       });
     }
@@ -283,6 +312,11 @@ router.post('/api/talks/enroll_favorites', auth, async function(req, res) {
       var amountOfFavorites = user.favorites.length;
       var errors = 0;
       for (var i = 0; i < amountOfFavorites; i++) {
+        canEnrollInfo = await canEnrollForSession(user.favorites[i]);
+        if(!canEnrollInfo.success) {
+          errors += 1;
+          continue;
+        }
         var newTalkEnrollment = new TalkEnrollment({
           user: user,
           talk: user.favorites[i]
@@ -432,45 +466,45 @@ router.get('/api/favorite/:id', auth, async function (req, res) {
  * enroll and takes in to account if someone is already enrolled.
  * TODO: possibly combine with countEnrolls?
  */
-async function canEnrollForSession(sessionslot, sessionid, useremail){
-  if (Date.now() >= new Date(config.provideTrackPreferencesEnd).getTime()) {
-    return false;
-  }
+// async function canEnrollForSession(sessionslot, sessionid, useremail){
+//   if (Date.now() >= new Date(config.provideTrackPreferencesEnd).getTime()) {
+//     return false;
+//   }
 
-  if(typeof sessionid == "undefined" || sessionid == "" || sessionid == null){
-    return true;
-  }
+//   if(typeof sessionid == "undefined" || sessionid == "" || sessionid == null){
+//     return true;
+//   }
 
-  var session = speakerinfo.speakers.filter(function(speaker){
-    return speaker.id == sessionid;
-  });
+//   var session = speakerinfo.speakers.filter(function(speaker){
+//     return speaker.id == sessionid;
+//   });
 
-  // session not found
-  if (session.length != 1) {
-    return false;
-  }
+//   // session not found
+//   if (session.length != 1) {
+//     return false;
+//   }
 
-  session = session[0];
+//   session = session[0];
 
-  // Check if there is a limit and if so, if it has been reached
-  if (session.limit) {
-    var query = {};
-    query[sessionslot] = sessionid;
-    var result;
+//   // Check if there is a limit and if so, if it has been reached
+//   if (session.limit) {
+//     var query = {};
+//     query[sessionslot] = sessionid;
+//     var result;
 
-    await User
-      .find(query)
-      .where('email')
-      .ne(useremail)
-      .count()
-      .then(function(res){
-        result = res;
-      });
-    return result < session.limit;
-  }
+//     await User
+//       .find(query)
+//       .where('email')
+//       .ne(useremail)
+//       .count()
+//       .then(function(res){
+//         result = res;
+//       });
+//     return result < session.limit;
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
 router.post('/profile', auth, async function (req, res) {
   req.sanitize('vegetarian').toBoolean();
