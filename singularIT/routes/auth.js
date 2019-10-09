@@ -5,7 +5,7 @@ module.exports = function (config) {
   var crypto = require('crypto');
   var async = require('async');
   var nodemailer = require('nodemailer');
-  var mg = require('nodemailer-mailgun-transport');
+  // var mg = require('nodemailer-mailgun-transport');
   const pug = require('pug');
   var path = require('path');
 
@@ -15,14 +15,13 @@ module.exports = function (config) {
   // mailchimp wants an md5 hash of the emailaddress when you PUT it in the list
   var md5 = require('md5');
 
-  // TODO: fix
-  var gmail_send = require('gmail-send')({
-    // user: config.gmail.email,
-    // pass: config.gmail.password,
-    user: 'test',
-    pass: 'wrong',
-    from: 'SNiC SingularIT'
-  });
+  var nodemailer = require('nodemailer');
+
+  var transporter = nodemailer.createTransport({
+    host: 'mail.antagonist.nl',
+    port: 465,
+    auth: config.email.auth
+  })
 
 
   const passwordForgotEmailTemplate = pug.compileFile(
@@ -203,9 +202,9 @@ module.exports = function (config) {
     });
   });
 
-  var transport = nodemailer.createTransport(
-    mg({auth : config.mailgun})
-  )
+  // var transport = nodemailer.createTransport(
+  //   mg({auth : config.mailgun})
+  // )
 
   router.get('/forgot', function(req, res) {
     res.render('forgot', {
@@ -239,16 +238,16 @@ module.exports = function (config) {
           user: user,
           token: token
         });
-        console.log(html);
 
         var mailOptions = {
           to: user.email,
-          subject: 'SNiC: SingularIT - Password reset',
-          html: html
+          subject: 'SNiC: ResilIT - Password reset',
+          html: html,
+          from: "resilitinfo@snic.nl"
         };
 
-        gmail_send(mailOptions);
-        req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to change your password');
+        transporter.sendMail(mailOptions);
+        req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to change your password.');
         done();
       }
     ], function (err) {
