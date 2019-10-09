@@ -1,27 +1,5 @@
 extends layout
 
-//- mixin dropdown(speaker, user, session, visitorCounts)
-//-   - var description = (!speaker.company || speaker.company === '') ? '' : ' (' + speaker.company + ') '
-//-   - description = description + ' - ' + speaker.subject.replace(" \</br\>", ":")
-//-   - var remaining = speaker.limit - visitorCounts.filter(candidate => speaker.id == candidate.id)[0].count
-//-   if remaining > 0 || user[session] == speakerid
-//-     if remaining < 25
-//-       - description = description + ' (' + remaining + ' seats left)'
-//-     option(value=speaker.id, selected=user[session] == speaker.id ? 'selected' : undefine)= speaker.name.replace("</br>", "&") + description
-//-   else
-//-     - description = description + ' (FULL)'
-//-     option(disabled value=speaker.id, selected=user[session] == speaker.id ? 'selected' : undefine)= speaker.name.replace("</br>", "&") + description
-
-
-mixin fixedEnrollment(session, sessionids, selectedSpeakerId)
-  each speakerid in sessionids
-    if speakerid === selectedSpeakerId
-      - var speaker = speakers.filter(function(doc){return doc.id == speakerid})[0]
-      - var description = (!speaker.company || speaker.company === '') ? '' : ' (' + speaker.company + ') -'
-      - description = description + speaker.subject.replace(" \</br\>", ":")
-      li #{session}:
-        b #{'  ' + description}
-
 block above-content
 
 block header
@@ -57,18 +35,18 @@ block content
               input#allowBadgeScanning(type='checkbox', name='allowBadgeScanning', checked=user.allowBadgeScanning? "checked": undefined)
               | Allow my badge to be scanned by companies
 
-          p
-              | To allow students to get to know companies better, we offer several
-              | speed dating sessions with the participating companies. When you sign up for speed dating,
-              | you will get private conversation of around 5 minutes with each participating company.
-              | There are 6 participating companies in total:
-              ul#speeddate-companies
-                li Quintor
-                li Achmea
-                li ChipSoft
-                li DSW
-                li ING
-                li Nedap
+          //- p
+          //-     | To allow students to get to know companies better, we offer several
+          //-     | speed dating sessions with the participating companies. When you sign up for speed dating,
+          //-     | you will get private conversation of around 5 minutes with each participating company.
+          //-     | There are 6 participating companies in total:
+          //-     ul#speeddate-companies
+          //-       li Quintor
+          //-       li Achmea
+          //-       li ChipSoft
+          //-       li DSW
+          //-       li ING
+          //-       li Nedap
 
           if spTimeSlot
             p You are signed up for speed dating in timeslot: #[b=spTimeSlot.name]
