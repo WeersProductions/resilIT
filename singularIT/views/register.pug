@@ -88,47 +88,56 @@ block content
           div= 'You can activate your ticket here from ' +  {date: new Date(ticketSaleStarts).getDate() + ' ' + months[new Date(ticketSaleStarts).getMonth()] } + ' onwards!'
 
 block footer
-  if new Date(ticketSaleStarts).getTime() < Date.now()
-    script(type="text/javascript").
-      var verenigingen = !{JSON.stringify(verenigingen)};
+  script(type="text/javascript").
+    var verenigingen = !{JSON.stringify(verenigingen)};
+
+    function docReady(fn) {
+      // see if DOM is already available
+      if (document.readyState === "complete" || document.readyState === "interactive") {
+          // call on next available tick
+          setTimeout(fn, 1);
+      } else {
+          document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    function updateVisibility() {
       var bus = $("#bus-form-group");
+      var index = $("#vereniging").val();
+      var vereniging = verenigingen[index];
+      if (vereniging && vereniging.bus)
+        bus.show();
+      else
+        bus.hide();
 
-      function updateVisibility() {
-        var index = $("#vereniging").val();
-        var vereniging = verenigingen[index];
-        if (vereniging && vereniging.bus)
-          bus.show();
-       else
-          bus.hide();
+      var isPartner = vereniging && vereniging.name === 'Partner'
+      if (isPartner) {
+        $("#company-name-group").show();
+        $("#company-name").prop("required", true);
+        $("#programme-group").hide();
+        $("#programme-other-group").hide();
+        $("#programme").prop("required", false);
+      } else {
+        $("#company-name-group").hide();
+        $("#company-name").prop("required", false);
 
-        var isPartner = vereniging && vereniging.name === 'Partner'
-        if (isPartner) {
-          $("#company-name-group").show();
-          $("#company-name").prop("required", true);
-          $("#programme-group").hide();
-          $("#programme-other-group").hide();
-          $("#programme").prop("required", false);
+        $("#programme-group").show();
+        $("#programme").prop("required", true);
+
+        if ($("#programme").val() === 'other') {
+          $("#programme-other-group").show();
+          $("#programme-other").prop("required", true);
         } else {
-          $("#company-name-group").hide();
-          $("#company-name").prop("required", false);
-
-          $("#programme-group").show();
-          $("#programme").prop("required", true);
-
-          if ($("#programme").val() === 'other') {
-            $("#programme-other-group").show();
-            $("#programme-other").prop("required", true);
-          } else {
-            $("#programme-other-group").hide();
-            $("#programme-other").prop("required", false);
-          }
+          $("#programme-other-group").hide();
+          $("#programme-other").prop("required", false);
         }
       }
+    }
 
-      $(document).ready(function () {
-        $("#vereniging").on('change', updateVisibility);
-        $("#programme").on('change', updateVisibility);
+    docReady(function () {
+      $("#vereniging").on('change', updateVisibility);
+      $("#programme").on('change', updateVisibility);
 
-        updateVisibility();
-      });
+      updateVisibility();
+    });
 
