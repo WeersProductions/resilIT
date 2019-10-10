@@ -918,6 +918,22 @@ module.exports = function (config) {
     });
   });
 
+  router.get('/tickets/generate-csv', adminAuth, async function(req, res) {
+    var data = [
+      ['ticket_id', 'type']
+    ];
+
+    Ticket.find({rev: 1, ownedBy: undefined}, function(err, ticket_data) {
+      for (var i = 0; i < ticket_data.length; i++) {
+        data.push([ticket_data[i]._id, ticket_data[i].type]);
+      }
+
+      res.set('Content-Type', 'text/plain');
+      res.set('Content-Disposition', 'attachment; filename="unused_tickets.csv"');
+      res.send(CSV.stringify(data));
+    });
+  });
+
   router.post('/tickets', adminAuth, function (req, res, next) {
     var tasks = [];
 
