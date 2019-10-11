@@ -50,7 +50,7 @@ block content
 
           if spTimeSlot
             p You are signed up for speed dating in timeslot: #[b=spTimeSlot.name]
-          else if allSpTimeSlots.length > 0
+          else if allSpTimeSlots.length > 0 && user.admin
             if freeSpTimeSlots.length > 0
               p
                 | You can sign up for speed dating by choosing a timeslot below and
