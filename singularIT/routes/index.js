@@ -214,6 +214,10 @@ module.exports = function (config) {
     });
   });
 
+  router.get('/api/associations', async function(req, res) {
+    res.json(config.verenigingen);
+  });
+
   router.get('/api/user', auth, async function (req, res) {
     var user = await User.findOne({ email: req.session.passport.user });
     res.json(user);
