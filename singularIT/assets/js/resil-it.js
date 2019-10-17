@@ -83,7 +83,7 @@ function openCalendar() {
   switch (os) {
     case "Mac OS":
     case "iOS":
-      url = "/Assets/SNiC.ics";
+      url = "/assets/SNiC.ics";
       break;
     case "Windows":
     case "Android":
