@@ -527,16 +527,23 @@ module.exports = function (config) {
     res.render('buses', { title: 'Buses | ' });
   });
 
-
-  router.get('/speakers', function (req, res) {
+  function getSpeakers() {
     var s = speakerinfo.speakers.filter(function (speaker) {
       return !speaker.hidden;
     });
     var p = speakerinfo.presenters.filter(function (presenter) {
       return !presenter.hidden;
     });
-    res.render('speakers/index', { speakers: s, presenters: p, speakerids: speakerinfo.speakerids, settings: { tracks: speakerinfo.tracks, showTrackNames: speakerinfo.showTrackNames } });
+    return { speakers: s, presenters: p, speakerids: speakerinfo.speakerids, settings: { tracks: speakerinfo.tracks, showTrackNames: speakerinfo.showTrackNames } };
+  }
+
+  router.get('/speakers', function (req, res) {
+    res.render('speakers/index', getSpeakers());
   });
+
+  router.get('/api/speakers', function(req, res) {
+    return res.json(getSpeakers());
+  })
 
   router.get('/users', adminAuth, function (req, res, next) {
     var query = {};
