@@ -543,7 +543,20 @@ module.exports = function (config) {
 
   router.get('/api/speakers', function(req, res) {
     return res.json(getSpeakers());
-  })
+  });
+
+  router.get('/api/partners', function(req, res) {
+    partnerList = [];
+    for(var partnerName in partnerinfo.partners) {
+      partnerObject = {name: partnerName, website: partnerinfo.partners[partnerName].website, image: partnerinfo.partners[partnerName].image};
+      if(partnerinfo.partners[partnerName].description) {
+        partnerObject.description = partnerinfo.partners[partnerName].description;
+      }
+      partnerList.push(partnerObject);
+    }
+    result = {partners: partnerList, gold: partnerinfo.gold, platinum: partnerinfo.platinum, silver: partnerinfo.silver, bronze: partnerinfo.bronze};
+    return res.json(result);
+  });
 
   router.get('/users', adminAuth, function (req, res, next) {
     var query = {};
