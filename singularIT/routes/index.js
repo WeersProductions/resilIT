@@ -70,6 +70,8 @@ function loadTimetableJSON(speakers) {
   return tmtble;
 }
 
+
+
 // Load speaker information from speakers.json
 var fs = require('fs');
 var talkCapacity = {};
@@ -79,6 +81,13 @@ var timetable = loadTimetableJSON(speakerinfo);
 
 module.exports = function (config) {
   var router = express.Router();
+
+  function canEnroll() {
+    let enrollment_start_time = new Date(config.enroll_start_time);
+    let enrollment_end_time = new Date(config.enroll_end_time);
+    let today = new Date();
+    return enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
+  }
 
 
   function auth(req, res, next) {
@@ -273,18 +282,35 @@ module.exports = function (config) {
           res.json({ success: false, message: canEnrollInfo.message });
           return;
         }
-        var newTalkEnrollment = new TalkEnrollment({
-          user: user,
-          talk: req.params.id
-        });
-        newTalkEnrollment.save().then(function() {
-          res.json({success: true});
-        }).catch(function() {
-          res.json({success: false});
-        });
+        // TODO: check whether this enrollment does not exist already.
+        TalkEnrollment.find({user: user, takl: req.params.id}, function(err, docs) {
+          if(err) {
+            res.json({success: false});
+          }
+          if(docs && docs.length > 0) {
+            // Already exists.
+            res.json({success: true});
+          } else {
+            let newTalkEnrollment = new TalkEnrollment({
+              user: user,
+              talk: req.params.id
+            });
+            newTalkEnrollment.save().then(function() {
+              res.json({success: true});
+            }).catch(function() {
+              res.json({success: false});
+            });
+          }
+        })
       }
     });
   });
+
+  // Based on the current time and the config times, calculate whether people can enroll at this moment.
+  router.get('/api/talks/canenroll', async function(req, res) {
+    let enrollPossible = canEnroll();
+    res.json({canEnroll: enrollPossible});
+  })
 
   router.post('/api/talks/unenroll/:id', auth, async function (req, res) {
     User.findOne({ email: req.session.passport.user }).exec(async function (err, user) {
@@ -1009,11 +1035,8 @@ module.exports = function (config) {
   })
 
   router.get('/timetable', adminAuth, function (req, res) {
-    var enrollment_start_time = new Date(config.enroll_start_time);
-    var enrollment_end_time = new Date(config.enroll_end_time);
-    var today = new Date();
-    var enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
-    var show_capacity = today > enrollment_start_time;
+    let enrollment_possible = canEnroll();
+    var show_capacity = new Date() > new Date(config.enroll_start_time);
 
     res.render('timetable', { timetable: timetable, enrollment_possible: enrollment_possible, show_capacity });
   })
