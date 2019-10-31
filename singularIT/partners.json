@@ -124,6 +124,22 @@
 			"description": "We are Topicus, the innovative ICT-serviceprovider based in the Netherlands with over 1000 employees located in Deventer, Dodewaard, Gouda, Groningen, Utrecht and Zwolle.",
 			"banner": "/images/partners/Topicus/Studenten-Banner-Verschillende-Personen.gif"
 		},
+		"rijksoverheid": {
+			"image" : "/images/partners/logo_RijksOverheid.png",
+			"text": [
+				{
+					"title": "Geef je carrière een kickstart bij de Rijksoverheid",
+					"text": "De uitdagingen voor Nederland zijn groot. Daarom heeft de Rijksoverheid de beste ICT’ers, technici, financials, juristen en andere starters nodig om deze uitdagingen aan te gaan. De Rijksoverheid heeft meer dan 10 verschillende traineeships waar pas afgestudeerde hbo-ers en academici zich voor kunnen aanmelden. Zet je tanden in maatschappelijke onderwerpen, ga aan de slag op verschillende werkplekken en ontwikkel je tot een breed inzetbare beleids-, staf- of projectmedewerker op jouw vakgebied. Kijk voor meer informatie op <a target=\"_blank\" href=\"https://www.werkenvoornederland.nl/starters\">werkenvoornederland.nl/starters</a>"
+				},
+				{
+					"text": "Naast de 300 nieuwe trainees die ieder jaar starten, biedt de Rijksoverheid jaarlijks meer dan 5.000 studenten een stageplaats. Door heel Nederland kun je met alle mogelijke opleidingen bij het rijk terecht voor een stage. Denk bijvoorbeeld aan opleidingen in de rechten, finance, administratie, ICT, bestuurskunde, personeel en organisatie of communicatie. De duur van een stage varieert van een paar weken tot een jaar. Kijk voor de actuele stagevacatures op <a target=\"_blank\" href=\"https://www.werkenvoornederland.nl/vacatures\">werkenvoornederland.nl/vacatures</a>"
+				}
+			],
+			"title" : "Rijksoverheid",
+			"website" : "https://www.werkenvoornederland.nl/starters",
+			"description": "De uitdagingen voor Nederland zijn groot. Daarom heeft de Rijksoverheid de beste ICT’ers, technici, financials, juristen en andere starters nodig om deze uitdagingen aan te gaan.",
+			"banner": "/images/partners/logo_RijksOverheid.png"
+		},
 		"ortec": {
 			"website" : "https://ortec.com/",
 			"image" : "/images/partners/logo_ORTEC_oyw.png"
@@ -140,6 +156,10 @@
 			"website" : "https://asml.com/en",
 			"image" : "/images/partners/logo_ASML.jpg"
 		},
+		"achmea": {
+			"website": "https://www.achmea.nl/",
+			"image": "/images/partners/logo_Achmea.jpg"
+		},
 		"chipsoft": {
 			"website": "https://www.chipsoft.com/",
 			"image": "/images/partners/logo_Chipsoft.jpg"
@@ -150,7 +170,7 @@
 		}
 	},
 	"platinum": ["nedap"],
-	"gold" : ["quintor", "ing", "topicus"],
+	"gold" : ["quintor", "ing", "topicus", "rijksoverheid"],
 	"silver" : ["ortec", "dsw", "dnb", "chipsoft", "thales"],
-	"bronze" : ["asml"]
+	"bronze" : ["asml", "achmea"]
 }
