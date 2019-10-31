@@ -137,36 +137,50 @@ The speaker.json is used to generate the speaker page and for the enrollment too
 
 ```javascript
 {
-  // list of ids of speakers per session. Used to generate the speakers page
+  "tracks": ["Grand Technical Challenges", "Societal Impact", "Experience the Singularity"],
+  "showTrackNames": false,
+  "showHosts": false,
   "speakerids": {
-    "session1": ["ses1.1", "ses1.2"], // for parallel sessions
-    "closing": "closing" // for single sessions
+    "session1": ["kuipers"],
+    "session2": ["kuipers"],
+    "session3": ["kuipers"],
+    "opening": "robert",
+    "closing": "robert"
   },
-  // List of all data needed to display a session
   "speakers": [
     {
-      "name" : "Name of speaker",
-      "id": "closing",  // ID listed in speakerids
-      "limit": 9001     // Limit of a session, used for enroll tool. Can be set to null (or left out) to ignore
-      "company" : "",   // if you want to mention the company in the session piece
-      "image": "/link/to/speaker.jpg", // preferably the speakre
-      "subject": "Subject of the talk",
-      "talk" : [
-        "list of various paragraphs",
-        "that can be used to describe the session"
+      "name": "Dr. André Kuipers",
+      "id": "kuipers",
+      "image": "/images/speakers/Kuipers.jpg",
+      "subject": "",
+      "company": "",
+      "talk": [
+        ""
       ],
       "bio": [
-        "list of various paragraphs",
-        "to give some background on the speakers"
+        "<i>Astronaut & Ambassador of Earth.</i>",
+        "André Kuipers is the first Dutchman with two space missions to his name. His second mission is the longest spaceflight in European history. In total the ESA astronaut spent 204 days in space: 11 days during mission DELTA in 2004 and 193 days during mission PromISSe.",
+        "After years of training in Houston, Moscow, Cologne, Montreal and Tokyo, a Russian Soyuz spaceship launched André and his two crew members from Russia and America on the 21st of December 2011 from Kazakhstan. Two days later he arrived at the International Space Station to live and work for six months. On board he was not only a medical doctor, scientist and flight engineer, but also handyman and ambassador for several charities. On the 1st of July 2012, André returned to Earth and landed in his space capsule in the Kazakh steppe. ",
+        "Astronaut André Kuipers offers a unique look behind the scenes of international human spaceflight. He shares his story about the training, the mission and his exceptional view of our planet. "
       ],
-      "hidden": false   // whether or not you want to display this speaker
+      "limit": null,
+      "hidden": false
     }
-    ...
   ],
   "presenters": [
-    // list of the same type of object as speakers
+    {
+      "name": "Robert Belleman",
+      "id": "robert",
+      "company": "",
+      "bio": [
+        "Robert Belleman, PhD, is a lecturer/researcher at the Informatics Institute and program director for the Bachelor Informatica (undergraduate Computer Science) at the University of Amsterdam. His research interests include scientific visualization, computer graphics and virtual/augmented reality. He teaches courses on the same subjects at the graduate and undergraduate level."
+      ],
+      "image": "/images/sprekers/robert.png",
+      "hidden": false
+    }
   ]
 }
+
 
 
 ```
@@ -174,82 +188,98 @@ The speaker.json is used to generate the speaker page and for the enrollment too
 The timetable.json is used to create the timetable and is used in both the website and the app. 
 ```javascript
 {
-  "date":"2019-11-26T",
+  "date": "2019-11-26T",
   "startTime": "10:00:00.000Z",
   "endTime": "17:15:00.000Z",
   "timeInterval": 15,
   "tracks": [
     {
+      "trackId": "track 1",
       "name": "track 1",
       "location": "first location",
       "talks": [
         {
-          "startTime": "12:00:00.001Z",
-          "endTime": "14:00:00.001Z",
+          "id": 0,
+          "startTime": "12:00:00.000Z",
+          "endTime": "14:00:00.000Z",
           "capacity": 5,
           "enabled": true,
           "title": "Talk 1",
-          "subTitle": "First talk"
+          "subTitle": "First talk first talk first talk first talk first talk. Another sentence, with a comma. Third sentence, without a comma (I lied).",
+          "speakerId": "PJ"
         },
         {
-          "startTime": "15:00:00.001Z",
-          "endTime": "16:00:00.001Z",
+          "id": 1,
+          "startTime": "15:00:00.000Z",
+          "endTime": "16:00:00.000Z",
           "capacity": 20,
           "enabled": true,
           "location": "Override location 1",
           "title": "Talk 2",
-          "subTitle": "Second talk"
+          "subTitle": "Second talk",
+          "speakerId": "PJ"
         }
       ]
     },
     {
+      "trackId": "track 2",
       "name": "track 2",
       "location": "second location",
       "talks": [
         {
-          "startTime": "11:00:00.001Z",
-          "endTime": "14:00:00.001Z",
+          "id": 2,
+          "startTime": "11:00:00.000Z",
+          "endTime": "14:00:00.000Z",
           "capacity": 35,
           "enabled": true,
           "title": "Talk 1.1",
-          "subTitle": "First talk of second track"
+          "subTitle": "First talk of second track",
+          "speakerId": "PJ"
         },
         {
-          "startTime": "14:00:00.001Z",
-          "endTime": "16:00:00.001Z",
+          "id": 3,
+          "startTime": "14:00:00.000Z",
+          "endTime": "16:00:00.000Z",
           "capacity": 25,
           "enabled": true,
           "title": "Talk 2.1",
-          "subTitle": "Second talk of second track"
+          "subTitle": "Second talk of second track",
+          "speakerId": "PJ"
         }
       ]
     },
     {
+      "trackId": "track 3",
       "name": "track 3",
       "location": "third location",
       "talks": [
         {
-          "startTime": "11:00:00.001Z",
-          "endTime": "12:00:00.001Z",
+          "id": 4,
+          "startTime": "11:00:00.000Z",
+          "endTime": "12:00:00.000Z",
           "capacity": 9,
           "enabled": true,
           "location": "Room 3",
           "title": "Talk 1.2",
-          "subTitle": "First talk of third track"
+          "subTitle": "First talk of third track",
+          "speakerId": "kuipers"
         },
         {
-          "startTime": "12:00:00.001Z",
-          "endTime": "13:00:00.001Z",
+          "id": 5,
+          "startTime": "12:00:00.000Z",
+          "endTime": "13:00:00.000Z",
           "capacity": 45,
           "enabled": true,
           "location": "Override location 3",
           "title": "Talk 2.2",
-          "subTitle": "Second talk of third track"
+          "subTitle": "Second talk of third track",
+          "speakerId": "PJ"
         }
       ]
     }
   ]
 }
+
 
 
 ```
