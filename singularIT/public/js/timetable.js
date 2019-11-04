@@ -218,6 +218,7 @@ function talkColumnClick(talk) {
         });
     }
     if(talk.speaker) {
+        $('#SpeakerButton').show();
         $('#SpeakerButton').html(talk.speaker.name);
         if(talk.speaker.image) {
             $('#ModalImage').attr('src', talk.speaker.image);
@@ -256,6 +257,7 @@ function talkColumnClick(talk) {
         $('#SpeakerButton').off("click");
         $('#SpeakerButton').click(showSpeaker)
     } else {
+        $('#SpeakerButton').hide();
         if(talk.image) {
             $('#ModalImage').attr('src', "/images/speakers/Speeddates.png");
         } else {
