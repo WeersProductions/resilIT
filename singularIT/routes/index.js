@@ -14,7 +14,7 @@ const CSV = require('csv-string');
 var moment = require('moment');
 
 function loadTimetableJSON(speakers) {
-  var dateTimeSettings = { hour: '2-digit', minute: '2-digit', hour12: false };
+  var dateTimeSettings = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Etc/GMT+0'};
 
   var tmtble = JSON.parse(fs.readFileSync('timetable.json'));
   var intervalInMs = tmtble.timeInterval * 60 * 1000;
@@ -26,7 +26,7 @@ function loadTimetableJSON(speakers) {
   var intervals = []
   for (var i = 0; i <= intervalAmount; i++) {
     var date = new Date(startTime.getTime() + i * intervalInMs);
-    date = date.toLocaleTimeString("en-GB", dateTimeSettings)
+    date = date.toLocaleTimeString("nl-NL", dateTimeSettings)
     intervals.push(date);
   }
   tmtble.intervals = intervals;
@@ -39,8 +39,8 @@ function loadTimetableJSON(speakers) {
       // Add the length in multiple of 15 minutes. (30 min talk = 2)
       talk.startTime = new Date(tmtble.date + talk.startTime);
       talk.endTime = new Date(tmtble.date + talk.endTime);
-      talk.startTimeDisplay = talk.startTime.toLocaleTimeString("en-GB", dateTimeSettings);
-      talk.endTimeDisplay = talk.endTime.toLocaleTimeString("en-GB", dateTimeSettings);
+      talk.startTimeDisplay = talk.startTime.toLocaleTimeString("nl-NL", dateTimeSettings);
+      talk.endTimeDisplay = talk.endTime.toLocaleTimeString("nl-NL", dateTimeSettings);
       talk.length = Math.abs(talk.endTime - talk.startTime) / intervalInMs;
       if (talk.speakerId) {
         talk.speaker = speakers.speakers.find(item => item.id == talk.speakerId);
@@ -398,7 +398,7 @@ module.exports = function (config) {
     });
   })
 
-  router.get('/api/talks/capacity/:id', auth, async function (req, res) {
+  router.get('/api/talks/capacity/:id', async function (req, res) {
     TalkEnrollment.count({ talk: req.params.id }, function (err, count) {
       if (err) {
         res.json({ success: false });
@@ -1030,11 +1030,11 @@ module.exports = function (config) {
     });
   })
 
-  router.get('/api/timetable', adminAuth, function (req, res, next) {
+  router.get('/api/timetable', function (req, res, next) {
     res.json(timetable);
   })
 
-  router.get('/timetable', adminAuth, function (req, res) {
+  router.get('/timetable', function (req, res) {
     let enrollment_possible = canEnroll();
     var show_capacity = new Date() > new Date(config.enroll_start_time);
 

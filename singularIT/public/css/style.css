@@ -1719,14 +1719,19 @@ table tr td:nth-child(4) {
       height: auto;
       margin: initial; }
     .modal-body .speaker-info .speaker-button {
-      width: -webkit-fill-available; }
+      width: -webkit-fill-available;
+      max-width: 150px;
+      white-space: unset;
+      height: unset; }
   @media (max-width: 500px) {
     .modal-body {
       flex-direction: column; }
       .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
         width: 50vw;
         margin: auto;
-        display: block; } }
+        display: block; }
+      .modal-body .speaker-info .speaker-button {
+        max-width: 100%; } }
 
 /* Modal Footer */
 .modal-footer {

@@ -236,6 +236,9 @@ table tr td:nth-child(4) {
 
     .speaker-button {
       width: -webkit-fill-available;
+      max-width: 150px;
+      white-space: unset;
+      height: unset;
     }
   }
 
@@ -246,6 +249,10 @@ table tr td:nth-child(4) {
       width: 50vw;
       margin: auto;
       display: block;
+    }
+
+    .speaker-info .speaker-button {
+      max-width: 100%;
     }
   }
 }

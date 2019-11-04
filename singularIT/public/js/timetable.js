@@ -139,17 +139,36 @@ function enrollClick(talkid) {
 }
 
 function talkColumnClick(talk) {
-    document.getElementById('ModalTitle').innerHTML = talk.title;
-    document.getElementById('favorite-checkbox').dataset.id = talk.id;
-    document.getElementById('ModalContent').innerHTML = talk.subTitle;
+    document.getElementById('ModalTitle').innerHTML = talk.title ? talk.title : "TBA";
+    let favoriteCheckbox = document.getElementById('favorite-checkbox');
+    if(favoriteCheckbox) {
+        favoriteCheckbox.dataset.id = talk.id;
+    }
+    let talkDescription = "";
+    if(talk.description) {
+        if(talk.description.forEach) {
+            talk.description.forEach(element => {
+                talkDescription += element;
+                talkDescription += "<br>";
+                talkDescription += "<br>";
+            });
+        } else {
+            talkDescription = talk.description;
+        }
+    } else {
+        talkDescription = "TBA";
+    }
+    document.getElementById('ModalContent').innerHTML = talkDescription;
     var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
     document.getElementById('ModalFooter').innerHTML = timeText;
     document.getElementById('talkModal').style.display = 'block';
-    $.get("/api/favorite/" + talk.id, function(data) {
-        if(data.success) {
-            $('#favorite-checkbox').prop('checked', data.favorite);
-        }
-    });
+    if(favoriteCheckbox) {
+        $.get("/api/favorite/" + talk.id, function(data) {
+            if(data.success) {
+                $('#favorite-checkbox').prop('checked', data.favorite);
+            }
+        });
+    }
     var capacityLabel = $('#Capacity');
     if(capacityLabel) {
         $.get("/api/talks/capacity/" + talk.id, function(data) {
@@ -160,45 +179,51 @@ function talkColumnClick(talk) {
             }
         });
     }
-    $.get("/api/talks/enrolled/" + talk.id, function(data) {
-        if(data && data.success) {
-            var enrollButton = $('#EnrollButton');
-            enrollButton.show();
+    if(favoriteCheckbox) {
+        $.get("/api/talks/enrolled/" + talk.id, function(data) {
+            if(data && data.success) {
+                var enrollButton = $('#EnrollButton');
+                enrollButton.show();
 
-            var showUnenroll = function() {
-                enrollButton.html("Unenroll");
-                enrollButton.off();
-                enrollButton.click(function() {
-                    unenrollClick(talk.id);
-                    showEnroll();
-                });
-                enrollButton.removeClass("enroll");
-                enrollButton.addClass("unenroll");
-            };
+                var showUnenroll = function() {
+                    enrollButton.html("Unenroll");
+                    enrollButton.off();
+                    enrollButton.click(function() {
+                        unenrollClick(talk.id);
+                        showEnroll();
+                    });
+                    enrollButton.removeClass("enroll");
+                    enrollButton.addClass("unenroll");
+                };
 
-            var showEnroll = function () {
-                enrollButton.html("Enroll");
-                enrollButton.off();
-                enrollButton.click(function() {
-                    enrollClick(talk.id);
+                var showEnroll = function () {
+                    enrollButton.html("Enroll");
+                    enrollButton.off();
+                    enrollButton.click(function() {
+                        enrollClick(talk.id);
+                        showUnenroll();
+                    } );
+                    enrollButton.removeClass("unenroll");
+                    enrollButton.addClass("enroll");
+                }
+
+                if(data.enrolled) {
                     showUnenroll();
-                } );
-                enrollButton.removeClass("unenroll");
-                enrollButton.addClass("enroll");
-            }
-
-            if(data.enrolled) {
-                showUnenroll();
+                } else {
+                    showEnroll();
+                }
             } else {
-                showEnroll();
+                enrollButton.hide();
             }
-        } else {
-            enrollButton.hide();
-        }
-    });
+        });
+    }
     if(talk.speaker) {
         $('#SpeakerButton').html(talk.speaker.name);
-        $('#ModalImage').attr('src', talk.speaker.image);
+        if(talk.speaker.image) {
+            $('#ModalImage').attr('src', talk.speaker.image);
+        } else {
+            $('#ModalImage').attr('src', "/images/speakers/Unknown.png");
+        }
 
         var showFunction = function(title, body, buttonText, buttonClick) {
             $('#ModalTitle').fadeOut(140, function() { $(this).html(title).fadeIn(140)});
@@ -221,14 +246,20 @@ function talkColumnClick(talk) {
         }
 
         var showSpeaker = function() {
-            showFunction(talk.speaker.name, talk.speaker.bio, talk.title, showTalk);
+            showFunction(talk.speaker.name, talk.speaker.bio ? talk.speaker.bio : "TBA", talk.title ? talk.title: "TBA", showTalk);
         };
 
         var showTalk = function() {
-            showFunction(talk.title, talk.subTitle, talk.speaker.name, showSpeaker);
+            showFunction(talk.title ? talk.title : "TBA", talk.description ? talk.description : "TBA", talk.speaker.name, showSpeaker);
         }
 
         $('#SpeakerButton').off("click");
         $('#SpeakerButton').click(showSpeaker)
+    } else {
+        if(talk.image) {
+            $('#ModalImage').attr('src', "/images/speakers/Speeddates.png");
+        } else {
+            $('#ModalImage').attr('src', "/images/speakers/Unknown.png");
+        }
     }
 }
