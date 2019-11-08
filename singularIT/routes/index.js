@@ -993,7 +993,7 @@ module.exports = function (config) {
       tasks.push(function (callback) {
         var params;
         if (req.body.type === 'partner') {
-          params = { type: process.argv[3], rev: 1 };
+          params = { type: req.body.type, rev: 1 };
         } else {
           params = { rev: 1 };
         }
