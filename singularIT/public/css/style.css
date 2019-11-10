@@ -1708,7 +1708,8 @@ table tr td:nth-child(4) {
   display: flex;
   height: auto; }
   .modal-body #ModalContent {
-    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 60vh;
     transition: height 0.3s ease-out; }
   .modal-body .speaker-info {
     margin-right: 5px; }
@@ -1722,7 +1723,9 @@ table tr td:nth-child(4) {
       width: -webkit-fill-available;
       max-width: 150px;
       white-space: unset;
-      height: unset; }
+      height: unset;
+      text-align: left;
+      padding: 0.5rem; }
   @media (max-width: 500px) {
     .modal-body {
       flex-direction: column; }

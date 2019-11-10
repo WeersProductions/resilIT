@@ -52,7 +52,7 @@ function loadTimetableJSON(speakers) {
   for (var track in tmtble.tracks) {
     for (var talk in tmtble.tracks[track].talks) {
       talk = tmtble.tracks[track].talks[talk];
-      simultaneous = [];
+      let simultaneous = [];
       for (var other_talk in all_talks) {
         if (other_talk == talk) {
           continue;
@@ -65,6 +65,7 @@ function loadTimetableJSON(speakers) {
         }
       }
       talk.simultaneous = simultaneous;
+      talkSimultaneous[talk.id] = simultaneous;
     }
   }
   return tmtble;
@@ -75,6 +76,7 @@ function loadTimetableJSON(speakers) {
 // Load speaker information from speakers.json
 var fs = require('fs');
 var talkCapacity = {};
+var talkSimultaneous = {};
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
 var timetable = loadTimetableJSON(speakerinfo);
@@ -89,6 +91,45 @@ module.exports = function (config) {
     return enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
   }
 
+  async function getEnrolledTalkIds(userId) {
+    // Get all the talks this user is enrolled for.
+    let result;
+    let talks = await TalkEnrollment.find({ user: userId });
+    if (talks) {
+      result = { success: true, talks };
+    } else {
+      result = { success: false };
+    }
+    return result;
+  }
+
+  async function unenrollSimultaneous(talkId, userId) {
+    let enrolledTalks = await getEnrolledTalkIds(userId);
+    if(!enrolledTalks.success) {
+      return {success: false, message: "Could not get enrolled talks."};
+    }
+    enrolledTalks = enrolledTalks.talks;
+    let enrolledTalksLength = enrolledTalks.length;
+    let simultaneousWithTalk = talkSimultaneous[talkId];
+    let simultaneousWithTalkLength = simultaneousWithTalk.length;
+    for(let i = 0; i < simultaneousWithTalkLength; i++) {
+      let simultaneousTalkId = simultaneousWithTalk[i];
+      let doesInclude = false;
+      let toBeDeleted = undefined;
+      for(let j = 0; j < enrolledTalksLength; j++) {
+        // console.log(enrolledTalks[j]);
+        if(enrolledTalks[j].talk == simultaneousTalkId) {
+          doesInclude = true;
+          toBeDeleted = enrolledTalks[j];
+        }
+      }
+
+      if (doesInclude) {
+        // Remove this from MongoDB
+        await toBeDeleted.remove();
+      }
+    }
+  }
 
   function auth(req, res, next) {
     if (!req.user) {
@@ -109,15 +150,12 @@ module.exports = function (config) {
   }
 
   async function countEnrolls(sessionId) {
-    let result;
-    await TalkEnrollment.count({ talk: sessionId }, function (err, count) {
-      if (err) {
-        result = { success: false };
-      } else {
-        result = { success: true, capacity: count };
-      }
+    return TalkEnrollment.count({ talk: sessionId }).exec()
+    .then((count) => {
+      return {success: true, capacity: count};
+    }).catch((err) => {
+      return {success: false};
     });
-    return result;
   }
 
   async function canEnrollForSession(sessionId) {
@@ -282,8 +320,7 @@ module.exports = function (config) {
           res.json({ success: false, message: canEnrollInfo.message });
           return;
         }
-        // TODO: check whether this enrollment does not exist already.
-        TalkEnrollment.find({user: user, takl: req.params.id}, function(err, docs) {
+        TalkEnrollment.find({user: user, talk: req.params.id}, function(err, docs) {
           if(err) {
             res.json({success: false});
           }
@@ -295,10 +332,12 @@ module.exports = function (config) {
               user: user,
               talk: req.params.id
             });
-            newTalkEnrollment.save().then(function() {
-              res.json({success: true});
-            }).catch(function() {
-              res.json({success: false});
+            unenrollSimultaneous(req.params.id, user._id).then(() => {
+              newTalkEnrollment.save().then(function() {
+                res.json({success: true});
+              }).catch(function() {
+                res.json({success: false});
+              });
             });
           }
         })
@@ -339,14 +378,18 @@ module.exports = function (config) {
         var amountOfFavorites = user.favorites.length;
         var errors = 0;
         for (var i = 0; i < amountOfFavorites; i++) {
-          canEnrollInfo = await canEnrollForSession(user.favorites[i]);
+          let talkId = user.favorites[i];
+          canEnrollInfo = await canEnrollForSession(talkId);
           if (!canEnrollInfo.success) {
             errors += 1;
             continue;
           }
+          
+          await unenrollSimultaneous(talkId, user._id);
+          
           var newTalkEnrollment = new TalkEnrollment({
             user: user,
-            talk: user.favorites[i]
+            talk: talkId
           });
           await newTalkEnrollment.save(function (err) {
             if (err) {
@@ -417,7 +460,18 @@ module.exports = function (config) {
         if (!user.favorites) {
           user.favorites = [];
         }
-        user.favorites.push(req.params.id);
+        // Check for any favorites that are taking place at the same moment.
+        let resultFavorites = [];
+        let newTalk = req.params.id;
+        let amountOfFavorites = user.favorites.length;
+        for (var i = 0; i < amountOfFavorites; i++) {
+          let talkIndex = user.favorites[i];
+          if(!talkSimultaneous[newTalk].includes(talkIndex)) {
+            resultFavorites.push(talkIndex);
+          }
+        }
+        resultFavorites.push(newTalk);
+        user.favorites = resultFavorites;
         user.save();
         res.json({ "success": true });
       } else {

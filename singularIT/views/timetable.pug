@@ -17,7 +17,7 @@ block content
                 .speaker-info
                     div
                         image#ModalImage.speaker-image
-                    div(style="margin-top: 10px;")
+                    div(style="margin-top: 10px; margin-bottom: 0.5rem")
                         button#SpeakerButton.speaker-button
                 p#ModalContent Body!
             .modal-footer
@@ -104,7 +104,7 @@ block content
                                                         h4=talk.title
                                                     else
                                                         h4="TBA"
-                                                    h6=talk.subTitle
+                                                    h6=talk.location
                                                     small=timeText
                                                     p
                                                 - break

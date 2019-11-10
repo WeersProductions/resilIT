@@ -219,7 +219,8 @@ table tr td:nth-child(4) {
   height: auto;
 
   #ModalContent {
-    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 60vh;
     transition: height 0.3s ease-out;
   }
 
@@ -239,6 +240,8 @@ table tr td:nth-child(4) {
       max-width: 150px;
       white-space: unset;
       height: unset;
+      text-align: left;
+      padding: 0.5rem;
     }
   }
 
