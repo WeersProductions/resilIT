@@ -1710,7 +1710,9 @@ table tr td:nth-child(4) {
   .modal-body #ModalContent {
     overflow-y: scroll;
     max-height: 60vh;
-    transition: height 0.3s ease-out; }
+    transition: height 0.3s ease-out;
+    text-align: left;
+    margin-left: 0.5rem; }
   .modal-body .speaker-info {
     margin-right: 5px; }
     .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
@@ -1729,6 +1731,8 @@ table tr td:nth-child(4) {
   @media (max-width: 500px) {
     .modal-body {
       flex-direction: column; }
+      .modal-body #ModalContent {
+        margin-left: 0; }
       .modal-body .speaker-info .speaker-image, .modal-body .speaker-info .speaker-image-multiple {
         width: 50vw;
         margin: auto;

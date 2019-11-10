@@ -222,6 +222,8 @@ table tr td:nth-child(4) {
     overflow-y: scroll;
     max-height: 60vh;
     transition: height 0.3s ease-out;
+    text-align: left;
+    margin-left: 0.5rem;
   }
 
   .speaker-info {
@@ -247,6 +249,10 @@ table tr td:nth-child(4) {
 
   @media (max-width: 500px) {
     flex-direction: column;
+
+    #ModalContent {
+      margin-left: 0;
+    }
 
     .speaker-info .speaker-image {
       width: 50vw;
