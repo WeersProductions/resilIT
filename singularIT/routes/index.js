@@ -88,6 +88,7 @@ module.exports = function (config) {
     let enrollment_start_time = new Date(config.enroll_start_time);
     let enrollment_end_time = new Date(config.enroll_end_time);
     let today = new Date();
+    console.log(enrollment_start_time, today);
     return enrollment_possible = enrollment_start_time < today && today < enrollment_end_time;
   }
 
