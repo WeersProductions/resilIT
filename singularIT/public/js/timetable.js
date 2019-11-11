@@ -179,33 +179,31 @@ function talkColumnClick(talk) {
             }
         });
     }
+    const enrollButton = $('#EnrollButton');
+    const showEnroll = function () {
+        enrollButton.html("Enroll");
+        enrollButton.off();
+        enrollButton.click(function() {
+            enrollClick(talk.id);
+            showUnenroll();
+        } );
+        enrollButton.removeClass("unenroll");
+        enrollButton.addClass("enroll");
+    };
+    const showUnenroll = function() {
+        enrollButton.html("Unenroll");
+        enrollButton.off();
+        enrollButton.click(function() {
+            unenrollClick(talk.id);
+            showEnroll();
+        });
+        enrollButton.removeClass("enroll");
+        enrollButton.addClass("unenroll");
+    };
     if(favoriteCheckbox) {
         $.get("/api/talks/enrolled/" + talk.id, function(data) {
             if(data && data.success) {
-                var enrollButton = $('#EnrollButton');
                 enrollButton.show();
-
-                var showUnenroll = function() {
-                    enrollButton.html("Unenroll");
-                    enrollButton.off();
-                    enrollButton.click(function() {
-                        unenrollClick(talk.id);
-                        showEnroll();
-                    });
-                    enrollButton.removeClass("enroll");
-                    enrollButton.addClass("unenroll");
-                };
-
-                var showEnroll = function () {
-                    enrollButton.html("Enroll");
-                    enrollButton.off();
-                    enrollButton.click(function() {
-                        enrollClick(talk.id);
-                        showUnenroll();
-                    } );
-                    enrollButton.removeClass("unenroll");
-                    enrollButton.addClass("enroll");
-                }
 
                 if(data.enrolled) {
                     showUnenroll();
@@ -215,6 +213,17 @@ function talkColumnClick(talk) {
             } else {
                 enrollButton.hide();
             }
+        });
+    } else {
+        enrollButton.show();
+        showEnroll();
+        enrollButton.off();
+        enrollButton.click(function() {
+            Toast.fire({
+                title: 'Error!',
+                text: "Please login first!",
+                type: 'error'
+            });
         });
     }
     if(talk.speaker) {

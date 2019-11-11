@@ -1627,7 +1627,8 @@ article + .readmore-js-toggle {
     background: white;
     animation-direction: normal;
     -webkit-animation: shadow-inset-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: shadow-inset-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+    animation: shadow-inset-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    transition: background-color 0.2s ease-in-out; }
   #program-table .talk-column {
     text-align: center;
     width: 35vw;
@@ -1635,7 +1636,12 @@ article + .readmore-js-toggle {
     cursor: pointer;
     animation-direction: reverse;
     -webkit-animation: shadow-inset-center-out 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: shadow-inset-center-out 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+    animation: shadow-inset-center-out 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    transition: background-color 0.2s ease-in-out; }
+  #program-table .enrolled-talk {
+    background: #b3fbbe; }
+    #program-table .enrolled-talk:hover {
+      background: #6bcb5e; }
 
 #program-table td {
   padding: 0.5em !important; }

@@ -1088,11 +1088,28 @@ module.exports = function (config) {
     res.json(timetable);
   })
 
-  router.get('/timetable', function (req, res) {
+  router.get('/timetable', async function (req, res) {
     let enrollment_possible = canEnroll();
     var show_capacity = new Date() > new Date(config.enroll_start_time);
 
-    res.render('timetable', { timetable: timetable, enrollment_possible: enrollment_possible, show_capacity });
+
+    let enrolled_talks = [];
+    if(req.user) {
+      // console.log(req.user);
+      // const user = await User.findOne({ email: req.session.passport.user });
+      let enrolled_talk_infos = await getEnrolledTalkIds(req.user._id);
+      console.log(enrolled_talk_infos);
+      if(enrolled_talk_infos.success) {
+        enrolled_talk_infos = enrolled_talk_infos.talks;
+        let enrolled_talk_infos_length = enrolled_talk_infos.length;
+        for(let i = 0; i < enrolled_talk_infos_length; i++) {
+          enrolled_talks.push(enrolled_talk_infos[i].talk);
+        }
+      }
+    }
+
+    console.log(enrolled_talks);
+    res.render('timetable', { timetable: timetable, enrollment_possible: enrollment_possible, show_capacity, enrolled_talks});
   })
 
   router.get('/ticket', auth, function (req, res, next) {

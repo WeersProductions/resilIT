@@ -98,7 +98,7 @@ block content
                                                 -
                                                     used = true
                                                     var timeText = talk.startTimeDisplay + " - " + talk.endTimeDisplay;
-                                                td#program-table.talk-column(rowspan=talk.length, data-id=talk.id, onclick="talkColumnClick(" + JSON.stringify(talk) + ")")
+                                                td#program-table(class=(enrolled_talks.includes(talk.id) ? 'enrolled-talk talk-column' : 'talk-column'),rowspan=talk.length, data-id=talk.id, onclick="talkColumnClick(" + JSON.stringify(talk) + ")")
                                                     - currentTalks[track.trackId] = talk.length
                                                     if talk.title
                                                         h4=talk.title
