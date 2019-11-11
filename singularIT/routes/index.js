@@ -47,6 +47,7 @@ function loadTimetableJSON(speakers) {
       }
       all_talks.push(talk);
       talkCapacity[talk.id] = talk.capacity;
+      talkNames[talk.id] = talk.title;
     }
   }
   for (var track in tmtble.tracks) {
@@ -77,6 +78,7 @@ function loadTimetableJSON(speakers) {
 var fs = require('fs');
 var talkCapacity = {};
 var talkSimultaneous = {};
+var talkNames = {};
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
 var timetable = loadTimetableJSON(speakerinfo);
@@ -269,6 +271,32 @@ module.exports = function (config) {
   router.get('/api/user', auth, async function (req, res) {
     var user = await User.findOne({ email: req.session.passport.user });
     res.json(user);
+  });
+
+  router.get('/api/favorites/get-stats', adminAuth, async function(req, res) {
+    const users = await User.find({}).exec();
+    if(!users) {
+      return res.json({success: false});
+    }
+    let talkCount = {};
+    const userCount = users.length;
+    for(let i = 0; i < userCount; i++) {
+      const favorites = users[i].favorites;
+      if(!favorites) {
+        continue;
+      }
+      const favoritesLength = favorites.length;
+      for(let j = 0; j < favoritesLength; j++) {
+        const favoriteTalk = favorites[j];
+        if (talkCount[favoriteTalk]) {
+          talkCount[favoriteTalk]= {name: talkCount[favoriteTalk].name, count:  talkCount[favoriteTalk].count + 1};
+        } else {
+          talkCount[favoriteTalk] = {name: talkNames[favoriteTalk], count: 1};
+        }
+      }
+    }
+
+    return res.json({success: true, favorites:talkCount})
   });
 
 
