@@ -48,6 +48,12 @@ function loadTimetableJSON(speakers) {
       all_talks.push(talk);
       talkCapacity[talk.id] = talk.capacity;
       talkNames[talk.id] = talk.title;
+      talkInfos[talk.id] = talk;
+      if(talkTimeSlots[talk.startTime]) {
+        talkTimeSlots[talk.startTime].push(talk.id);
+      } else {
+        talkTimeSlots[talk.startTime] = [talk.id];
+      }
     }
   }
   for (var track in tmtble.tracks) {
@@ -79,6 +85,8 @@ var fs = require('fs');
 var talkCapacity = {};
 var talkSimultaneous = {};
 var talkNames = {};
+var talkInfos = {};
+var talkTimeSlots = {};
 var speakerinfo = JSON.parse(fs.readFileSync('speakers.json'));
 var partnerinfo = JSON.parse(fs.readFileSync('partners.json'));
 var timetable = loadTimetableJSON(speakerinfo);
@@ -297,6 +305,95 @@ module.exports = function (config) {
     }
 
     return res.json({success: true, favorites:talkCount})
+  });
+
+  // TODO: don't harcode the amount of talks here. This is done because of limitations of InDesign data-merge...
+  router.get('/api/badges/get-csv', adminAuth, async function(req, res) {
+    const users = await User.find({}).exec();
+    if(users) {
+      var data = [
+        ['First Name','Last Name','Study Association','Session1','Session2','Session3','Session4','Session5','Session6','#QR','Location1','Location2','Location3','Location4','Location5','Location6']
+      ];
+
+      const usersLength = users.length;
+      for(let i = 0; i < usersLength; i++) {
+        const user = users[i];
+        const talkEnrollments = await TalkEnrollment.find({user}).exec();
+        let enrolledTalks;
+        if (!talkEnrollments) {
+          // We should create talkenrollments for every single one... :(
+          enrolledTalks = [];
+        } else {
+          const talkEnrollmentsLength = talkEnrollments.length;
+          enrolledTalks = [];
+          for(let j = 0; j < talkEnrollmentsLength; j++) {
+            // console.log({talk: talkInfos[talkEnrollments[j].talk], id: talkEnrollments[j].talk})
+            enrolledTalks.push(talkInfos[talkEnrollments[j].talk]);
+          }
+        }
+        let compareTalks = (talkA, talkB) => {
+          return new Date(talkA.startTime) - new Date(talkB.startTime);
+        };
+        // Sort based on time.
+        enrolledTalks.sort(compareTalks);
+
+        // Add missing talks.
+        if(enrolledTalks.length < 6) {
+          const keys = Object.keys(talkTimeSlots);
+          keys.sort();
+          for(let k = 0; k < keys.length; k++) {
+            const index = k;
+            const talkTime = keys[k];
+            const talkTimeSlot = talkTimeSlots[talkTime];
+            
+            // Get the best talk option.
+            let lowestRatio = 100;
+            let lowestId = -1;
+            for(let j = 0; j <talkTimeSlot.length; j++) {
+              const talkId = talkTimeSlot[j];
+
+              const enrollResult = await countEnrolls(talkId);
+              if(enrollResult.success) {
+                let newRatio = enrollResult.capacity / talkInfos[talkId].capacity * 100;
+                if(newRatio < lowestRatio) {
+                  lowestRatio = newRatio;
+                  lowestId = talkId;
+                }
+              } else {
+                console.log("Error! Could not count enrolls for: " + talkId);
+              }
+            }
+
+            // Add the talk or insert it.
+            let doesEnroll = false;
+            if(enrolledTalks.length <= index) {
+              enrolledTalks.push(talkInfos[lowestId]);
+              doesEnroll = true;
+            } else if(!talkTimeSlot.includes(enrolledTalks[index].id)) {
+              enrolledTalks.splice(index, 0, talkInfos[lowestId]);
+              doesEnroll = true;
+            }
+            if(doesEnroll) {
+              // Let's enroll this person.
+              var newTalkEnrollment = new TalkEnrollment({
+                user: user,
+                talk: lowestId
+              });
+              await newTalkEnrollment.save(function (err) {
+                if (err) {
+                  console.log("Error while saving talkenrollment!", user, lowestId);
+                }
+              });
+            }
+          }
+        }
+        data.push([user.firstname, user.surname, user.vereniging, enrolledTalks[0].title, enrolledTalks[1].title, enrolledTalks[2].title, enrolledTalks[3].title, enrolledTalks[4].title, enrolledTalks[5].title, user._id, enrolledTalks[0].location, enrolledTalks[1].location, enrolledTalks[2].location, enrolledTalks[3].location, enrolledTalks[4].location, enrolledTalks[5].location]);
+      }
+      
+      res.set('Content-Type', 'text/plain');
+      res.set('Content-Disposition', 'attachment; filename="badgeData.csv"');
+      res.send(CSV.stringify(data));
+    }
   });
 
 
