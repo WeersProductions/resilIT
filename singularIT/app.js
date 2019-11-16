@@ -30,7 +30,7 @@ mongoose.Promise = require('q').Promise;
 
 var routes = require('./routes/index')(config);
 var auth = require('./routes/auth')(config);
-var scanner_api_routes = require('./routes/scanner')(config);
+// var scanner_api_routes = require('./routes/scanner')(config);
 
 // Sentry
 var sentry_enabled = false;
@@ -63,7 +63,7 @@ app.use(morgan('combined'));
 
 // This must come BEFORE the bodyParser stuff, so the scanner API route
 // can have its own bodyParser and handle its errors
-app.use('/scanner/api/', scanner_api_routes);
+// app.use('/scanner/api/', scanner_api_routes);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

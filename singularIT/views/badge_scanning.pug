@@ -13,7 +13,7 @@ block content
 
     for account in scannerAccounts
       .badge-scans-table.offset-by-three.six.columns
-        h5= account.display_name
+        h5= account.surname
         | Number of scans:
         b= ' ' + account.scans.length
         table.badge-scans.table
