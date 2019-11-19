@@ -308,6 +308,7 @@ module.exports = function(config) {
 
   // TODO: don't harcode the amount of talks here. This is done because of limitations of InDesign data-merge...
   router.get("/api/badges/get-csv", adminAuth, async function(req, res) {
+    const do_enroll = req.query.do_enroll;
     const users = await User.find({}).exec();
     if (users) {
       var data = [
@@ -330,6 +331,8 @@ module.exports = function(config) {
           "Location6"
         ]
       ];
+
+      let new_enrollments = {};
 
       const usersLength = users.length;
       for (let i = 0; i < usersLength; i++) {
@@ -370,6 +373,9 @@ module.exports = function(config) {
 
               const enrollResult = await countEnrolls(talkId);
               if (enrollResult.success) {
+                if(new_enrollments[talkId]) {
+                  enrollResult.capacity += new_enrollments[talkId];
+                }
                 let newRatio =
                   (enrollResult.capacity / talkInfos[talkId].capacity) * 100;
                 if (newRatio < lowestRatio) {
@@ -391,20 +397,28 @@ module.exports = function(config) {
               doesEnroll = true;
             }
             if (doesEnroll) {
-              // Let's enroll this person.
-              var newTalkEnrollment = new TalkEnrollment({
-                user: user,
-                talk: lowestId
-              });
-              await newTalkEnrollment.save(function(err) {
-                if (err) {
-                  console.log(
-                    "Error while saving talkenrollment!",
-                    user,
-                    lowestId
-                  );
+              if(do_enroll) {
+                // Let's enroll this person.
+                var newTalkEnrollment = new TalkEnrollment({
+                  user: user,
+                  talk: lowestId
+                });
+                await newTalkEnrollment.save(function(err) {
+                  if (err) {
+                    console.log(
+                      "Error while saving talkenrollment!",
+                      user,
+                      lowestId
+                    );
+                  }
+                });
+              } else {
+                if(new_enrollments[lowestId]) {
+                  new_enrollments[lowestId] += 1;
+                } else {
+                  new_enrollments[lowestId] = 1;
                 }
-              });
+              }
             }
           }
         }
@@ -1036,7 +1050,6 @@ module.exports = function(config) {
     let scanner_users = await ScannerResult.distinct("scanner_user");
     if(scanner_users) {
       scannerAccounts = await Promise.all(scanner_users.map(async function(scanner_user) {
-        console.log(scanner_user);
         let scans = await ScannerResult.find({
           scanner_user: scanner_user
         })
@@ -1497,7 +1510,8 @@ module.exports = function(config) {
 
   router.get("/timetable", async function(req, res) {
     let enrollment_possible = canEnroll();
-    var show_capacity = new Date() > new Date(config.enroll_start_time);
+    // var show_capacity = new Date() > new Date(config.enroll_start_time);
+    var show_capacity = enrollment_possible;
 
     let enrolled_talks = [];
     if (req.user) {
