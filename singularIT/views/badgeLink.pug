@@ -1,0 +1,30 @@
+extends layout
+
+block above-content
+
+block header
+  header.text
+    h2 Admin
+
+block content
+    .section.admin
+        p(style='color:red; margin: 3rem auto;')
+            | #[i(class="fas fa-exclamation-triangle")] Used to link existing QR codes with users.
+            | #[i(class="fas fa-exclamation-triangle")]
+
+        h2 Link badges
+        p
+            | Link an existing badge/qr with a user.
+
+        form(method='POST', action='/api/badge-scanning/link')
+            .row
+                .ten.columns
+                    .form-group
+                        label(for='qr') QR
+                        input.form-control(type='text', name="qr")
+                    .form-group
+                        label(for='userId') userId
+                        input.form-control(type='text', name="userId")
+
+                .two.columns
+                    button.button.special(type='submit') Link

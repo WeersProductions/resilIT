@@ -5,6 +5,7 @@ var Ticket = require("../models/Ticket");
 var User = require("../models/User");
 var TalkEnrollment = require("../models/TalkEnrollment");
 var ScannerUser = require("../models/ScannerUser");
+var QRLink = require("../models/QRLink");
 var ScannerResult = require("../models/ScannerResult");
 var SpeedDateTimeSlot = require("../models/SpeedDateTimeSlot");
 var _ = require("underscore");
@@ -980,6 +981,45 @@ module.exports = function(config) {
     res.redirect("/speeddate");
   });
 
+  router.get("/badge-scanning/link", adminAuth, async function(req, res) {
+    res.render("badgeLink");
+  });
+
+  router.post("/api/badge-scanning/link", adminAuth, async function(req, res) {
+    const qr = req.body.qr;
+    const userId = req.body.userId;
+
+    if(!qr || qr.length <= 0) {
+      res.json({success: false, message: "Provide a valid qr code."});
+      return;
+    }
+
+    let user = await User.findOne({_id: userId});
+    if(!user) {
+      res.json({success: false, message: "User not found."});
+    }
+
+    let qrLink = await QRLink.findOne({qr: qr});
+    if(qrLink) {
+      qrLink.user = userId;
+    } else {
+      qrLink = await QRLink.findOne({user: userId});
+      if(qrLink) {
+        qrLink.qr = qr;
+      } else {
+        qrLink = new QRLink({
+          user: userId,
+          qr: qr
+        });
+      }
+    }
+    qrLink.save().then(() => {
+      res.json({success: true});
+    }).catch((e) => {
+      res.json({success: false});
+    });
+  });
+
   router.post("/api/badge-scanning/:id", auth, async function(req, res) {
     const scanner = req.user;
     if (scanner.type != "partner") {
@@ -988,13 +1028,19 @@ module.exports = function(config) {
     }
 
     try {
-      const scanned_user = await User.findOne({ _id: req.params.id });
+      let scanned_user = await User.findOne({ _id: req.params.id });
       if (!scanned_user) {
-        res.json({
-          success: false,
-          message: "This is not a valid badge number."
-        });
-        return;
+        const qrLink = await QRLink.findOne({qr: req.params.id}).populate("user");
+        if(qrLink) {
+          scanned_user = qrLink.user;
+        }
+        if(!scanned_user) {
+          res.json({
+            success: false,
+            message: "This is not a valid badge number."
+          });
+          return;
+        }
       }
       if (!scanned_user.allowBadgeScanning) {
         res.json({
