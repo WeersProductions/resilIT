@@ -1494,6 +1494,28 @@ module.exports = function(config) {
     });
   });
 
+  router.delete("/users/:id", adminAuth, async function(req, res, next) {
+    const userId = req.params.id;
+    let user = await User.findOne({_id: userId}).catch((e) => {
+      return null;
+    });
+    if(!user) {
+      res.json({success: false, message: "Could not find user."});
+      return;
+    }
+    let ticket = await Ticket.findOne({ownedBy: userId}).catch((e) => {
+      return null;
+    });
+    if(!ticket) {
+      res.json({success: false, message: "This user does not have a ticket."});
+      return;
+    }
+    ticket.ownedBy = null;
+    await ticket.save();
+    await user.remove();
+    res.json({success: true});
+  });
+
   router.get("/tickets/generate-csv", adminAuth, async function(req, res) {
     var data = [["ticket_id", "type"]];
 
