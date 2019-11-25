@@ -1046,17 +1046,20 @@ module.exports = function(config) {
           return;
         }
       }
+      let allowed = true;
       if (!scanned_user.allowBadgeScanning) {
+        allowed = false;
         res.json({
           success: false,
-          message: "This student does not want to be scanned."
+          message: "This student does not want to be scanned, we will request permission later."
         });
-        return;
+        // return;
       }
       // This person can scan this student.
       let newScanResult = new ScannerResult({
         scanner_user: scanner._id,
-        user: scanned_user._id
+        user: scanned_user._id,
+        allowed: allowed,
       });
       newScanResult.save().then((doc) => {
         res.json({

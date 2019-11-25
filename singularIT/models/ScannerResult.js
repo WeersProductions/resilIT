@@ -8,7 +8,8 @@ var ScannerResult = new mongoose.Schema({
     user:                   { type: Schema.Types.ObjectId, ref: 'User',
                               required: true},
     comment:                { type: String, required: false },
-    scan_time:              { type: Date, default: Date.now }
+    scan_time:              { type: Date, default: Date.now },
+    allowed:                { type: Boolean, default: false, required: false}
 });
 
 ScannerResult.index({scanner_user: 1, user: 1}, {unique: true});
