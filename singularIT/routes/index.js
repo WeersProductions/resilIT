@@ -1058,10 +1058,11 @@ module.exports = function(config) {
         scanner_user: scanner._id,
         user: scanned_user._id
       });
-      newScanResult.save().then(() => {
+      newScanResult.save().then((doc) => {
         res.json({
           success: true,
-          user_name: scanned_user.firstname + " " + scanned_user.surname
+          user_name: scanned_user.firstname + " " + scanned_user.surname,
+          id: doc._id
         });
       }).catch((e) => {
         res.json({success: false, message: "You probably already scanned this user."});
@@ -1072,7 +1073,7 @@ module.exports = function(config) {
   });
 
   // Used to update a comment on a user.
-  router.patch("/api/badge-scanning/:id", auth, async function(req, res) {
+  router.post("/api/badge-scanning/edit/:id", auth, async function(req, res) {
     try {
       const _id = req.params.id;
       const result = await ScannerResult.findByIdAndUpdate(
@@ -1082,6 +1083,9 @@ module.exports = function(config) {
       );
       if (result === null) {
         res.json({ success: false });
+      } else {
+        console.log(req.body);
+        res.json({success: true});
       }
     } catch (e) {
       req.json({ success: false });
