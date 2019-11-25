@@ -1028,9 +1028,13 @@ module.exports = function(config) {
     }
 
     try {
-      let scanned_user = await User.findOne({ _id: req.params.id });
+      let scanned_user = await User.findOne({ _id: req.params.id }).catch((e)=>{
+        return null;
+      });
       if (!scanned_user) {
-        const qrLink = await QRLink.findOne({qr: req.params.id}).populate("user");
+        const qrLink = await QRLink.findOne({qr: req.params.id}).populate("user").catch((e) => {
+          return null;
+        });
         if(qrLink) {
           scanned_user = qrLink.user;
         }
@@ -1049,7 +1053,6 @@ module.exports = function(config) {
         });
         return;
       }
-
       // This person can scan this student.
       let newScanResult = new ScannerResult({
         scanner_user: scanner._id,
