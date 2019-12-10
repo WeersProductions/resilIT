@@ -1095,6 +1095,38 @@ module.exports = function(config) {
     }
   });
 
+  router.get("/api/badge-scanning/export", adminAuth, async function(req, res) {
+    var badgeScanningAllowed = await User.find({
+      allowBadgeScanning: true,
+      type: "student"
+    }).count();
+    var totalUsers = await User.find({ type: "student" }).count();
+
+    let scannerAccounts;
+    let scanner_users = await ScannerResult.distinct("scanner_user");
+    if(scanner_users) {
+      scannerAccounts = await Promise.all(scanner_users.map(async function(scanner_user) {
+        let scans = await ScannerResult.find({
+          scanner_user: scanner_user
+        })
+          .populate("user")
+          .sort({ "user.studyProgramme": 1 });
+        return {
+          id: scanner_user,
+          first_name: scanner_user.firstname,
+          surname: scanner_user.surname,
+          scans: scans
+        };
+      }));
+    }
+    res.json({
+      badgeScanningAllowed: badgeScanningAllowed,
+      totalUsers: totalUsers,
+      scannerAccounts: scannerAccounts,
+      associations: config.verenigingen
+    });
+  })
+
   router.get("/badge-scanning", adminAuth, async function(req, res) {
     var badgeScanningAllowed = await User.find({
       allowBadgeScanning: true,
