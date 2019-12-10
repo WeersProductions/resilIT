@@ -1143,6 +1143,7 @@ module.exports = function(config) {
         })
           .populate("user")
           .sort({ "user.studyProgramme": 1 });
+        scanner_user = await User.findOne({_id: scanner_user});
         return {
           id: scanner_user,
           first_name: scanner_user.firstname,
